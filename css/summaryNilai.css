@@ -13,5 +13,12 @@ h1, h2, h3, h4 {
 }
 
 .main-content {
-    padding-top: 7vh;
+    margin-left: 18vw;
+    margin-right: 3vw;
+    padding-top: 10vh;
+}
+
+.breadcrumb-item-text {
+    display: inline-block;
+    vertical-align: middle;
 }
