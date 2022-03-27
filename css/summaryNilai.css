@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+    background-color: rgb(245, 245, 245);
+    margin: 0 auto;
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1, h2, h3, h4 {
+    display: inline-block;
+}
+
+nav {
+    width: 85vw;
+    background-color: rgb(255, 255, 255);
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    height: 7vh;
+    overflow: auto;
+    right: 0;
+}
+
+.sidebar {
+    margin: 0;
+    padding: 0;
+    width: 15vw;
+    background-color: rgb(255, 255, 255);
+    position: fixed;
+    height: 100vh;
+    overflow: auto;
+}
+
+.brand {
+    padding-top: 1vh;
+    height: 7vh;
+    text-align: center;
+}
+
+.brand-name {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 24pt;
+    font-weight: 600;
+}
+
+.logo {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.login-info {
+    text-align: center;
+    padding-top: 3vh;
+    padding-bottom: 3vh;
+}
+
+.avatar {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    border-radius: 100px;
+    object-position: center 10%;
+}
+
+.name {
+    margin-top: 10px;
+    display: block;
+    margin-left: 10px;
+    font-weight: 600;
+}
+
+.sidebar a {
+    display: block;
+    color: black;
+    padding: 16px;
+    text-decoration: none;
+}
+
+.sidebar a.active {
+    background-color: crimson;
+    color: white;
+}
+
+.sidebar a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+}
+
+.badge {
+    background-color: red;
+    border-radius: 200px;
+    position: inherit;
+    float: right;
+}
+
+.icon {
+    position: relative;
+}
+
+.main-content {
+    padding-top: 7vh;
+}
