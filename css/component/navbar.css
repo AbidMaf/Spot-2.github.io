@@ -32,6 +32,11 @@ nav {
     font-weight: 600;
 }
 
+.brand-version {
+    font-size: 10pt;
+    margin-top: 15px;
+}
+
 .logo {
     display: inline-block;
     vertical-align: middle;
@@ -92,7 +97,11 @@ nav {
 
 @media screen and (max-width: 768px) {
     .brand-name {
-        visibility: hidden;
+        display: none;
+    }
+
+    .brand-version {
+        display: none;
     }
     
     .avatar {
@@ -142,7 +151,7 @@ nav {
     .brand {
         display: none;
     }
-    
+
     .sidebar {
         text-align: center;
         display: inline-block;
