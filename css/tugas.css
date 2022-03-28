@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+    background-color: rgb(245, 245, 245);
+    margin: 0 auto;
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1, h2, h3, h4 {
+    display: inline-block;
+}
+
+table{
+    text-align: center;
+    vertical-align: middle;
+}
+
+td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+th {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.main-content {
+    margin-left: 18vw;
+    margin-right: 3vw;
+    padding-top: 10vh;
+}
+
+.breadcrumb-item-text {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.date {
+    text-align: right;
+}
+/*Welcome*/
+.welcome .content {
+	background-color: white;
+}
+
+/*Statistic*/
+.tugas .box {
+	background-color: white;
+}
+
+section.tugas {
+    background-color: white;
+}
+
+.tugas .box i {
+	width: 60px;
+	height: 60px;
+	line-height: 60px;
+}
+
+.table {
+    font-size: 12pt;
+}
+
+@media screen and (min-width: 360px) and (max-width: 450px) {
+    .main-content {
+        margin: 10px 10px auto;
+        padding-top: 30px;
+        padding-bottom: 12vh;
+    }
+
+    .breadcrumb-item svg {
+        max-width: 18px;
+    }
+
+    .breadcrumb-item-text {
+        font-size: 12pt;
+    }
+
+    .date {
+        font-size: 12pt;
+        font-weight: 300;
+    }
+
+    .date svg {
+        stroke-width: 1px;
+    }
+
+    .btn {
+        max-width: 72px;
+        max-height: 42px;
+        font-size: 10pt;
+        text-align: center;
+    }
+
+}
