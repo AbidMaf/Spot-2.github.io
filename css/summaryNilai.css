@@ -97,9 +97,17 @@ h1, h2, h3, h4 {
         padding-bottom: 12vh;
     }
 
+    .breadcrumb-item svg {
+        max-width: 18px;
+    }
+
+    .breadcrumb-item-text {
+        font-size: 12pt;
+    }
+
     .matkul-name {
         text-align: left;
-        max-width: 250px;
+        max-width: 200px;
     }
 
     .nilai {

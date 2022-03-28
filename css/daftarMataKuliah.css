@@ -112,6 +112,7 @@ h1, h2, h3, h4 {
     
     .matkul-title {
         font-size: 12pt;
+        max-width: 200px;
     }
 
     .schedule-tag {
