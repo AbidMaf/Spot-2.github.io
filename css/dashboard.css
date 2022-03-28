@@ -31,8 +31,8 @@ h1, h2, h3, h4 {
 	background-color: white;
 }
 
-.welcome {
-    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+.rounded-3 {
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075) !important;
 }
 
 /*Statistic*/
