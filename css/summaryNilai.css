@@ -12,6 +12,11 @@ h1, h2, h3, h4 {
     display: inline-block;
 }
 
+.btn-primary {
+    background-color: crimson !important;
+    color: white !important;
+}
+
 .main-content {
     margin-left: 18vw;
     margin-right: 3vw;
@@ -21,4 +26,110 @@ h1, h2, h3, h4 {
 .breadcrumb-item-text {
     display: inline-block;
     vertical-align: middle;
+}
+
+.date {
+    text-align: right;
+}
+
+.matkul-card {
+    width: 100%;
+    background-color: white;
+    /* max-height: 256px; */
+    padding: 15px;
+}
+
+.matkul-info {
+    margin: 20px;
+}
+
+.matkul-title {
+    display: inline-block;
+    font-size: 14pt;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.schedule-tag {
+    font-size: 10px;
+    margin-left: 5px;
+}
+
+.matkul-kode {
+    display: inline-block;
+    float: right;
+    font-size: 12pt;
+}
+
+.matkul-dosen {
+    font-size: 12pt;
+    margin-bottom: 20px;
+}
+
+.matkul-description {
+    font-size: 12pt;
+    line-height: 1.4em;
+    text-align: justify;
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    .date {
+        font-size: 14pt;
+    }
+    
+    .schedule-tag {
+        display: block !important;
+    }
+    
+    .matkul-dosen svg {
+        max-width: 18px;
+    }
+
+    .matkul-description {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 375px) and (max-width: 450px) {
+    .main-content {
+        margin: 10px 10px auto;
+        padding-top: 30px;
+        padding-bottom: 12vh;
+    }
+    
+    .breadcrumb-item svg {
+        max-width: 18px;
+    }
+
+    .breadcrumb-item-text {
+        font-size: 12pt;
+    }
+
+    .date {
+        display: none;
+    }
+    
+    .matkul-title {
+        font-size: 12pt;
+    }
+
+    .schedule-tag {
+        display: none !important;
+    }
+
+    /* .schedule-tag span {
+        display: none;
+        border-radius: 100%;
+        width: 3px;
+        height: 3px;
+    }
+
+    .schedule-tag:after {
+        content: none;
+    } */
+    
+    .btn {
+        width: 100%;
+    }
 }
