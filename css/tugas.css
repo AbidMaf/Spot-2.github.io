@@ -71,4 +71,29 @@ section.tugas {
         padding-top: 30px;
         padding-bottom: 12vh;
     }
+
+    .breadcrumb-item svg {
+        max-width: 18px;
+    }
+
+    .breadcrumb-item-text {
+        font-size: 12pt;
+    }
+
+    .date {
+        font-size: 12pt;
+        font-weight: 300;
+    }
+
+    .date svg {
+        stroke-width: 1px;
+    }
+
+    .btn {
+        max-width: 72px;
+        max-height: 42px;
+        font-size: 10pt;
+        text-align: center;
+    }
+
 }
