@@ -51,8 +51,24 @@ th {
 	background-color: white;
 }
 
+section.tugas {
+    background-color: white;
+}
+
 .tugas .box i {
 	width: 60px;
 	height: 60px;
 	line-height: 60px;
+}
+
+.table {
+    font-size: 12pt;
+}
+
+@media screen and (min-width: 360px) and (max-width: 450px) {
+    .main-content {
+        margin: 10px 10px auto;
+        padding-top: 30px;
+        padding-bottom: 12vh;
+    }
 }
