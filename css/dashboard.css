@@ -31,13 +31,52 @@ h1, h2, h3, h4 {
 	background-color: white;
 }
 
+.welcome {
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+}
+
 /*Statistic*/
 .statistics .box {
 	background-color: white;
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
 }
 
 .statistics .box i {
 	width: 60px;
 	height: 60px;
 	line-height: 60px;
+}
+
+@media screen and (max-width: 768px) {
+    .date {
+        font-size: 14pt;
+    }
+    .statistics .box {
+		margin-bottom: 25px !important;
+	}
+}
+
+
+@media screen and (min-width: 360px) and (max-width: 450px) {
+    .main-content {
+        margin: 10px 10px auto;
+        padding-top: 30px;
+        padding-bottom: 12vh;
+    }
+    
+    .breadcrumb-item svg {
+        max-width: 18px;
+    }
+
+    .breadcrumb-item-text {
+        font-size: 12pt;
+    }
+
+    .date {
+        display: none;
+    }
+
+    .d-block {
+        display: none !important;
+    }
 }
