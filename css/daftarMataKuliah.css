@@ -33,6 +33,10 @@ h1, h2, h3, h4 {
     font-weight: 300;
 }
 
+.date {
+    font-weight: 300;
+}
+
 .date svg {
     stroke-width: 1px;
 }
@@ -48,6 +52,10 @@ h1, h2, h3, h4 {
     margin: 20px;
 }
 
+.matkul-header {
+    display: inline-block;
+}
+
 .matkul-title {
     display: inline-block;
     font-size: 14pt;
@@ -61,7 +69,13 @@ h1, h2, h3, h4 {
 }
 
 .matkul-kode {
-    display: inline-block;
+    display: block;
+    /* float: right; */
+    font-size: 12pt;
+}
+
+.matkul-sks {
+    display: block;
     float: right;
     font-size: 12pt;
 }
