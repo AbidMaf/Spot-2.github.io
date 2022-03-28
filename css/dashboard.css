@@ -27,68 +27,17 @@ h1, h2, h3, h4 {
     text-align: right;
 }
 /*Welcome*/
-.welcome {
-	color: var(--dk-gray-300);
-}
-
 .welcome .content {
-	background-color: var(--dk-dark-bg);
-}
-
-.welcome p {
-	color: var(--dk-gray-400);
+	background-color: white;
 }
 
 /*Statistic*/
-.statistics {
-	color: var(--dk-gray-200);
-}
-
 .statistics .box {
-	background-color: var(--dk-dark-bg);
+	background-color: white;
 }
 
 .statistics .box i {
 	width: 60px;
 	height: 60px;
 	line-height: 60px;
-}
-
-.statistics .box p {
-	color: var(--dk-gray-400);
-}
-
-/*Statis*/
-.statis {
-	color: var(--dk-gray-100);
-}
-
-.statis .box {
-	position: relative;
-	overflow: hidden;
-	border-radius: 3px;
-}
-
-.statis .box h3:after {
-	content: "";
-	height: 2px;
-	width: 70%;
-	margin: auto;
-	background-color: rgba(255, 255, 255, 0.12);
-	display: block;
-	margin-top: 10px;
-}
-
-.statis .box i {
-	position: absolute;
-	height: 70px;
-	width: 70px;
-	font-size: 22px;
-	padding: 15px;
-	top: -25px;
-	left: -25px;
-	background-color: rgba(255, 255, 255, 0.15);
-	line-height: 60px;
-	text-align: right;
-	border-radius: 50%;
 }
