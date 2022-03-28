@@ -63,6 +63,11 @@ h1, h2, h3, h4 {
     /* background-color: white !important; */
 }
 
+.nilai-collapse {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 .nilai-collapse span {
     float: left !important;
 }
@@ -71,16 +76,47 @@ h1, h2, h3, h4 {
     float: right;
 }
 
+.nilai-total {
+    font-weight: 600;
+    font-size: 18pt;
+    margin-bottom: 0;
+}
+
+.nilai {
+    margin-bottom: 15px;
+}
+
 @media screen and (max-width: 768px) {
     
 }
 
 @media screen and (min-width: 375px) and (max-width: 450px) {
-    
+    .main-content {
+        margin: 10px 10px auto;
+        padding-top: 30px;
+        padding-bottom: 12vh;
+    }
+
+    .matkul-name {
+        text-align: left;
+        max-width: 250px;
+    }
+
+    .nilai {
+        font-size: 12pt;
+    }
+
+    .nilai-total {
+        font-size: 14pt !important;
+    }
 }
 
 .rotate180deg {
-    transition: all .5s ease-out;
+    transition: all .4s ease-out;
+}
+
+.rotate180deg.down {
+    transform: rotate(180deg);
 }
 
 @keyframes rotate180 {

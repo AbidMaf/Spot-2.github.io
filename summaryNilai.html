@@ -30,10 +30,6 @@
       <span class="name">Sylvia Johnroe</span>
       <span class="nim">2000649</span>
     </div>
-    <a>
-      <i class="icon" data-feather="home"></i>
-      <span class="menu-name">&nbsp;Beranda</span>
-    </a>
     <a href="dashboard.html">
       <i class="icon" data-feather="pie-chart"></i>
       <span class="menu-name">&nbsp;Dashboard</span>
@@ -81,15 +77,89 @@
       </div>
       <div class="col-lg-8 order-lg-1">
         <div class="sum-nilai-matkul-card shadow-sm rounded">
-          <a class="btn btn-light nilai-collapse shadow-sm" data-bs-toggle="collapse" href="#collapsedNilai" role="button" aria-expanded="false" aria-controls="collapseExample" id="nilaiMataKuliah" onclick="rotate()">
-            <span>Pemrograman Web</span>
-            <i class="ico ico-dark" id="arrow-down" data-feather="chevron-down"></i>
+          <a class="btn btn-light nilai-collapse shadow-sm" data-bs-toggle="collapse" href="#collapsedNilai" role="button" aria-expanded="false" aria-controls="collapseExample" id="nilaiMataKuliah" >
+            <span class="matkul-name">Pemrograman Web</span>
+            <i class="ico ico-dark rotate180deg" data-feather="chevron-down"></i>
           </a>
           <div class="collapse" id="collapsedNilai">
-            <div class="card card-body">
-              asas
+            <div class="card card-body gy-5">
+              <div class="row nilai nilai-total">
+                <div class="col-10">
+                  <span>Total</span>
+                </div>
+                <div class="col-2 text-end text-nowrap">
+                  <span>95</span>
+                </div>
+              </div>
+              <div class="row nilai">
+                <div class="col-10">
+                  <span>Tugas</span>
+                </div>
+                <div class="col-2 text-end text-nowrap">
+                  <span>90</span>
+                </div>
+              </div>
+              <div class="row nilai">
+                <div class="col-10">
+                  <span>UTS</span>
+                </div>
+                <div class="col-2 text-end text-nowrap">
+                  <span>85</span>
+                </div>
+              </div>
+              <div class="row nilai">
+                <div class="col-10">
+                  <span>UAS</span>
+                </div>
+                <div class="col-2 text-end text-nowrap">
+                  <span>93</span>
+                </div>
+              </div>
             </div>
           </div>
+
+          <a class="btn btn-light nilai-collapse shadow-sm" data-bs-toggle="collapse" href="#collapsedNilai1" role="button" aria-expanded="false" aria-controls="collapseExample" id="nilaiMataKuliah1" >
+            <span class="matkul-name">Konstruksi Perangkat Lunak</span>
+            <i class="ico ico-dark rotate180deg" data-feather="chevron-down"></i>
+          </a>
+          <div class="collapse" id="collapsedNilai1">
+            <div class="card card-body gy-5">
+              <div class="row nilai nilai-total">
+                <div class="col-10">
+                  <span>Total</span>
+                </div>
+                <div class="col-2 text-end text-nowrap">
+                  <span>95</span>
+                </div>
+              </div>
+              <div class="row nilai">
+                <div class="col-10 ">
+                  <span>Tugas</span>
+                </div>
+                <div class="col-2 text-end text-nowrap">
+                  <span>90</span>
+                </div>
+              </div>
+              <div class="row nilai">
+                <div class="col-10">
+                  <span>UTS</span>
+                </div>
+                <div class="col-2 text-end text-nowrap">
+                  <span>85</span>
+                </div>
+              </div>
+              <div class="row nilai">
+                <div class="col-10">
+                  <span>UAS</span>
+                </div>
+                <div class="col-2 text-end text-nowrap">
+                  <span>93</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
         </div>
       </div>
     </div>
@@ -101,7 +171,12 @@
 </script>
 
 <script>
-  $("#nilaiMataKuliah").click(function () {
-    $("#arrow-down")
-  })
+  $(document).ready(function () { 
+    $(document).click(function(event) {
+      if ($('#' + event.target.id).hasClass('nilai-collapse')) {
+        $('#' + event.target.id + '>svg').toggleClass('down');
+        console.log('asaaasas');
+      }
+    });
+  });
 </script>
