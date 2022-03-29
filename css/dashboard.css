@@ -173,6 +173,25 @@ h1, h2, h3, h4 {
     transform: translatex(2px);
   }
 
+  /* Chart */
+  .charts .chart-container {
+    background-color: #49beb7;
+  }
+  
+  .charts .chart-container h3 {
+    color: var(--dk-gray-400)
+  }
+
+  div.chart-container.rounded-2.p-3 {
+    background-color: #fff;
+  }
+
+  h3.fs-6.mb-3 {
+    font-size: 28px !important;
+  }
+
+  /* Responsive */
+
   @media screen and (max-width: 700px) {
     .task-manager {
       flex-direction: column;
