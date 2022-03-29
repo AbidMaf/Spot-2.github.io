@@ -176,6 +176,7 @@ nav {
 
     .sidebar svg {
         margin-left: -5px;
+        overflow: hidden;
     }
 
     .menu-name {
