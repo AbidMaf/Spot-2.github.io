@@ -2,8 +2,12 @@ function setdata() {
     var nim = document.getElementById("nim").value;
     var password = document.getElementById("password").value;
 
-    const nimList = ['2000649', '2000427', '2000637'];
-    const passList = ['1234abcd', 'abcd1234', 'aaaa0000'];
+    const nimList = [
+        '2000649', '2000427', '2000637'
+    ];
+    const passList = [
+        '1234abcd', 'abcd1234', 'aaaa0000'
+    ];
 
     var checkNim = nimList.includes(nim);
     if(checkNim == true){
