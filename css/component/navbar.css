@@ -160,6 +160,7 @@ nav {
         width: 100vw;
         height: 10vh;
         z-index: 99;
+        overflow: hidden;
     }
 
     .login-info {
