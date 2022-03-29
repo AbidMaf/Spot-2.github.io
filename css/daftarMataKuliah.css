@@ -111,7 +111,7 @@ h1, h2, h3, h4 {
     }
 }
 
-@media screen and (min-width: 375px) and (max-width: 450px) {
+@media screen and (min-width: 360px) and (max-width: 450px) {
     .main-content {
         margin: 10px 10px auto;
         padding-top: 30px;
