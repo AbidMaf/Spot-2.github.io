@@ -73,11 +73,6 @@ section.tugas {
 
 span.badge.bg-secondary, span.badge.bg-alert, span.badge.bg-success {
     float: none !important;
-    word-wrap: break-word !important;
-    display: block !important;
-    max-width: 6rem;
-    line-height: 1.3em;
-    font-weight: 500;
 }
 
 @media screen and (min-width: 360px) and (max-width: 480px) {
@@ -102,6 +97,15 @@ span.badge.bg-secondary, span.badge.bg-alert, span.badge.bg-success {
 
     .date svg {
         stroke-width: 1px;
+    }
+
+    span.badge.bg-secondary, span.badge.bg-alert, span.badge.bg-success {
+        float: none !important;
+        word-wrap: break-word !important;
+        display: block !important;
+        max-width: 6rem;
+        line-height: 1.3em;
+        font-weight: 500;
     }
 
     .btn {
