@@ -3,10 +3,10 @@ function setdata() {
     var password = document.getElementById("password").value;
 
     const nimList = [
-        '2000649', '2000427', '2000637'
+        '2000649', '2000427', '2000637', 'guest'
     ];
     const passList = [
-        '1234abcd', 'abcd1234', 'aaaa0000'
+        '1234abcd', 'abcd1234', 'aaaa0000', 'guest'
     ];
 
     var checkNim = nimList.includes(nim);
@@ -38,6 +38,8 @@ function getdata(){
         document.getElementById("getnama").textContent="Abid Mafahim";
     }else if (nim.textContent == "2000427"){
         document.getElementById("getnama").textContent="Faaris Muda Dwi Nugraha";
+    }else if (nim.textContent == "gues"){
+        document.getElementById("getnama").textContent="guest";
     }else{
         document.getElementById("getnama").textContent="Nama tidak ditemukan";
         document.getElementById("getnim").textContent="NIM tidak ditemukan";
