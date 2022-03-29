@@ -25,6 +25,11 @@ h1, h2, h3, h4 {
 
 .date {
     text-align: right;
+    font-weight: 300;
+}
+
+.date svg {
+  stroke-width: 1px;
 }
 /*Welcome*/
 .welcome .content {
