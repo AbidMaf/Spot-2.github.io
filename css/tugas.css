@@ -65,12 +65,12 @@ section.tugas {
     font-size: 12pt;
 }
 
-.btn-primary {
+/* .btn-primary {
     background-color: crimson !important;
     color: white !important;
     border: none;
 }
-
+ */
 span.badge.bg-secondary, span.badge.bg-alert, span.badge.bg-success {
     float: none !important;
     word-wrap: break-word !important;
