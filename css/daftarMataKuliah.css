@@ -15,6 +15,7 @@ h1, h2, h3, h4 {
 .btn-primary {
     background-color: crimson !important;
     color: white !important;
+    border: none;
 }
 
 .main-content {
