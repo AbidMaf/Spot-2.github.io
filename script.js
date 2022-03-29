@@ -8,5 +8,4 @@ function setdata() {
 
 function getdata(){
     document.getElementById("getnim").innerHTML = localStorage.getItem("setnim");
-    document.getElementById("getpass").innerHTML = localStorage.getItem("setpass");
 }
