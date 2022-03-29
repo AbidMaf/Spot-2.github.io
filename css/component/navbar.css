@@ -160,7 +160,7 @@ nav {
         width: 100vw;
         height: 10vh;
         z-index: 99;
-        overflow: hidden;
+        overflow: hidden !important;
     }
 
     .login-info {
@@ -171,12 +171,12 @@ nav {
         display: inline-block;
         padding: 20px 25px;
         max-width: 64px;
-        overflow: hidden;
+        overflow: hidden !important;
     }
 
     .sidebar svg {
         margin-left: -5px;
-        overflow: hidden;
+        overflow: hidden !important;
     }
 
     .menu-name {
