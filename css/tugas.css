@@ -65,6 +65,12 @@ section.tugas {
     font-size: 12pt;
 }
 
+.btn-primary {
+    background-color: crimson !important;
+    color: white !important;
+    border: none;
+}
+
 span.badge.bg-secondary, span.badge.bg-alert, span.badge.bg-success {
     float: none !important;
 }
@@ -91,6 +97,15 @@ span.badge.bg-secondary, span.badge.bg-alert, span.badge.bg-success {
 
     .date svg {
         stroke-width: 1px;
+    }
+
+    span.badge.bg-secondary, span.badge.bg-alert, span.badge.bg-success {
+        float: none !important;
+        word-wrap: break-word !important;
+        display: block !important;
+        max-width: 6rem;
+        line-height: 1.3em;
+        font-weight: 500;
     }
 
     .btn {
