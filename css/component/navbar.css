@@ -68,8 +68,9 @@ nav {
 .sidebar a {
     display: block;
     color: black;
-    padding: 16px;
+    padding: 25px 16px;
     text-decoration: none;
+    transition: background-color 100ms linear;
 }
 
 .sidebar a.active {
@@ -78,7 +79,7 @@ nav {
 }
 
 .sidebar a:hover:not(.active) {
-    background-color: #555;
+    background-color: rgb(128, 128, 128);
     color: white;
 }
 
@@ -92,6 +93,19 @@ nav {
 .icon {
     position: relative;
     text-align: c;
+}
+
+.logout {
+    border-top: 1px solid rgb(218, 218, 218);
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 15px;
+    /* background-color: rgb(241, 241, 241); */
+}
+
+a.logout {
+    color: rgb(2, 2, 2);
+    width: 100%;
 }
 
 .sidebar a.settings {
@@ -194,8 +208,31 @@ nav {
         width: 24px;
     }
 
-    .sidebar a.menu-settings {
+    /* .logout {
+        border-top: 1px solid rgb(218, 218, 218);
+        position: absolute;
+        bottom: 0;
+        margin-bottom: 15px;
+        background-color: rgb(241, 241, 241);
+    }
+    
+    a.logout {
+        color: rgb(2, 2, 2);
+        width: 100%;
+    } */
+
+    .logout {
+        margin-bottom: 0px !important;
+        border: none;
+        position: relative;
+    }
+
+    a.logout {
+        /* width: auto; */
+    }
+
+    .sidebar a.menu-settings, a.logout {
         display: inline-block;
-        /* float: right; */
+        float: right;
     }
 }

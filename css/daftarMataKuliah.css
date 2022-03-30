@@ -91,6 +91,7 @@ h1, h2, h3, h4 {
     line-height: 1.4em;
     text-align: justify;
     margin-bottom: 20px;
+    display: none;
 }
 
 @media screen and (max-width: 768px) {
