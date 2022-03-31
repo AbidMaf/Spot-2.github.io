@@ -144,7 +144,8 @@ h4 {
 
 /* Rounded tabs */
 
-p.text-muted, p.text-muted.mb-0 {
+p.text-muted,
+p.text-muted.mb-0 {
     text-align: left;
 }
 
@@ -158,6 +159,12 @@ p.text-muted, p.text-muted.mb-0 {
     .rounded-nav .nav-link {
         border-radius: 50rem !important;
     }
+}
+
+a#materi-tab.nav-link.border-0.text-uppercase.font-weight-bold.active,
+a#tugas-tab.nav-link.border-0.text-uppercase.font-weight-bold.active,
+a#evaluasi-tab.nav-link.border-0.text-uppercase.font-weight-bold.active {
+    background-color: crimson !important;
 }
 
 .nav-pills .nav-link {
