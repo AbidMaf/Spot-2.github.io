@@ -11,6 +11,7 @@
   <title>SPOT</title>
   <link href="css/summaryNilai.css" rel="stylesheet" type="text/css" />
   <link href="css/component/navbar.css" rel="stylesheet" type="text/css" />
+  <script src="javascript/Export-Html-Table-To-Excel-Spreadsheet-using-jQuery-table2excel/src/jquery.table2excel.js"></script>
   <script src="script.js"></script>
 </head>
 
@@ -84,7 +85,7 @@
             </a>
             <div class="collapse" id="collapsedNilai">
               <div class="card card-body gy-5">
-                <div class="row nilai nilai-total">
+                <!-- <div class="row nilai nilai-total">
                   <div class="col-10">
                     <span>Total</span>
                   </div>
@@ -114,6 +115,48 @@
                   </div>
                   <div class="col-2 text-end text-nowrap">
                     <span>93</span>
+                  </div>
+                </div> -->
+
+                <div class="row">
+                  <div class="col-lg-12">
+                    <table class="table table-stripped table-responsive table-bordered" id="nilai-matkul" border="1">
+                      <thead class="text-center">
+                        <tr>
+                          <th colspan="7">Tugas</th>
+                          <th rowspan="2">UTS</th>
+                          <th rowspan="2">UAS</th>
+                        </tr>
+                        <tr>
+                          <th>1</th>
+                          <th>2</th>
+                          <th>3</th>
+                          <th>4</th>
+                          <th>5</th>
+                          <th>6</th>
+                          <th>7</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>90</td>
+                          <td>90</td>
+                          <td>90</td>
+                          <td>90</td>
+                          <td>90</td>
+                          <td>90</td>
+                          <td>90</td>
+                          <td>90</td>
+                          <td>90</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="row row-cols-auto">
+                  <div class="col">
+                    <button onclick="" class="btn btn-primary" id="export-excel">Cetak File Excel</button>
+                    <button onclick="printData()" class="btn btn-outline-primary" id="export-pdf">Cetak File PDF</button>
                   </div>
                 </div>
               </div>
@@ -181,4 +224,32 @@
       }
     });
   });
+</script>
+
+<script>
+  // $(document).ready(function () { 
+    
+  // });
+  function printData() {
+    var table = document.getElementById('nilai-matkul');
+    newWin = window.open(",'height=500, width=500'");
+    newWin.document.write(table.outerHTML);
+    newWin.print();
+    newWin.close();
+  }
+</script>
+
+<script type="text/javascript">
+  jQuery(document).ready(function () {
+    $('#export-excel').on('click', function(e){
+        e.preventDefault();
+        ResultsToTable();
+    });
+
+    function ResultsToTable(){    
+        $("#nilai-matkul").table2excel({
+            name: "Results"
+        });
+    }
+  })
 </script>
