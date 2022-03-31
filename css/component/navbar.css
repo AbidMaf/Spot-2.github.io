@@ -83,6 +83,10 @@ nav {
     color: white;
 }
 
+.sidebar a.badge-tugas:not(.active) {
+    background-color: crimson;
+}
+
 .badge {
     background-color: crimson;
     border-radius: 200px;
