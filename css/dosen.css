@@ -166,6 +166,10 @@ h1, h2, h3, h4 {
         display: none !important;
     }
 
+    .aksi {
+        display: none !important;
+    }
+
     /* .schedule-tag span {
         display: none;
         border-radius: 100%;
@@ -180,4 +184,19 @@ h1, h2, h3, h4 {
     .btn {
         width: 100%;
     }
+}
+
+table{
+    text-align: center;
+    vertical-align: middle;
+}
+
+td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+th {
+    text-align: center;
+    vertical-align: middle;
 }
