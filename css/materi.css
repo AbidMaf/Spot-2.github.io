@@ -8,7 +8,10 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
     display: inline-block;
 }
 
@@ -25,7 +28,7 @@ h1, h2, h3, h4 {
 
 .breadcrumb-item svg {
     z-index: -1;
-  }
+}
 
 .breadcrumb-item-text {
     display: inline-block;
@@ -90,9 +93,7 @@ h1, h2, h3, h4 {
     margin-bottom: 15px;
 }
 
-@media screen and (max-width: 768px) {
-    
-}
+@media screen and (max-width: 768px) {}
 
 @media screen and (min-width: 360px) and (max-width: 480px) {
     .main-content {
@@ -132,6 +133,37 @@ h1, h2, h3, h4 {
 }
 
 @keyframes rotate180 {
-    from {transform: rotate(0deg);}
-    to {transform: rotate(180deg);}
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(180deg);
+    }
+}
+
+/* Rounded tabs */
+
+p.text-muted, p.text-muted.mb-0 {
+    text-align: left;
+}
+
+@media (min-width: 576px) {
+    .rounded-nav {
+        border-radius: 50rem !important;
+    }
+}
+
+@media (min-width: 576px) {
+    .rounded-nav .nav-link {
+        border-radius: 50rem !important;
+    }
+}
+
+.nav-pills .nav-link {
+    color: #555;
+}
+
+.text-uppercase {
+    letter-spacing: 0.1em;
 }
