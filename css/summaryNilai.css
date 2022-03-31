@@ -23,6 +23,10 @@ h1, h2, h3, h4 {
     padding-top: 10vh;
 }
 
+.breadcrumb-item svg {
+    z-index: -1;
+  }
+
 .breadcrumb-item-text {
     display: inline-block;
     vertical-align: middle;
