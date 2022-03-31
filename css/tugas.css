@@ -40,6 +40,15 @@ th {
 
 .date {
     text-align: right;
+    font-weight: 300;
+}
+
+.date {
+    font-weight: 300;
+}
+
+.date svg {
+    stroke-width: 1px;
 }
 /*Welcome*/
 .welcome .content {
