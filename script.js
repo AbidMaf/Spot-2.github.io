@@ -42,7 +42,7 @@ function getdata(){
         document.getElementById("getnama").textContent="Abid Mafahim";
     }else if (nim.textContent == "2000427"){
         document.getElementById("getnama").textContent="Faaris Muda Dwi Nugraha";
-    }else if (nim.textContent == "gues"){
+    }else if (nim.textContent == "guest"){
         document.getElementById("getnama").textContent="guest";
     }else{
         document.getElementById("getnama").textContent="Nama tidak ditemukan";

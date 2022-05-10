@@ -79,8 +79,8 @@ nav {
 }
 
 .sidebar a:hover:not(.active) {
-    background-color: rgb(128, 128, 128);
-    color: white;
+    background-color: rgb(224, 223, 223);
+    /* color: white; */
 }
 
 .sidebar a.badge-tugas:not(.active) {
@@ -88,10 +88,19 @@ nav {
 }
 
 .badge {
-    background-color: crimson;
-    border-radius: 200px;
     position: inherit;
     float: right;
+    border-radius: 100vw;
+}
+
+a:not(.active)>.badge {
+    background-color: crimson;
+    border-radius: 200px;
+}
+
+a.active>.badge {
+    background-color: white;
+    color: crimson;
 }
 
 .icon {
