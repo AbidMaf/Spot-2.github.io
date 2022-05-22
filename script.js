@@ -51,7 +51,7 @@ function getdata(){
 }
 
 function printpdf() {
-    var sTable = document.getElementById('content').innerHTML;
+    var sTable = document.getElementById("content").innerHTML;
 
     var style = "<style>";
     style = style + "table {width: 100%;font: 17px Calibri;}";
