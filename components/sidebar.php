@@ -2,7 +2,7 @@
 $request = $_SERVER['REQUEST_URI'];
 $active_menu = 'class="active"';
 
-include "./connection.php";
+// include "./config/connection.php";
 ?>
 
 <div class="sidebar shadow-sm">

@@ -16,14 +16,14 @@
                     Sistem Pembelajaran Online Terpadu</h1>
                 </div>
                 <div class="col-lg-5 col-md p-5">
-                    <form action="./controller/loginController.php" method="POST">
+                    <form action="/loginAction" method="POST">
                         <div class="mb-3">
-                            <label for="nim" class="col-form-label">NIM:</label>
-                            <input type="text" class="form-control" id="nim">
+                            <label for="username" class="col-form-label">NIM:</label>
+                            <input type="text" class="form-control" name="username">
                         </div>
                         <div class="mb-3">
-                            <label for="inputPassword5" class="form-label">Password</label>
-                            <input type="password" id="password" class="form-control" aria-describedby="passwordHelpBlock">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" name="password" class="form-control" aria-describedby="passwordHelpBlock">
                             <div id="passwordHelpBlock" class="form-text">
                               Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
                             </div>

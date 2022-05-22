@@ -1,8 +1,14 @@
 <?php
 
+use Connection\ConnectionDB;
+use Connection\database;
+
 // $me = "D:\Document\Materi\Semester 4\Pemrograman Web\8 (UTS)\Spot-2";
 $request = $_SERVER['REQUEST_URI'];
 
+include "config/database.php";
+
+// Note: to add more case, use lowercase
 switch (strtolower($request)) {
     case '/dashboard':
     case '/':
@@ -13,7 +19,7 @@ switch (strtolower($request)) {
         require "views/login.php";
         break;
 
-    case '/loginAction':
+    case '/loginaction':
         require "controller/loginController.php";
         break;
     

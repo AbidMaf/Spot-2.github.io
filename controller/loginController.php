@@ -6,8 +6,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $username = inputValidation($_POST["username"]);
     $password = inputValidation($_POST["password"]);
     
-    $sql = "SELECT * FROM user WHERE username = '$username' AND password = '$password' AND level = '$level'";
-    $result = $conn->query($sql);
+    $sql = "SELECT * FROM user WHERE username = '$username' AND password = '$password'";
+    $result = mysqli_query($conn, $sql);
     
     if($result->num_rows > 0){
         $row = $result->fetch_assoc();
@@ -24,10 +24,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
             $_SESSION["npm"] = $row["npm"];
             $_SESSION["name"] = $row["name"];
-            header("Location: /");
+            header("Location: /dashboardDosen");
         }
     }else{
-        echo "Username atau password salah";
+        $row = $result->fetch_assoc();
+        while($row) {
+            $row["id_user"]. " " . $row["username"]. " " . $row["password"]. " " . $row["level"];
+        }
+        echo "Username atau password salah ";
+        echo $password . " " . $username;
     }
 }
 
