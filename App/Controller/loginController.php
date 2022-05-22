@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 $username = $password = $level = "";
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -22,15 +23,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }elseif ($row["level"] == "dosen") {
             $sql = "SELECT * FROM dosen WHERE nid = '$username'";
 
-            $_SESSION["npm"] = $row["npm"];
+            $_SESSION["nid"] = $row["nid"];
             $_SESSION["name"] = $row["name"];
             header("Location: /dashboardDosen");
         }
     }else{
-        $row = $result->fetch_assoc();
-        while($row) {
-            $row["id_user"]. " " . $row["username"]. " " . $row["password"]. " " . $row["level"];
-        }
         echo "Username atau password salah ";
         echo $password . " " . $username;
     }

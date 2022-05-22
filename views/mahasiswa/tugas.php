@@ -27,25 +27,8 @@
   
   <div class="main-content">
     <div class="p-2">
-      <div class="row">
-        <div class="col-6">
-          <div aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item active" aria-current="page">
-                <i class="icon ico-dark" data-feather="check-circle"></i>
-                <span class="breadcrumb-item-text">&nbsp;Tugas</span>
-              </li>
-            </ol>
-          </div>
-        </div>
 
-        <div class="col-6">
-          <div class="date">
-            <i class="ico ico-dark" data-feather="calendar"></i>
-            <span class="date-text">&nbsp;Rabu, 28 Maret</span>
-          </div>
-        </div>
-      </div>
+      <?php include('components/breadcrumbs.php'); ?>
 
       <div class="row mb-3">
         <div class="col-12">

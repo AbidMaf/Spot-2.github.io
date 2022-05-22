@@ -1,7 +1,8 @@
 {
     "autoload": {
         "psr-4": {
-            "Connection\\" : "config/"
+            "Connection\\" : "config/",
+            "App\\" : "App/"
         }
     }
 }

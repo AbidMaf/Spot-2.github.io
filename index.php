@@ -1,12 +1,16 @@
 <?php
 
-use Connection\ConnectionDB;
-use Connection\database;
-
 // $me = "D:\Document\Materi\Semester 4\Pemrograman Web\8 (UTS)\Spot-2";
+
+use App\helper;
+
 $request = $_SERVER['REQUEST_URI'];
 
+require_once realpath("vendor/autoload.php");
+
 include "config/database.php";
+
+$helper = new helper();
 
 // Note: to add more case, use lowercase
 switch (strtolower($request)) {
@@ -20,10 +24,10 @@ switch (strtolower($request)) {
         break;
 
     case '/loginaction':
-        require "controller/loginController.php";
+        require "<App>Controller/loginController.php";
         break;
     
-    case '/mataKuliah':
+    case '/matakuliah':
         require "views/mahasiswa/daftarMataKuliah.php";
         break;
     

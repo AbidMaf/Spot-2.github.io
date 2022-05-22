@@ -28,33 +28,10 @@
 
   <div class="main-content">
 
-    <div class="p-3">
-
+    <div class="p-2">
+      <?php include('components/breadcrumbs.php'); ?>
       <div class="row">
-
-        <div class="col-md-6">
-          <div aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item active" aria-current="page">
-                <i class="icon ico-dark" data-feather="pie-chart"></i>
-                <span class="breadcrumb-item-text">&nbsp;Dashboard</span>
-              </li>
-            </ol>
-          </div>
-        </div>
-
-        <div class="col-md-6 date">
-          <i class="ico ico-dark" data-feather="calendar"></i>
-          <span class="date-text">Rabu, 28 Maret 2022</span>
-        </div>
-        <div class="welcome">
-          <div class="content rounded-3 p-3">
-            <h1 class="fs-3">Welcome to Dashboard</h1>
-            <p class="mb-0">Hello, welcome to your dashboard!</p>
-          </div>
-        </div>
-
-        <section class="statistics mt-4">
+        <section class="statistics mt-1">
           <div class="row">
             <div class="col-lg-4">
               <div class="box d-flex rounded-2 align-items-center mb-4 mb-lg-0 p-3">

@@ -31,24 +31,24 @@ function setdata() {
     }
 }
 
-function getdata(){
-    document.getElementById("getnim").textContent = localStorage.getItem("setnim");
+// function getdata(){
+//     document.getElementById("getnim").textContent = localStorage.getItem("setnim");
     
-    var nim = document.getElementById("getnim");
+//     var nim = document.getElementById("getnim");
     
-    if (nim.textContent == "2000637"){
-        document.getElementById("getnama").textContent="Adrian Sugandi Wijaya";
-    }else if (nim.textContent == "2000649"){
-        document.getElementById("getnama").textContent="Abid Mafahim";
-    }else if (nim.textContent == "2000427"){
-        document.getElementById("getnama").textContent="Faaris Muda Dwi Nugraha";
-    }else if (nim.textContent == "guest"){
-        document.getElementById("getnama").textContent="guest";
-    }else{
-        document.getElementById("getnama").textContent="Nama tidak ditemukan";
-        document.getElementById("getnim").textContent="NIM tidak ditemukan";
-    }
-}
+//     if (nim.textContent == "2000637"){
+//         document.getElementById("getnama").textContent="Adrian Sugandi Wijaya";
+//     }else if (nim.textContent == "2000649"){
+//         document.getElementById("getnama").textContent="Abid Mafahim";
+//     }else if (nim.textContent == "2000427"){
+//         document.getElementById("getnama").textContent="Faaris Muda Dwi Nugraha";
+//     }else if (nim.textContent == "guest"){
+//         document.getElementById("getnama").textContent="guest";
+//     }else{
+//         document.getElementById("getnama").textContent="Nama tidak ditemukan";
+//         document.getElementById("getnim").textContent="NIM tidak ditemukan";
+//     }
+// }
 
 function printpdf() {
     var sTable = document.getElementById("content").innerHTML;

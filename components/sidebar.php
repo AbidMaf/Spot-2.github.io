@@ -1,8 +1,7 @@
 <?php 
 $request = $_SERVER['REQUEST_URI'];
 $active_menu = 'class="active"';
-
-// include "./config/connection.php";
+session_start();
 ?>
 
 <div class="sidebar shadow-sm">
@@ -14,8 +13,8 @@ $active_menu = 'class="active"';
     <hr style="margin: 0;">
     <div class="login-info">
       <img class="avatar" src="assets/image/profile.jpg" alt="profile" width="72">
-      <span class="name" id="getnama"></span>
-      <span class="nim" id="getnim"></span>
+      <span class="name"><?= $_SESSION['npm'] ?></span>
+      <span class="nim"><?= ucwords(strtolower($_SESSION['name'])) ?></span>
     </div>
     <a <?= ($request == '/dashboard' || $request == '/') ? $active_menu : '' ?> href="/">
       <i class="icon" data-feather="pie-chart"></i>
@@ -32,11 +31,11 @@ $active_menu = 'class="active"';
       <span class="badge">3</span>
     </a>
     <a <?= ($request == '/Nilai') ? $active_menu : '' ?> href="/Nilai">
-      <i class="icon" data-feather="star">2</i>
+      <i class="icon" data-feather="star"></i>
       <span class="menu-name">&nbsp;Keseluruhan Nilai</span>
     </a>
     <a class="menu-settings logout" href="/Login">
-      <i class="icon" data-feather="log-out">2</i>
+      <i class="icon" data-feather="log-out"></i>
       <span class="menu-name">&nbsp;Logout</span>
     </a>
   </div>

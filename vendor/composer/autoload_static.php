@@ -11,6 +11,10 @@ class ComposerStaticInit4dab1764691a069f36a756bc5124b4ed
         array (
             'Connection\\' => 11,
         ),
+        'A' => 
+        array (
+            'App\\' => 4,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -18,9 +22,14 @@ class ComposerStaticInit4dab1764691a069f36a756bc5124b4ed
         array (
             0 => __DIR__ . '/../..' . '/config',
         ),
+        'App\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/App',
+        ),
     );
 
     public static $classMap = array (
+        'App\\Helper' => __DIR__ . '/../..' . '/App/Helper.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
 

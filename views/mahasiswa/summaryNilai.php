@@ -11,13 +11,13 @@
   <title>SPOT</title>
   <link href="css/summaryNilai.css" rel="stylesheet" type="text/css" />
   <link href="css/component/navbar.css" rel="stylesheet" type="text/css" />
-  <script src="javascript/Export-Html-Table-To-Excel-Spreadsheet-using-jQuery-table2excel/src/jquery.table2excel.js"></script>
+  <!-- <script src="javascript/Export-Html-Table-To-Excel-Spreadsheet-using-jQuery-table2excel/src/jquery.table2excel.js"></script> -->
   <script src="script.js"></script>
 </head>
 
-<body>  
+<body>
   <nav class="shadow-sm">
-    
+
   </nav>
   <?php include('components/sidebar.php'); ?>
   <div class="main-content">
@@ -51,39 +51,6 @@
             </a>
             <div class="collapse" id="collapsedNilai">
               <div class="card card-body gy-5">
-                <!-- <div class="row nilai nilai-total">
-                  <div class="col-10">
-                    <span>Total</span>
-                  </div>
-                  <div class="col-2 text-end text-nowrap">
-                    <span>95</span>
-                  </div>
-                </div>
-                <div class="row nilai">
-                  <div class="col-10">
-                    <span>Tugas</span>
-                  </div>
-                  <div class="col-2 text-end text-nowrap">
-                    <span>90</span>
-                  </div>
-                </div>
-                <div class="row nilai">
-                  <div class="col-10">
-                    <span>UTS</span>
-                  </div>
-                  <div class="col-2 text-end text-nowrap">
-                    <span>85</span>
-                  </div>
-                </div>
-                <div class="row nilai">
-                  <div class="col-10">
-                    <span>UAS</span>
-                  </div>
-                  <div class="col-2 text-end text-nowrap">
-                    <span>93</span>
-                  </div>
-                </div> -->
-
                 <div class="row">
                   <div class="col-lg-12">
                     <table class="table table-stripped table-responsive table-bordered" id="nilai-matkul" border="1">
@@ -177,7 +144,6 @@
 </body>
 </html>
 <script>
-  getdata();
   feather.replace()
 </script>
 
