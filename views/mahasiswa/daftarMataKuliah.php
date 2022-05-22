@@ -32,12 +32,14 @@
             </ol>
           </div>
         </div>
-        <div class="col-md-6 date">
-          <i class="ico ico-dark" data-feather="calendar"></i>
-          <span class="date-text">Rabu, 28 Maret 2022</span>
+        <div class="col-6">
+          <div class="date">
+            <i class="ico ico-dark" data-feather="calendar"></i>
+            <span class="date-text">&nbsp;Rabu, 28 Maret</span>
+          </div>
         </div>
       </div>
-      <div class="row g-3">
+      <div class="row g-2">
         <div class="col-lg-4">
           <div class="matkul-card shadow-sm rounded">
             <div class="matkul-info">

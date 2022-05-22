@@ -90,7 +90,9 @@ nav {
 .badge {
     position: inherit;
     float: right;
-    border-radius: 100vw;
+    width: max-content;
+    /* aspect-ratio: 1 / 1; */
+    border-radius: 100vh;
 }
 
 a:not(.active)>.badge {
@@ -140,16 +142,26 @@ a.logout {
     
     .name {
         line-height: 1.2em;
-        font-size: 14pt;
+        font-size: 12pt;
         margin: 0;
+        margin-bottom: 8px;
     }
-    
+
     .sidebar a {
         text-align: center;
+        padding: 20px 16px;
+    }
+
+    .logout {
+        position: relative;
     }
     
-    .nim {
-        font-size: 12pt;
+    span.nim {
+        font-size: 10pt;
+        line-height: 1em;
+        max-height: 40px;
+        margin: 0;
+        display: block;
     }
     
     .menu-name {
@@ -238,7 +250,7 @@ a.logout {
         margin-bottom: 0px !important;
         border: none;
         position: relative;
-        display: none !important;
+        /* display: none !important; */
     }
 
     a.logout {

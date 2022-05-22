@@ -26,7 +26,7 @@ h1, h2, h3, h4 {
 
 .breadcrumb-item svg {
     z-index: -1;
-  }
+}
 
 .breadcrumb-item-text {
     display: inline-block;
@@ -34,12 +34,14 @@ h1, h2, h3, h4 {
 }
 
 .date {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: right;
     text-align: right;
     font-weight: 300;
-}
-
-.date {
-    font-weight: 300;
+    padding: 0;
+    min-height: 30px;
 }
 
 .date svg {
@@ -50,11 +52,11 @@ h1, h2, h3, h4 {
     width: 100%;
     background-color: white;
     /* max-height: 256px; */
-    padding: 15px;
+    padding: 10px;
 }
 
 .matkul-info {
-    margin: 20px;
+    margin: 10px;
 }
 
 .matkul-header {
@@ -92,7 +94,11 @@ h1, h2, h3, h4 {
 
 .matkul-dosen {
     font-size: 12pt;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+}
+
+.cta-matkul {
+    
 }
 
 .matkul-description {

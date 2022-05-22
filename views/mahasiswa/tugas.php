@@ -26,33 +26,126 @@
   <?php include('components/sidebar.php'); ?>
   
   <div class="main-content">
-    <div class="row pr-4 pl-4">
-      <div class="col-6">
-        <div aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item active" aria-current="page">
-              <i class="icon ico-dark" data-feather="check-circle"></i>
-              <span class="breadcrumb-item-text">&nbsp;Tugas</span>
-            </li>
-          </ol>
-        </div>
-      </div>
-      <div class="col-6 date">
-        <i class="ico ico-dark" data-feather="calendar"></i>
-        <span class="date-text">Rabu, 28 Maret 2022</span>
-      </div>
-    </div>
-    <div class="row">
-      <div class="p-4">
-        <div class="welcome">
-          <div class="content rounded-3 p-3 shadow-sm">
-            <h1 class="fs-3">Daftar Tugas</h1>
-            <!-- <p class="mb-0">Berikut adalah list tugas yang diberikan kepada anda!</p> -->
-            <p class="mb-0">Berikut adalah list penderitaan anda!</p>
+    <div class="p-2">
+      <div class="row">
+        <div class="col-6">
+          <div aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item active" aria-current="page">
+                <i class="icon ico-dark" data-feather="check-circle"></i>
+                <span class="breadcrumb-item-text">&nbsp;Tugas</span>
+              </li>
+            </ol>
           </div>
         </div>
 
-        <section class="tugas mt-4 mb-2 table-responsive rounded shadow-sm">
+        <div class="col-6">
+          <div class="date">
+            <i class="ico ico-dark" data-feather="calendar"></i>
+            <span class="date-text">&nbsp;Rabu, 28 Maret</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-12">
+          <div class="content rounded-3 p-3 shadow-sm">
+            <h1 class="fs-3 header-title">Daftar Tugas</h1>
+            <p class="mb-0 desc-title">Berikut adalah daftar penderitaan anda</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-2">
+        <div class="col-12">
+          <div class="cat-tugas">
+            <input type="radio" class="btn-check opt-show-btn shadow-sm" name="option-show" id="all-show" checked>
+            <label for="all-show" class="btn opt-label shadow-sm">Semua Tugas</label>
+
+            <input type="radio" class="btn-check opt-show-btn" name="option-show" id="not-finish">
+            <label for="not-finish" class="btn opt-label shadow-sm">Belum Selesai</label>
+
+            <input type="radio" class="btn-check opt-show-btn" name="option-show" id="missed">
+            <label for="missed" class="btn opt-label shadow-sm">Terlambat</label>
+
+            <input type="radio" class="btn-check opt-show-btn" name="option-show" id="completed">
+            <label for="completed" class="btn opt-label shadow-sm">Selesai</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-2">
+        <div class="col-lg-6 tugas-row">
+          <div class="tugas-card shadow-sm rounded">
+            <div class="tugas-info">
+              <div class="tugas-header">
+                <div class="tugas-status">
+                  <span class="badge bg-secondary text-wrap">Belum dikumpulkan</span>
+                </div>
+                <div class="tugas-title">Tugas Pertemuan 13</div>
+                <div class="tugas-matkul">Pemrograman Web</div>
+              </div>
+              <div class="tugas-time">
+                23:59
+              </div>
+              <div class="tugas-date">
+                <i class="ico ico-dark" data-feather="calendar"></i>
+                <span class="time">&nbsp;Deadline: 29 Maret 2022</span>
+              </div>
+              <a href="" class="btn btn-primary cta-tugas">Detail</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-6 tugas-row">
+          <div class="tugas-card shadow-sm rounded">
+            <div class="tugas-info">
+              <div class="tugas-header">
+                <div class="tugas-status">
+                  <span class="badge bg-primary text-wrap">Terlambat</span>
+                </div>
+                <div class="tugas-title">Tugas Pertemuan 13</div>
+                <div class="tugas-matkul">Pemrograman Web</div>
+              </div>
+              <div class="tugas-time">
+                23:59
+              </div>
+              <div class="tugas-date">
+                <i class="ico ico-dark" data-feather="calendar"></i>
+                <span class="time">&nbsp;Deadline: 29 Maret 2022</span>
+              </div>
+              <a href="" class="btn btn-primary cta-tugas">Detail</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 tugas-row">
+          <div class="tugas-card shadow-sm rounded">
+            <div class="tugas-info">
+              <div class="tugas-header">
+                <div class="tugas-status">
+                  <span class="badge bg-success text-wrap">Selesai</span>
+                </div>
+                <div class="tugas-title">Tugas Pertemuan 13</div>
+                <div class="tugas-matkul">Pemrograman Web</div>
+              </div>
+              <div class="tugas-time">
+                23:59
+              </div>
+              <div class="tugas-date">
+                <i class="ico ico-dark" data-feather="calendar"></i>
+                <span class="time">&nbsp;Deadline: 29 Maret 2022</span>
+              </div>
+              <a href="" class="btn btn-primary cta-tugas">Detail</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- <div class="row">
+        <div class="col-12">
+          <section class="tugas mb-2 table-responsive rounded shadow-sm">
             <table class="table table-striped table-bordered">
               <thead>
                 <th scope="col">No</th>
@@ -105,10 +198,11 @@
                 </tr>
               </tbody>
             </table>
-        </section>
-
-      </div>
+          </section>
+        </div>
+      </div> -->
     </div>
+  </div>
 
     <script>
       getdata();

@@ -16,7 +16,7 @@
                     Sistem Pembelajaran Online Terpadu</h1>
                 </div>
                 <div class="col-lg-5 col-md p-5">
-                    <form action="" method="get">
+                    <form action="./controller/loginController.php" method="POST">
                         <div class="mb-3">
                             <label for="nim" class="col-form-label">NIM:</label>
                             <input type="text" class="form-control" id="nim">
@@ -28,9 +28,8 @@
                               Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
                             </div>
                         </div>
-                        
+                        <input type="submit" class="btn btn-primary btn-lg mt-3" value="Login">
                     </form>
-                    <button id="change" onclick="setdata()" class="btn btn-primary btn-lg mt-3">Login</button>
                 </div>
             </div>
         </div>

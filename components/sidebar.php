@@ -1,6 +1,8 @@
 <?php 
 $request = $_SERVER['REQUEST_URI'];
 $active_menu = 'class="active"';
+
+include "./connection.php";
 ?>
 
 <div class="sidebar shadow-sm">

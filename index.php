@@ -3,25 +3,29 @@
 // $me = "D:\Document\Materi\Semester 4\Pemrograman Web\8 (UTS)\Spot-2";
 $request = $_SERVER['REQUEST_URI'];
 
-switch ($request) {
+switch (strtolower($request)) {
     case '/dashboard':
     case '/':
         require "views/mahasiswa/dashboard.php";
         break;
     
-    case '/Login':
+    case '/login':
         require "views/login.php";
         break;
+
+    case '/loginAction':
+        require "controller/loginController.php";
+        break;
     
-    case '/MataKuliah':
+    case '/mataKuliah':
         require "views/mahasiswa/daftarMataKuliah.php";
         break;
     
-    case '/Tugas':
+    case '/tugas':
         require "views/mahasiswa/tugas.php";
         break;
     
-    case '/Nilai':
+    case '/nilai':
         require "views/mahasiswa/summaryNilai.php";
         break;
     
