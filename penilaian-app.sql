@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 22, 2022 at 01:57 PM
+-- Generation Time: May 23, 2022 at 10:11 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -90,6 +90,18 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `dummytable`
+--
+
+CREATE TABLE `dummytable` (
+  `test1id` int(11) NOT NULL,
+  `test1` varchar(255) NOT NULL,
+  `test2` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `mahasiswa`
 --
 
@@ -167,6 +179,7 @@ CREATE TABLE `matakuliah` (
   `nid` int(10) UNSIGNED NOT NULL,
   `nid2` int(10) UNSIGNED NOT NULL,
   `nama_matkul` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `sks` int(11) NOT NULL,
   `waktu` time NOT NULL,
   `hari` enum('Senin','Selasa','Rabu','Kamis','Jumat','Sabtu') COLLATE utf8mb4_unicode_ci NOT NULL
@@ -176,9 +189,9 @@ CREATE TABLE `matakuliah` (
 -- Dumping data for table `matakuliah`
 --
 
-INSERT INTO `matakuliah` (`kd_matkul`, `nid`, `nid2`, `nama_matkul`, `sks`, `waktu`, `hari`) VALUES
-('PT502', 1234567, 7654321, 'Sistem Operasi', 3, '13:00:00', 'Senin'),
-('RL209', 1234567, 7654321, 'Pemrograman Berorientasi Objek', 3, '07:00:00', 'Senin');
+INSERT INTO `matakuliah` (`kd_matkul`, `nid`, `nid2`, `nama_matkul`, `description`, `sks`, `waktu`, `hari`) VALUES
+('PT502', 1234567, 7654321, 'Sistem Operasi', 'Mata kuliah ini mengajarkan prinsip-prinsip dasar Internet dan teknologi yang dapat digunakan untuk membangun sebuah Aplikasi Internet. HTML dan CSS yang merupakan komponen dasar dari halaman web, merupakan dua topik pertama yang dibahas dalam mata kuliah ini. Mata kuliah ini kemudian membahas penampilan web secara dinamis menggunakan Javascript. Javascript juga merupakan dasar pemrograman Ajax yang juga akan diperkenalkan pada mata kuliah ini. Pemrograman dari sisi server juga akan dibahas dengan menggunakan bahasa PHP dan ASP. Mahasiswa juga diajarkan untuk menganalisis berbagai aspek kualitas pada aplikasi internet, seperti: usability, security, dan performance.', 3, '13:00:00', 'Senin'),
+('RL209', 1234567, 7654321, 'Pemrograman Berorientasi Objek', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis hendrerit nibh, a porttitor nisl. Fusce nec mollis eros, vel egestas purus. Vivamus elit est, convallis non blandit eleifend, imperdiet a velit. Aliquam vulputate feugiat tellus vitae pellentesque. Curabitur vel diam tincidunt, gravida nibh sed, semper dui. Proin nec efficitur felis. Etiam ultrices ante a tempus ultricies.\r\n\r\nIn ultricies ornare condimentum. Duis sed velit ut diam imperdiet eleifend eu eu est. Mauris convallis, sem eget gravida pretium, nisi neque dignissim metus, a volutpat risus orci nec nulla. Nullam imperdiet, nisl a aliquam egestas, magna nisi interdum nibh, sed feugiat diam ex at nulla. Etiam quis scelerisque nisi, vel porttitor leo. Vivamus in ex tincidunt, blandit augue in, fermentum quam. Sed sem quam, lobortis eu mollis eu, porta at arcu. In vitae placerat ex. Mauris pharetra mi in arcu mattis vestibulum.', 3, '07:00:00', 'Senin');
 
 -- --------------------------------------------------------
 
@@ -189,10 +202,21 @@ INSERT INTO `matakuliah` (`kd_matkul`, `nid`, `nid2`, `nama_matkul`, `sks`, `wak
 CREATE TABLE `materi` (
   `id_materi` int(11) NOT NULL,
   `kd_matkul` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pertemuan` int(3) NOT NULL,
   `judul` varchar(128) NOT NULL,
+  `highlight` text NOT NULL,
   `deskripsi` text NOT NULL,
   `last_update` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `materi`
+--
+
+INSERT INTO `materi` (`id_materi`, `kd_matkul`, `pertemuan`, `judul`, `highlight`, `deskripsi`, `last_update`) VALUES
+(1, 'PT502', 1, 'Operasi Sistem', 'Pengertian Operasi Sistem|Fungsi Operasi Sistem|Contoh Operasi Sistem', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis hendrerit nibh, a porttitor nisl. Fusce nec mollis eros, vel egestas purus. Vivamus elit est, convallis non blandit eleifend, imperdiet a velit. Aliquam vulputate feugiat tellus vitae pellentesque. Curabitur vel diam tincidunt, gravida nibh sed, semper dui. Proin nec efficitur felis. Etiam ultrices ante a tempus ultricies.\r\n\r\nIn ultricies ornare condimentum. Duis sed velit ut diam imperdiet eleifend eu eu est. Mauris convallis, sem eget gravida pretium, nisi neque dignissim metus, a volutpat risus orci nec nulla. Nullam imperdiet, nisl a aliquam egestas, magna nisi interdum nibh, sed feugiat diam ex at nulla. Etiam quis scelerisque nisi, vel porttitor leo. Vivamus in ex tincidunt, blandit augue in, fermentum quam. Sed sem quam, lobortis eu mollis eu, porta at arcu. In vitae placerat ex. Mauris pharetra mi in arcu mattis vestibulum.', '2022-05-23 03:14:24'),
+(2, 'RL209', 1, 'CRUD MySQL', 'Select. Insert, Update, dan Delete|Contoh Query', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis hendrerit nibh, a porttitor nisl. Fusce nec mollis eros, vel egestas purus. Vivamus elit est, convallis non blandit eleifend, imperdiet a velit. Aliquam vulputate feugiat tellus vitae pellentesque. Curabitur vel diam tincidunt, gravida nibh sed, semper dui. Proin nec efficitur felis. Etiam ultrices ante a tempus ultricies.\r\n\r\nIn ultricies ornare condimentum. Duis sed velit ut diam imperdiet eleifend eu eu est. Mauris convallis, sem eget gravida pretium, nisi neque dignissim metus, a volutpat risus orci nec nulla. Nullam imperdiet, nisl a aliquam egestas, magna nisi interdum nibh, sed feugiat diam ex at nulla. Etiam quis scelerisque nisi, vel porttitor leo. Vivamus in ex tincidunt, blandit augue in, fermentum quam. Sed sem quam, lobortis eu mollis eu, porta at arcu. In vitae placerat ex. Mauris pharetra mi in arcu mattis vestibulum.', '2022-05-24 08:59:42'),
+(3, 'RL209', 2, 'Connection', 'MySQL Connection|Contoh Syntax', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis hendrerit nibh, a porttitor nisl. Fusce nec mollis eros, vel egestas purus. Vivamus elit est, convallis non blandit eleifend, imperdiet a velit. Aliquam vulputate feugiat tellus vitae pellentesque. Curabitur vel diam tincidunt, gravida nibh sed, semper dui. Proin nec efficitur felis. Etiam ultrices ante a tempus ultricies.\r\n\r\nIn ultricies ornare condimentum. Duis sed velit ut diam imperdiet eleifend eu eu est. Mauris convallis, sem eget gravida pretium, nisi neque dignissim metus, a volutpat risus orci nec nulla. Nullam imperdiet, nisl a aliquam egestas, magna nisi interdum nibh, sed feugiat diam ex at nulla. Etiam quis scelerisque nisi, vel porttitor leo. Vivamus in ex tincidunt, blandit augue in, fermentum quam. Sed sem quam, lobortis eu mollis eu, porta at arcu. In vitae placerat ex. Mauris pharetra mi in arcu mattis vestibulum.', '2022-05-22 08:59:42');
 
 -- --------------------------------------------------------
 
@@ -273,6 +297,14 @@ CREATE TABLE `tugas` (
   `deadline` datetime NOT NULL,
   `id_materi` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tugas`
+--
+
+INSERT INTO `tugas` (`id_tugas`, `judul`, `deskripsi`, `deadline`, `id_materi`) VALUES
+(1, 'Membuat Operasi Sistem', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis hendrerit nibh, a porttitor nisl. Fusce nec mollis eros, vel egestas purus. Vivamus elit est, convallis non blandit eleifend, imperdiet a velit. Aliquam vulputate feugiat tellus vitae pellentesque. Curabitur vel diam tincidunt, gravida nibh sed, semper dui. Proin nec efficitur felis. Etiam ultrices ante a tempus ultricies.\r\n\r\nIn ultricies ornare condimentum. Duis sed velit ut diam imperdiet eleifend eu eu est. Mauris convallis, sem eget gravida pretium, nisi neque dignissim metus, a volutpat risus orci nec nulla. Nullam imperdiet, nisl a aliquam egestas, magna nisi interdum nibh, sed feugiat diam ex at nulla. Etiam quis scelerisque nisi, vel porttitor leo. Vivamus in ex tincidunt, blandit augue in, fermentum quam. Sed sem quam, lobortis eu mollis eu, porta at arcu. In vitae placerat ex. Mauris pharetra mi in arcu mattis vestibulum.', '2022-05-31 08:17:58', 1),
+(2, 'Tugas 1', 'Buatlah superapp mengalahkan game pou', '2022-05-24 14:22:16', 2);
 
 -- --------------------------------------------------------
 
@@ -381,6 +413,12 @@ ALTER TABLE `dosen`
   ADD PRIMARY KEY (`nid`);
 
 --
+-- Indexes for table `dummytable`
+--
+ALTER TABLE `dummytable`
+  ADD PRIMARY KEY (`test1id`);
+
+--
 -- Indexes for table `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
@@ -455,6 +493,12 @@ ALTER TABLE `dosen`
   MODIFY `nid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7654322;
 
 --
+-- AUTO_INCREMENT for table `dummytable`
+--
+ALTER TABLE `dummytable`
+  MODIFY `test1id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
@@ -464,7 +508,7 @@ ALTER TABLE `mahasiswa`
 -- AUTO_INCREMENT for table `materi`
 --
 ALTER TABLE `materi`
-  MODIFY `id_materi` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_materi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -488,7 +532,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `tugas`
 --
 ALTER TABLE `tugas`
-  MODIFY `id_tugas` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_tugas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -512,6 +556,12 @@ ALTER TABLE `materi`
 ALTER TABLE `nilai`
   ADD CONSTRAINT `nilai_kd_matkul_foreign` FOREIGN KEY (`kd_matkul`) REFERENCES `matakuliah` (`kd_matkul`),
   ADD CONSTRAINT `nilai_npm_foreign` FOREIGN KEY (`npm`) REFERENCES `mahasiswa` (`npm`);
+
+--
+-- Constraints for table `tugas`
+--
+ALTER TABLE `tugas`
+  ADD CONSTRAINT `tugas_ibfk_1` FOREIGN KEY (`id_materi`) REFERENCES `materi` (`id_materi`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `upload_tugas`

@@ -19,8 +19,8 @@
     integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
     crossorigin="anonymous"></script>
   <title>SPOT</title>
-  <link href="D:\Document\Materi\Semester 4\Pemrograman Web\8 (UTS)\Spot-2\css\materi.css" rel="stylesheet" type="text/css" />
-  <link href="D:\Document\Materi\Semester 4\Pemrograman Web\8 (UTS)\Spot-2\css\component\navbar.css" rel="stylesheet" type="text/css" />
+  <link href="\css\materi.css" rel="stylesheet" type="text/css" />
+  <link href="\css\component\navbar.css" rel="stylesheet" type="text/css" />
   <script src="script.js"></script>
 </head>
 
@@ -28,66 +28,32 @@
   <nav class="shadow-sm">
 
   </nav>
-  <div class="sidebar shadow-sm">
-    <div class="brand">
-      <img class="logo" src="assets/image/Logo_Almamater_UPI.svg" width="45">
-      <span class="brand-name">SPOT</span>
-      <span class="brand-version">2.0</span>
-    </div>
-    <hr style="margin: 0;">
-    <div class="login-info">
-      <img class="avatar" src="assets/image/profile.jpg" alt="profile" width="72">
-      <span class="name" id="getnama"></span>
-      <span class="nim" id="getnim"></span>
-    </div>
-    <a href="dashboard.html">
-      <i class="icon" data-feather="pie-chart"></i>
-      <span class="menu-name">&nbsp;Dashboard</span>
-    </a>
-    <a class="active" href="daftarMataKuliah.html">
-      <i class="icon" data-feather="list"></i>
-      <span class="menu-name">&nbsp;Daftar Mata Kuliah</span>
-    </a>
-    <a href="tugas.html">
-      <div class="badge-bar"></div>
-      <i class="icon" data-feather="check-circle"></i>
-      <span class="menu-name">&nbsp;Tugas</span>
-      <span class="badge">3</span>
-    </a>
-    <a href="summaryNilai.html">
-      <i class="icon" data-feather="star">2</i>
-      <span class="menu-name">&nbsp;Keseluruhan Nilai</span>
-    </a>
-    <a class="menu-settings logout" href="index.html">
-      <i class="icon" data-feather="log-out">2</i>
-      <span class="menu-name">&nbsp;Logout</span>
-    </a>
-  </div>
+  <?php include('components/sidebar.php'); ?>
   <div class="main-content">
     <div class="p-3">
       <div class="row">
         <div class="col-md-6">
           <div aria-label="breadcrumb">
             <ol class="breadcrumb">
-              <a href="daftarMataKuliah.html">
+              <a href="/MataKuliah">
                 <li class="breadcrumb-item active" aria-current="page">
-
-                  <span class="breadcrumb-item-text"><i class="icon ico-dark"
-                      data-feather="chevron-right"></i>&nbsp;Daftar Mata Kuliah</span>
+                    
+                    <span class="breadcrumb-item-text"><i class="icon ico-dark" data-feather="list"></i>&nbsp;Daftar Mata Kuliah</span>
                 </li>
               </a>
-              <a href="pertemuan.html">
+              <a href=<?= "/MataKuliah/" . $kodeMatkul ?>>
                 <li class="breadcrumb-item active" aria-current="page">
-
-                  <span class="breadcrumb-item-text"><i class="icon ico-dark"
-                      data-feather="chevron-right"></i>&nbsp;Daftar Pertemuan</span>
+                  <?php
+                    $row = $DB->table('materi')->join('matakuliah', 'kd_matkul')->where('materi.id_materi', $idMateri)->get()->fetch();
+                  ?>
+                  <span class="breadcrumb-item-text"><i class="icon ico-dark" data-feather="chevron-right"></i>&nbsp;<?= $row[0]["nama_matkul"] ?></span>
                 </li>
               </a>
               <a href="materi.html">
                 <li class="breadcrumb-item active" aria-current="page">
 
                   <span class="breadcrumb-item-text"><i class="icon ico-dark"
-                      data-feather="chevron-right"></i>&nbsp;Materi</span>
+                      data-feather="chevron-right"></i>&nbsp;Pertemuan <?= $row[0]["pertemuan"] ?></span>
                 </li>
               </a>
             </ol>
@@ -97,9 +63,9 @@
       <div class="row g-3">
         <div class="col-lg-4 order-lg-2">
           <div class="sum-nilai-card shadow-sm rounded">
-            <h3>Pemrograman Web</h3>
-            <p style="text-align:center;" class="nilai-desc">Pertemuan 1</p>
-            <p style="text-align:center;" class="nilai-desc">Waktu Akses: 16-02-2022 13:00</p>
+            <h3><?= $row[0]["nama_matkul"] ?></h3>
+            <p style="text-align:center;" class="nilai-desc">Pertemuan <?= $row[0]["pertemuan"] ?></p>
+            <p style="text-align:center;" class="nilai-desc">Update Terakhir: <?= $helper->convertSQLDate($row[0]["last_update"]) ?></p>
           </div>
         </div>
         <div class="col-lg-8 order-lg-1">
@@ -114,41 +80,33 @@
                 <a id="tugas-tab" data-toggle="tab" href="#tugas" role="tab" aria-controls="tugas" aria-selected="false"
                   class="nav-link border-0 text-uppercase font-weight-bold">Tugas</a>
               </li>
-              <li class="nav-item flex-sm-fill">
-                <a id="evaluasi-tab" data-toggle="tab" href="#evaluasi" role="tab" aria-controls="evaluasi"
-                  aria-selected="false" class="nav-link border-0 text-uppercase font-weight-bold">Evaluasi</a>
-              </li>
             </ul>
             <div id="myTabContent" class="tab-content">
               <div id="materi" role="tabpanel" aria-labelledby="materi-tab" class="tab-pane fade px-3 py-4 show active">
-                <p class="text-muted">Pendahuluan Pemrograman Web
-
+                <p class="text-muted">
+                  <b><?= $row[0]["judul"] ?></b>
                 </p>
-                <p class="text-muted mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                  tempor
-                  incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                  ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                  irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                  sint
-                  occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p class="text-muted mb-0">
+                  <?= $row[0]["description"] ?>
+                </p>
               </div>
+              <?php
+                $result = $DB->table('tugas')->where('id_materi', $idMateri)->get();
+              ?>
               <div id="tugas" role="tabpanel" aria-labelledby="tugas-tab" class="tab-pane fade px-3 py-4">
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                  incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                  ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                  irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                  sint
-                  occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <p class="text-muted mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                  tempor
-                  incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                  ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                  irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                  sint
-                  occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p class="text-muted">
+                  <?php
+                    if($result->count() > 0){
+                      $tugas = $result->fetch();
+                      echo $tugas[0]["deskripsi"];
+                    ?>
+                    <form action="App/Controller/uploadTugas.php" method="post"></form>
+                    <?php
+                    }else{
+                      echo "Hore! Belum ada tugas.";
+                    }
+                  ?>
+                </p>
               </div>
               <div id="evaluasi" role="tabpanel" aria-labelledby="evaluasi-tab" class="tab-pane fade px-3 py-4">
                 <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
@@ -177,7 +135,6 @@
 
 </html>
 <script>
-  getdata();
   feather.replace()
 
   $(document).ready(function () {

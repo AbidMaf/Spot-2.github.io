@@ -13,6 +13,7 @@ include "Database/Connection.php";
 
 $helper = new helper();
 $DB = new Query();
+$parseURL = explode("/", strtolower(parse_url($request, PHP_URL_PATH)));
 
 // Note: to add more case, use lowercase
 switch (strtolower($request)) {
@@ -31,6 +32,17 @@ switch (strtolower($request)) {
     
     case '/matakuliah':
         require "views/mahasiswa/daftarMataKuliah.php";
+        break;
+
+    case '/matakuliah/' . (!empty($parseURL[2]) ? $parseURL[2] : ''):
+        $kodeMatkul = $parseURL[2];
+        require "views/mahasiswa/pertemuan.php";
+        break;
+
+    case '/matakuliah/' . (!empty($parseURL[2]) ? $parseURL[2] : '') . '/' . (!empty($parseURL[3]) ? $parseURL[3] : ''):
+        $kodeMatkul = $parseURL[2];
+        $idMateri = $parseURL[3];
+        require "views/mahasiswa/materi.php";
         break;
     
     case '/tugas':

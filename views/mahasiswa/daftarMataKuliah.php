@@ -49,7 +49,7 @@
               <div class="matkul-description">
                 Mata kuliah ini mengajarkan prinsip-prinsip dasar Internet dan teknologi yang dapat digunakan untuk membangun sebuah Aplikasi Internet. HTML dan CSS yang merupakan komponen dasar dari halaman web, merupakan dua topik pertama yang dibahas dalam mata kuliah ini. Mata kuliah ini kemudian membahas penampilan web secara dinamis menggunakan Javascript. Javascript juga merupakan dasar pemrograman Ajax yang juga akan diperkenalkan pada mata kuliah ini. Pemrograman dari sisi server juga akan dibahas dengan menggunakan bahasa PHP dan ASP. Mahasiswa juga diajarkan untuk menganalisis berbagai aspek kualitas pada aplikasi internet, seperti: usability, security, dan performance.
               </div>
-              <a href="pertemuan.html" class="btn btn-primary cta-matkul">Go</a>
+              <a href="MataKuliah/<?= $p['kd_matkul'] ?>" class="btn btn-primary cta-matkul">Go</a>
             </div>
           </div> 
         </div>
