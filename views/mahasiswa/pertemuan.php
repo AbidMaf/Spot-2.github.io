@@ -42,6 +42,7 @@
                 ?>
                 <span class="breadcrumb-item-text"><i class="icon ico-dark" data-feather="chevron-right"></i>&nbsp;<?= $row[0]["nama_matkul"] ?></span>
               </li>
+              </a>
             </ol>
           </div>
         </div>

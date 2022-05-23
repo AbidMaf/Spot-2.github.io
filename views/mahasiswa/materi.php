@@ -91,6 +91,7 @@
                 </p>
               </div>
               <?php
+                $idTugas = NULL;
                 $result = $DB->table('tugas')->where('id_materi', $idMateri)->get();
               ?>
               <div id="tugas" role="tabpanel" aria-labelledby="tugas-tab" class="tab-pane fade px-3 py-4">
@@ -98,15 +99,35 @@
                   <?php
                     if($result->count() > 0){
                       $tugas = $result->fetch();
+                      $idTugas = $tugas[0]["id_tugas"];
                       echo $tugas[0]["deskripsi"];
                     ?>
-                    <form action="App/Controller/uploadTugas.php" method="post"></form>
+                    <form action="/uploadTugas" method="POST" enctype="multipart/form-data">
+                      <div class="mb-3 upload-bar">
+                        <input type="text" name="npm" value="<?= $_SESSION['npm'] ?>" hidden>
+                        <input type="text" name="id_tugas" value="<?= $tugas[0]['id_tugas'] ?>" hidden>
+                        <input type="text" name="kd_matkul" value="<?= $kodeMatkul ?>" hidden>
+                        <input type="file" class="form-control input-tugas" id="formfile" name="formfile">
+                        <input type="submit" class="form-control btn btn-primary btn-submit" value="Kumpulkan">
+                      </div>
+                    </form>
                     <?php
                     }else{
                       echo "Hore! Belum ada tugas.";
                     }
                   ?>
                 </p>
+                <?php
+                  $checkUpload = $DB->table('upload_tugas')->where('npm', $_SESSION['npm'])->where('id_tugas', $idTugas)->get();
+                  if($checkUpload->count() > 0) {
+                    $upload = $checkUpload->fetch();
+                    echo $upload[0]["file"];
+                ?>
+                <a href="/deleteUploadTugas/<?= $upload[0]['id_up_tugas'] ?>" class="btn btn-primary hapus-tugas">
+                      <i class="icon ico-dark" data-feather="trash"></i>
+                      Hapus Tugas
+                </a>
+                <?php } ?>
               </div>
               <div id="evaluasi" role="tabpanel" aria-labelledby="evaluasi-tab" class="tab-pane fade px-3 py-4">
                 <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor

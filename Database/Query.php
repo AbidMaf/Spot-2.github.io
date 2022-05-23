@@ -124,9 +124,11 @@ class Query {
         return $this->resource->num_rows;
     }
 
-    public function insert($table, $columns, $values) {
-        $query = "INSERT INTO $table ($columns) VALUES ($values)";
-        return $query;
+    public function insert($table, array $values) {
+        $columnImplode = $this->columns == array("*") ? "" : "(" . implode(", ", $this->columns) . ")";
+        $query = "INSERT INTO $table $columnImplode VALUES ('" . implode("', '", $values) ."')";
+        // var_dump($query);
+        return mysqli_query(mysqli_connect("localhost", "root", "", "penilaian-app"), $query);
     }
 
     public function update($table, $columns, $values, $where) {
@@ -136,6 +138,6 @@ class Query {
 
     public function delete($table, $where) {
         $query = "DELETE FROM $table WHERE $where";
-        return $query;
+        return mysqli_query(mysqli_connect("localhost", "root", "", "penilaian-app"), $query);
     }
 }

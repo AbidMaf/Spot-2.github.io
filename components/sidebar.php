@@ -2,7 +2,6 @@
 $request = $_SERVER['REQUEST_URI'];
 $requestParsed = explode("/", strtolower(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)));
 $active_menu = 'class="active"';
-session_start();
 ?>
 
 <div class="sidebar shadow-sm">
@@ -35,7 +34,7 @@ session_start();
       <i class="icon" data-feather="star"></i>
       <span class="menu-name">&nbsp;Keseluruhan Nilai</span>
     </a>
-    <a class="menu-settings logout" href="/Login">
+    <a class="menu-settings logout" href="/Logout">
       <i class="icon" data-feather="log-out"></i>
       <span class="menu-name">&nbsp;Logout</span>
     </a>

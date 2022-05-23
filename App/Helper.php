@@ -39,4 +39,17 @@ class Helper {
         $highlight = explode("|", $points);
         return $highlight;
     }
+
+    public function checkSession()
+    {
+        if(!isset($_SESSION)){
+            session_start();
+        }
+        if (!isset($_SESSION['name'])) {
+            $request = $_SERVER['REQUEST_URI'];
+            if (strtolower($request) != '/login') {
+                return header('Location: /Login');
+            }
+        }
+    }
 }

@@ -37,7 +37,7 @@ h4 {
 
 .sum-nilai-card {
     background-color: white;
-    text-align: center;
+    /* text-align: center; */
     padding: 20px;
 }
 
@@ -81,6 +81,23 @@ h4 {
 
 .nilai-collapse svg {
     float: right;
+}
+
+.hapus-tugas {
+    box-sizing: border-box;
+    display: block !important;
+}
+
+.upload-bar {
+    display: flex;
+}
+
+.upload-bar .input-tugas {
+    width: 80%;
+}
+
+.upload-bar .btn-submit {
+    width: 20%;
 }
 
 .nilai-total {

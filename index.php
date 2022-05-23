@@ -15,20 +15,26 @@ $helper = new helper();
 $DB = new Query();
 $parseURL = explode("/", strtolower(parse_url($request, PHP_URL_PATH)));
 
+$helper->checkSession();
 // Note: to add more case, use lowercase
-switch (strtolower($request)) {
-    case '/dashboard':
-    case '/':
-        require "views/mahasiswa/dashboard.php";
-        break;
-    
+switch (strtolower($request)) {    
     case '/login':
         require "views/login.php";
         break;
 
     case '/loginaction':
-        require "<App>Controller/loginController.php";
+        require "App/Controller/loginController.php";
         break;
+
+    case '/logout':
+        require "/App/Controller/logoutController.php";
+        break;
+
+    case '/dashboard':
+    case '/':
+        require "views/mahasiswa/dashboard.php";
+        break;
+
     
     case '/matakuliah':
         require "views/mahasiswa/daftarMataKuliah.php";
@@ -45,6 +51,15 @@ switch (strtolower($request)) {
         require "views/mahasiswa/materi.php";
         break;
     
+    case '/uploadtugas':
+        require $_SERVER['DOCUMENT_ROOT'] . "/App/Controller/uploadTugasController.php";
+        break;
+    
+    case '/deleteuploadtugas/' . (!empty($parseURL[2]) ? $parseURL[2] : ''):
+        $kdUpTugas = $parseURL[2];
+        require $_SERVER['DOCUMENT_ROOT'] . "/App/Controller/deleteUploadTugasController.php";
+        break;
+
     case '/tugas':
         require "views/mahasiswa/tugas.php";
         break;
