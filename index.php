@@ -3,14 +3,16 @@
 // $me = "D:\Document\Materi\Semester 4\Pemrograman Web\8 (UTS)\Spot-2";
 
 use App\helper;
+use Database\Query;
 
 $request = $_SERVER['REQUEST_URI'];
 
 require_once realpath("vendor/autoload.php");
 
-include "config/database.php";
+include "Database/Connection.php";
 
 $helper = new helper();
+$DB = new Query();
 
 // Note: to add more case, use lowercase
 switch (strtolower($request)) {

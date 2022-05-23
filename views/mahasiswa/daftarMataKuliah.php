@@ -23,24 +23,28 @@
     <div class="p-2">
     <?php include('components/breadcrumbs.php'); ?>
       <div class="row g-2">
+        <?php
+          $row = $DB->table('matakuliah')->join('dosen', 'nid')->get()->fetch();
+          foreach($row as $p){
+        ?>
         <div class="col-lg-4">
           <div class="matkul-card shadow-sm rounded">
             <div class="matkul-info">
               <div class="matkul-header">
                 <div class="matkul-kode">
-                  RL210
+                  <?= $p["kd_matkul"] ?>
                 </div>
                 <div class="matkul-title">
-                  Pemrograman Web
+                  <?= $p["nama_matkul"] ?>
                   <div class="badge badge-primary schedule-tag"><span>today</span></div>
                 </div>
               </div>
               <div class="matkul-sks">
-                4 SKS
+                <?= $p["sks"] ?> SKS
               </div>
               <div class="matkul-dosen">
                 <i class="ico ico-dark" data-feather="user"></i>
-                &nbsp;Hendriyana, S.T., M.Kom.
+                &nbsp;<?= $p["name"] ?>
               </div>
               <div class="matkul-description">
                 Mata kuliah ini mengajarkan prinsip-prinsip dasar Internet dan teknologi yang dapat digunakan untuk membangun sebuah Aplikasi Internet. HTML dan CSS yang merupakan komponen dasar dari halaman web, merupakan dua topik pertama yang dibahas dalam mata kuliah ini. Mata kuliah ini kemudian membahas penampilan web secara dinamis menggunakan Javascript. Javascript juga merupakan dasar pemrograman Ajax yang juga akan diperkenalkan pada mata kuliah ini. Pemrograman dari sisi server juga akan dibahas dengan menggunakan bahasa PHP dan ASP. Mahasiswa juga diajarkan untuk menganalisis berbagai aspek kualitas pada aplikasi internet, seperti: usability, security, dan performance.
@@ -49,64 +53,10 @@
             </div>
           </div> 
         </div>
-        <div class="col-lg-4">
-          <div class="matkul-card shadow-sm rounded">
-            <div class="matkul-info">
-              <div class="matkul-header">
-                <div class="matkul-kode">
-                  RL210
-                </div>
-                <div class="matkul-title">
-                  Konstruksi Perangkat Lunak
-                  <div class="badge badge-primary schedule-tag"><span>today</span></div>
-                </div>
-              </div>
-              <div class="matkul-sks">
-                4 SKS
-              </div>
-              <div class="matkul-dosen">
-                <i class="ico ico-dark" data-feather="user"></i>
-                &nbsp;Dr. Asep Wahyudin, S.Kom., M.T.
-              </div>
-              <div class="matkul-description">
-                Mata kuliah yang melatih mahasiswa menjadi bagian dari solusi dunia kerja, industri, instansi pemerintahan dan atau komunitas masyarakat tertentu.
-              </div>
-              <a href="pertemuan.html" class="btn btn-primary cta-matkul">Go</a>
-            </div>
-          </div> 
-        </div>
-        <div class="col-lg-4">
-          <div class="matkul-card shadow-sm rounded">
-            <div class="matkul-info">
-              <div class="matkul-header">
-                <div class="matkul-kode">
-                  RL210
-                </div>
-                <div class="matkul-title">
-                  Bisnis Teknologi
-                </div>
-              </div>
-              <div class="matkul-sks">
-                4 SKS
-              </div>
-              <div class="matkul-dosen">
-                <i class="ico ico-dark dosen-icon" data-feather="user"></i>
-                &nbsp;Dr. Asep Wahyudin, S.Kom., M.T.
-              </div>
-              <div class="matkul-description">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum, aliquid! Aliquid quam voluptate iste distinctio dolor beatae nisi. Aliquam at aut adipisci, nostrum delectus eius ipsum accusantium amet nesciunt tempore!
-              </div>
-              <a href="pertemuan.html" class="btn btn-primary cta-matkul">Go</a>
-            </div>
-          </div> 
-        </div>
+        <?php } ?>
       </div>
     </div>
   </div>
-
-  <script>
-    getdata();
-  </script>
 </body>
 </html>
 <script>

@@ -8,4 +8,5 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Helper' => $baseDir . '/App/Helper.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+    'Database\\Query' => $baseDir . '/Database/Query.php',
 );

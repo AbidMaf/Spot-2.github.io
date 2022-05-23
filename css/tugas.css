@@ -114,6 +114,7 @@ input[type=radio].opt-show-btn:checked + .opt-label {
 }
 
 .tugas-title {
+    margin-bottom: 5px;
     display: inline-block;
     font-size: 14pt;
     font-weight: 600;
@@ -255,9 +256,14 @@ span.badge.bg-secondary, span.badge.bg-alert, span.badge.bg-success, span.badge.
         font-size: 10pt;
     }
 
+    .tugas-status {
+        
+    }
+
     .tugas-status > span {
         min-width: fit-content;
         font-size: 9pt !important;
+        padding: 5px !important;
     }
 
     .tugas-date {
