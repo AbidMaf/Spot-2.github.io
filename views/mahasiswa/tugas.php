@@ -13,9 +13,11 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
   <title>SPOT</title>
   <link href="css/tugas.css" rel="stylesheet" type="text/css" />
   <link href="css/component/navbar.css" rel="stylesheet" type="text/css" />
+  <script src="javascript/tugas.js"></script>
   <script src="script.js"></script>
 </head>
 
@@ -42,16 +44,16 @@
       <div class="row mb-2">
         <div class="col-12">
           <div class="cat-tugas">
-            <input type="radio" class="btn-check opt-show-btn shadow-sm" name="option-show" id="all-show" checked>
+            <input type="radio" value="Semua Tugas" class="btn-check opt-show-btn shadow-sm" name="option-show" id="all-show" checked onclick="sortTugas()">
             <label for="all-show" class="btn opt-label shadow-sm">Semua Tugas</label>
 
-            <input type="radio" class="btn-check opt-show-btn" name="option-show" id="not-finish">
+            <input type="radio" value="Belum Selesai" class="btn-check opt-show-btn" name="option-show" id="not-finish" onclick="sortTugas()">
             <label for="not-finish" class="btn opt-label shadow-sm">Belum Selesai</label>
 
-            <input type="radio" class="btn-check opt-show-btn" name="option-show" id="missed">
+            <input type="radio" value="Terlambat" class="btn-check opt-show-btn" name="option-show" id="missed" onclick="sortTugas()">
             <label for="missed" class="btn opt-label shadow-sm">Terlambat</label>
 
-            <input type="radio" class="btn-check opt-show-btn" name="option-show" id="completed">
+            <input type="radio" value="Selesai" class="btn-check opt-show-btn" name="option-show" id="completed" onclick="sortTugas()">
             <label for="completed" class="btn opt-label shadow-sm">Selesai</label>
           </div>
         </div>
@@ -59,78 +61,61 @@
 
       <div class="row g-2">
         <?php
-          $getTugas = $DB->table('tugas')->get()->fetch();
-          $checkTugas = $DB->table('tugas')
-          ->join('upload_tugas', 'id_tugas')
-          ->where('npm', $_SESSION['npm'])
-          ->get()->fetch();
-          
+          // $test = $DB->query("CALL getUploadedTugas(2000649)")->fetch();
+          $getNFTugas = $DB->query("CALL getNFTugas(2000649)")->fetch();
+          $DB->reset();
+          foreach ($getNFTugas as $tugas) {
         ?>
-        <div class="col-lg-6 tugas-row">
+        <div class="col-lg-6 tugas-row <?= $helper->tagTugas($tugas['status']) ?>">
           <div class="tugas-card shadow-sm rounded">
             <div class="tugas-info">
               <div class="tugas-header">
                 <div class="tugas-status">
-                  <span class="badge bg-secondary text-wrap">Belum dikumpulkan</span>
+                  <?= $helper->checkDeadlineTugas($tugas['status']) ?>
                 </div>
-                <div class="tugas-title">Tugas Pertemuan 13</div>
-                <div class="tugas-matkul">Pemrograman Web</div>
+                <div class="tugas-title"><?= $tugas["judul"] ?></div>
+                <div class="tugas-matkul"><?= $tugas["nama_matkul"] ?></div>
               </div>
               <div class="tugas-time">
-                23:59
+                <?= $helper->convertSQLDate($tugas['deadline'], "NO_DATE") ?>
               </div>
               <div class="tugas-date">
                 <i class="ico ico-dark" data-feather="calendar"></i>
-                <span class="time">&nbsp;Deadline: 29 Maret 2022</span>
+                <span class="time">&nbsp;Deadline: <?= $helper->convertSQLDate($tugas['deadline'], "NO_TIME") ?></span>
               </div>
-              <a href="" class="btn btn-primary cta-tugas">Detail</a>
+              <a href="/MataKuliah/<?= $tugas['kd_matkul'] ?>/<?= $tugas['id_materi'] ?>" class="btn btn-primary cta-tugas">Detail</a>
             </div>
           </div>
         </div>
+        <?php
+          }
+          $getDoneTugas = $DB->query("CALL getUploadedTugas(2000649)")->fetch();
+          foreach ($getDoneTugas as $tugas) {
+        ?>
+        <div class="col-lg-6 tugas-row <?= $helper->tagTugas($tugas['status']) ?>">
+          <div class="tugas-card shadow-sm rounded">
+            <div class="tugas-info">
+              <div class="tugas-header">
+                <div class="tugas-status">
+                  <?= $helper->checkDeadlineTugas($tugas['status']) ?>
+                </div>
+                <div class="tugas-title"><?= $tugas["judul"] ?></div>
+                <div class="tugas-matkul"><?= $tugas["nama_matkul"] ?></div>
+              </div>
+              <div class="tugas-time">
+                <?= $helper->convertSQLDate($tugas['deadline'], "NO_DATE") ?>
+              </div>
+              <div class="tugas-date">
+                <i class="ico ico-dark" data-feather="calendar"></i>
+                <span class="time">&nbsp;Deadline: <?= $helper->convertSQLDate($tugas['deadline'], "NO_TIME") ?></span>
+              </div>
+              <a href="/MataKuliah/<?= $tugas['kd_matkul'] ?>/<?= $tugas['id_materi'] ?>" class="btn btn-primary cta-tugas">Detail</a>
+            </div>
+          </div>
+        </div>
+        <?php } ?>
         
-        <div class="col-lg-6 tugas-row">
-          <div class="tugas-card shadow-sm rounded">
-            <div class="tugas-info">
-              <div class="tugas-header">
-                <div class="tugas-status">
-                  <span class="badge bg-primary text-wrap">Terlambat</span>
-                </div>
-                <div class="tugas-title">Tugas Pertemuan 13</div>
-                <div class="tugas-matkul">Pemrograman Web</div>
-              </div>
-              <div class="tugas-time">
-                23:59
-              </div>
-              <div class="tugas-date">
-                <i class="ico ico-dark" data-feather="calendar"></i>
-                <span class="time">&nbsp;Deadline: 29 Maret 2022</span>
-              </div>
-              <a href="" class="btn btn-primary cta-tugas">Detail</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-6 tugas-row">
-          <div class="tugas-card shadow-sm rounded">
-            <div class="tugas-info">
-              <div class="tugas-header">
-                <div class="tugas-status">
-                  <span class="badge bg-success text-wrap">Selesai</span>
-                </div>
-                <div class="tugas-title">Tugas Pertemuan 13</div>
-                <div class="tugas-matkul">Pemrograman Web</div>
-              </div>
-              <div class="tugas-time">
-                23:59
-              </div>
-              <div class="tugas-date">
-                <i class="ico ico-dark" data-feather="calendar"></i>
-                <span class="time">&nbsp;Deadline: 29 Maret 2022</span>
-              </div>
-              <a href="" class="btn btn-primary cta-tugas">Detail</a>
-            </div>
-          </div>
-        </div>
+        
 
       </div>
 

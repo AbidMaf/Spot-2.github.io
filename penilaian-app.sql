@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 24, 2022 at 04:50 PM
+-- Generation Time: May 25, 2022 at 06:15 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -22,6 +22,30 @@ SET time_zone = "+00:00";
 --
 
 DELIMITER $$
+--
+-- Procedures
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getNFTugas` (IN `npmMhs` INT)  BEGIN
+
+SELECT a.id_tugas, a.judul, b.id_materi, c.kd_matkul, c.nama_matkul, a.deadline, IF(NOW()>a.deadline, "Terlambat", "Belum Selesai") AS status FROM tugas AS a 
+INNER JOIN materi AS b ON a.id_materi = b.id_materi 
+INNER JOIN matakuliah AS c ON b.kd_matkul = c.kd_matkul 
+WHERE a.id_tugas NOT IN(
+    SELECT id_tugas FROM upload_tugas AS d 
+    WHERE d.npm = npmMhs
+);
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getUploadedTugas` (IN `npmMhs` INT)  BEGIN 
+
+SELECT a.id_tugas, b.judul, b.id_materi, c.kd_matkul, c.nama_matkul, b.deadline, "Selesai" AS status FROM upload_tugas AS a 
+INNER JOIN tugas AS b ON a.id_tugas = b.id_tugas 
+INNER JOIN matakuliah AS c ON a.kd_matkul = c.kd_matkul
+WHERE a.npm = npmMhs;
+
+END$$
+
 --
 -- Functions
 --
@@ -223,7 +247,8 @@ INSERT INTO `materi` (`id_materi`, `kd_matkul`, `pertemuan`, `judul`, `highlight
 (1, 'PT502', 1, 'Operasi Sistem', 'Pengertian Operasi Sistem|Fungsi Operasi Sistem|Contoh Operasi Sistem', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis hendrerit nibh, a porttitor nisl. Fusce nec mollis eros, vel egestas purus. Vivamus elit est, convallis non blandit eleifend, imperdiet a velit. Aliquam vulputate feugiat tellus vitae pellentesque. Curabitur vel diam tincidunt, gravida nibh sed, semper dui. Proin nec efficitur felis. Etiam ultrices ante a tempus ultricies.\r\n\r\nIn ultricies ornare condimentum. Duis sed velit ut diam imperdiet eleifend eu eu est. Mauris convallis, sem eget gravida pretium, nisi neque dignissim metus, a volutpat risus orci nec nulla. Nullam imperdiet, nisl a aliquam egestas, magna nisi interdum nibh, sed feugiat diam ex at nulla. Etiam quis scelerisque nisi, vel porttitor leo. Vivamus in ex tincidunt, blandit augue in, fermentum quam. Sed sem quam, lobortis eu mollis eu, porta at arcu. In vitae placerat ex. Mauris pharetra mi in arcu mattis vestibulum.', '2022-05-23 03:14:24'),
 (2, 'RL209', 1, 'CRUD MySQL', 'Select. Insert, Update, dan Delete|Contoh Query', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis hendrerit nibh, a porttitor nisl. Fusce nec mollis eros, vel egestas purus. Vivamus elit est, convallis non blandit eleifend, imperdiet a velit. Aliquam vulputate feugiat tellus vitae pellentesque. Curabitur vel diam tincidunt, gravida nibh sed, semper dui. Proin nec efficitur felis. Etiam ultrices ante a tempus ultricies.\r\n\r\nIn ultricies ornare condimentum. Duis sed velit ut diam imperdiet eleifend eu eu est. Mauris convallis, sem eget gravida pretium, nisi neque dignissim metus, a volutpat risus orci nec nulla. Nullam imperdiet, nisl a aliquam egestas, magna nisi interdum nibh, sed feugiat diam ex at nulla. Etiam quis scelerisque nisi, vel porttitor leo. Vivamus in ex tincidunt, blandit augue in, fermentum quam. Sed sem quam, lobortis eu mollis eu, porta at arcu. In vitae placerat ex. Mauris pharetra mi in arcu mattis vestibulum.', '2022-05-24 08:59:42'),
 (3, 'RL209', 2, 'Connection', 'MySQL Connection|Contoh Syntax', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis hendrerit nibh, a porttitor nisl. Fusce nec mollis eros, vel egestas purus. Vivamus elit est, convallis non blandit eleifend, imperdiet a velit. Aliquam vulputate feugiat tellus vitae pellentesque. Curabitur vel diam tincidunt, gravida nibh sed, semper dui. Proin nec efficitur felis. Etiam ultrices ante a tempus ultricies.\r\n\r\nIn ultricies ornare condimentum. Duis sed velit ut diam imperdiet eleifend eu eu est. Mauris convallis, sem eget gravida pretium, nisi neque dignissim metus, a volutpat risus orci nec nulla. Nullam imperdiet, nisl a aliquam egestas, magna nisi interdum nibh, sed feugiat diam ex at nulla. Etiam quis scelerisque nisi, vel porttitor leo. Vivamus in ex tincidunt, blandit augue in, fermentum quam. Sed sem quam, lobortis eu mollis eu, porta at arcu. In vitae placerat ex. Mauris pharetra mi in arcu mattis vestibulum.', '2022-05-22 08:59:42'),
-(4, 'PT502', 2, 'Yes', 'Yeet', 'lor', '2022-05-24 03:07:13');
+(4, 'PT502', 2, 'Yes', 'Yeet', 'lor', '2022-05-24 03:07:13'),
+(5, 'PT502', 3, 'Bash Scripting', 'Bash|Scripting', 'Need to test it more, but seems it`s works! Thank you so much! :) Now i will use your patter for finding all liks and checking them for files, whole idea to find all file links, but, now some sites like to do pretty links like test.com/superfile without extension, so this code can help me a lot :) – \r\nswamprunner7\r\n Apr 29, 2014 at', '2022-05-25 02:27:24');
 
 -- --------------------------------------------------------
 
@@ -270,7 +295,7 @@ CREATE TABLE `nilai` (
 
 INSERT INTO `nilai` (`id_nilai`, `npm`, `kd_matkul`, `ntugas`, `nquiz`, `nuts`, `nuas`) VALUES
 (1, 2000649, 'PT502', 24, 90, 89, 94),
-(2, 2000053, 'PT502', 42, 42, 42, 42),
+(2, 2000053, 'PT502', 14, 42, 42, 42),
 (3, 2000649, 'RL209', 0, 90, 90, 90);
 
 -- --------------------------------------------------------
@@ -312,7 +337,9 @@ CREATE TABLE `tugas` (
 INSERT INTO `tugas` (`id_tugas`, `judul`, `deskripsi`, `deadline`, `id_materi`) VALUES
 (1, 'Membuat Operasi Sistem', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis hendrerit nibh, a porttitor nisl. Fusce nec mollis eros, vel egestas purus. Vivamus elit est, convallis non blandit eleifend, imperdiet a velit. Aliquam vulputate feugiat tellus vitae pellentesque. Curabitur vel diam tincidunt, gravida nibh sed, semper dui. Proin nec efficitur felis. Etiam ultrices ante a tempus ultricies.\r\n\r\nIn ultricies ornare condimentum. Duis sed velit ut diam imperdiet eleifend eu eu est. Mauris convallis, sem eget gravida pretium, nisi neque dignissim metus, a volutpat risus orci nec nulla. Nullam imperdiet, nisl a aliquam egestas, magna nisi interdum nibh, sed feugiat diam ex at nulla. Etiam quis scelerisque nisi, vel porttitor leo. Vivamus in ex tincidunt, blandit augue in, fermentum quam. Sed sem quam, lobortis eu mollis eu, porta at arcu. In vitae placerat ex. Mauris pharetra mi in arcu mattis vestibulum.', '2022-05-31 08:17:58', 1),
 (2, 'Tugas 1', 'Buatlah superapp mengalahkan game pou', '2022-05-24 14:22:16', 2),
-(3, 'as', 'deck', '2022-05-23 08:07:35', 4);
+(3, 'as', 'deck', '2022-05-23 08:07:35', 4),
+(4, 'Inheritance, Polymorphism, dan Fish', 'https://www.youtube.com/c/adhesi', '2022-05-27 02:13:18', 3),
+(5, 's', 'sasasasas', '2022-05-29 07:30:20', 5);
 
 -- --------------------------------------------------------
 
@@ -335,7 +362,8 @@ CREATE TABLE `upload_tugas` (
 
 INSERT INTO `upload_tugas` (`id_up_tugas`, `npm`, `id_tugas`, `kd_matkul`, `file`, `nilai`) VALUES
 (14, 2000649, 1, 'pt502', '1_2000649.png', 0),
-(15, 2000649, 3, 'pt502', '3_2000649.png', 0);
+(15, 2000649, 3, 'pt502', '3_2000649.png', 0),
+(16, 2000053, 1, 'pt502', '1_2000053.jpeg', 0);
 
 --
 -- Triggers `upload_tugas`
@@ -541,7 +569,7 @@ ALTER TABLE `mahasiswa`
 -- AUTO_INCREMENT for table `materi`
 --
 ALTER TABLE `materi`
-  MODIFY `id_materi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_materi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -565,13 +593,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `tugas`
 --
 ALTER TABLE `tugas`
-  MODIFY `id_tugas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_tugas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `upload_tugas`
 --
 ALTER TABLE `upload_tugas`
-  MODIFY `id_up_tugas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_up_tugas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `user`

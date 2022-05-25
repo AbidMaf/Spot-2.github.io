@@ -27,7 +27,7 @@ switch (strtolower($request)) {
         break;
 
     case '/logout':
-        require "/App/Controller/logoutController.php";
+        require "App/Controller/logoutController.php";
         break;
 
     case '/dashboard':

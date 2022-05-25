@@ -100,6 +100,7 @@
                     if($result->count() > 0){
                       $tugas = $result->fetch();
                       $idTugas = $tugas[0]["id_tugas"];
+                      echo "<b>" . $tugas[0]["judul"] . "</b><br>";
                       echo $tugas[0]["deskripsi"];
                     ?>
                     <form action="/uploadTugas" method="POST" enctype="multipart/form-data">

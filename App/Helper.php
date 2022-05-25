@@ -18,10 +18,18 @@ class Helper {
         return $months[$month];
     }
 
-    public function convertSQLDate($date)
+    public function convertSQLDate($date, $filter = "")
     {
         $strtotime = strtotime($date);
-        return date('d', $strtotime) . ' ' . $this->convertMonth(date('n', $strtotime)) . ' ' . date('Y', $strtotime) . ' ' . date('H:i:s', $strtotime);
+        $phpdate = NULL;
+        if($filter == "NO_DATE"){
+            $phpdate = date('H:i', $strtotime);
+        } elseif ($filter == "NO_TIME") {
+            $phpdate = $this->convertDay(date("w", $strtotime)) . ", " . date("d", $strtotime) . " " . $this->convertMonth(date("n", $strtotime)) . " " . date("Y", $strtotime);
+        } else {
+            $phpdate = $this->convertDay(date("w", $strtotime)) . ", " . date('d', $strtotime) . ' ' . $this->convertMonth(date('n', $strtotime)) . ' ' . date('Y', $strtotime) . ' ' . date('H:i:s', $strtotime);
+        }
+        return $phpdate;
     }
 
     public function getTodayDate()
@@ -82,16 +90,24 @@ class Helper {
         return $desc;
     }
 
-    public function checkUploadTugas($date) {
-        $date = strtotime($date);
-        $now = strtotime(date('Y-m-d H:i:s'));
-        $diff = $now - $date;
-        $diff = floor($diff / (60 * 60 * 24));
-
-        if ($diff > 7) {
-            return true;
+    public function checkDeadlineTugas($status) {
+        if ($status == "Terlambat") {
+            return '<span class="badge bg-primary text-wrap">Terlambat</span>';
+        } elseif ($status == "Belum Selesai") {
+            return '<span class="badge bg-secondary text-wrap">Belum Selesai</span>';
         } else {
-            return false;
+            return '<span class="badge bg-success text-wrap">Selesai</span>';
+        }
+    }
+
+    public function tagTugas($status)
+    {
+        if ($status == "Terlambat") {
+            return 'TugasLate';
+        } elseif ($status == "Belum Selesai") {
+            return 'TugasNF';
+        } else {
+            return 'TugasDone';
         }
     }
 }

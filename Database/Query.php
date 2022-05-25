@@ -78,7 +78,13 @@ class Query {
     public function join($table, $column, $column2 = "",  $method = "INNER")
     {
         $column2 = $column2 == "" ? $column : $column2;
-        array_push($this->joinVal, "$method JOIN $table AS $table ON $table.$column = $this->mainTable.$column2 ");
+        $column2On = "";
+        if(str_contains($column2, '.')){
+            $column2On = $column2;
+        } else {
+            $column2On = $this->mainTable . ".$column2";
+        }
+        array_push($this->joinVal, "$method JOIN $table AS $table ON $table.$column = $column2On ");
         return $this;
     }
 

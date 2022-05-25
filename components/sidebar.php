@@ -28,7 +28,13 @@ $active_menu = 'class="active"';
       <div class="badge-bar"></div>
       <i class="icon" data-feather="check-circle"></i>
       <span class="menu-name">&nbsp;Tugas</span>
-      <span class="badge">3</span>
+      <?php
+      $getNFTugas = $DB->query("CALL getNFTugas(2000649)")->count();
+
+      if($getNFTugas > 0 ) {
+      ?>
+      <span class="badge"><?= $getNFTugas ?></span>
+      <?php } ?>
     </a>
     <a <?= ($requestParsed[1] == 'nilai') ? $active_menu : '' ?> href="/Nilai">
       <i class="icon" data-feather="star"></i>
