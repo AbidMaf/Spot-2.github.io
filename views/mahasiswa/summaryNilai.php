@@ -38,49 +38,76 @@
         <div class="col-lg-4 order-lg-2">
           <div class="sum-nilai-card shadow-sm rounded">
             <h6 class="avg-card-title">Nilai keseluruhan sementara</h6>
-            <h1 class="h1 predikat">A</h1>
-            <span class="score">(89,5)</span>
+            <?php
+              $nilaiTotal = $DB->query("SELECT getNilaiSummary('$_SESSION[npm]') AS nilai")->fetch();
+              $predikat = $DB->query("SELECT setPredikat('" . $nilaiTotal[0]["nilai"] . "') AS predikat")->fetch();
+            ?>
+            <h1 class="h1 predikat"><?= $predikat[0]["predikat"] ?></h1>
+            <span class="score">(<?= $nilaiTotal[0]["nilai"] ?>)</span>
             <p class="nilai-desc"><b>Sangat bagus</b>. Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae et nobis repellendus quis quae libero assumenda.</p>
           </div>
         </div>
         <div class="col-lg-8 order-lg-1">
           <div class="sum-nilai-matkul-card shadow-sm rounded">
-            <a class="btn btn-light nilai-collapse shadow-sm" data-bs-toggle="collapse" href="#collapsedNilai" role="button" aria-expanded="false" aria-controls="collapseExample" id="nilaiMataKuliah" >
-              <span class="matkul-name">Pemrograman Web</span>
+          <?php
+            $no = 1;
+            $getMatkul = $DB->table('matakuliah')->get()->fetch();
+            foreach ($getMatkul as $matkul) {
+          ?>
+            <a class="btn btn-light nilai-collapse shadow-sm" data-bs-toggle="collapse" href="#collapsedNilai<?= $no ?>" role="button" aria-expanded="false" aria-controls="collapseExample" id="nilaiMataKuliah<?= $no ?>" >
+              <span class="matkul-name"><?= $matkul['nama_matkul'] ?></span>
               <i class="ico ico-dark rotate180deg" data-feather="chevron-down"></i>
             </a>
-            <div class="collapse" id="collapsedNilai">
+            <div class="collapse" id="collapsedNilai<?= $no ?>">
               <div class="card card-body gy-5">
                 <div class="row">
                   <div class="col-lg-12">
                     <table class="table table-stripped table-responsive table-bordered" id="nilai-matkul" border="1">
                       <thead class="text-center">
                         <tr>
-                          <th colspan="7">Tugas</th>
+                          <?php
+                          $getTugas = $DB->table('materi')->join('tugas', 'id_materi')->where('materi.kd_matkul', $matkul['kd_matkul'])->get();
+                          ?>
+                          <th colspan="<?= $getTugas->count() ?>">Tugas</th>
+                          <th rowspan="2">Kuis</th>
                           <th rowspan="2">UTS</th>
                           <th rowspan="2">UAS</th>
                         </tr>
                         <tr>
-                          <th>1</th>
-                          <th>2</th>
-                          <th>3</th>
-                          <th>4</th>
-                          <th>5</th>
-                          <th>6</th>
-                          <th>7</th>
+                        <?php
+                          foreach ($getTugas->fetch() as $tugas) {
+                        ?>
+                          <th><?= $tugas['pertemuan'] ?></th>
+                        <?php } ?>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
-                          <td>90</td>
-                          <td>90</td>
-                          <td>90</td>
-                          <td>90</td>
-                          <td>90</td>
-                          <td>90</td>
-                          <td>90</td>
-                          <td>90</td>
-                          <td>90</td>
+                          <?php
+                          $getNilai = $DB->table('upload_tugas')->join('nilai', 'npm')->where('nilai.npm', $_SESSION['npm'])->where('upload_tugas.kd_matkul', $matkul['kd_matkul'])->where('nilai.kd_matkul', $matkul['kd_matkul'])->get();
+                          $countNilai = $getNilai->count();
+                          $fetchNilai = $getNilai->fetch();
+                          if($countNilai > 0){
+                            foreach ($fetchNilai as $nilai) {
+                          ?>
+                          <td><?= $nilai['nilai'] ?></td>
+                          <?php
+                            }
+                          ?>
+                          <td><?= $fetchNilai[0]['nquiz'] ?></td>
+                          <td><?= $fetchNilai[0]['nuts'] ?></td>
+                          <td><?= $fetchNilai[0]['nuas'] ?></td>
+                          <?php
+                          }
+                          else {
+                          ?>
+                          <td>0</td>
+                          <td>0</td>
+                          <td>0</td>
+                          <td>0</td>
+                          <?php
+                          }
+                          ?>
                         </tr>
                       </tbody>
                     </table>
@@ -94,47 +121,10 @@
                 </div>
               </div>
             </div>
-            
-            <a class="btn btn-light nilai-collapse shadow-sm" data-bs-toggle="collapse" href="#collapsedNilai1" role="button" aria-expanded="false" aria-controls="collapseExample" id="nilaiMataKuliah1" >
-              <span class="matkul-name">Konstruksi Perangkat Lunak</span>
-              <i class="ico ico-dark rotate180deg" data-feather="chevron-down"></i>
-            </a>
-            <div class="collapse" id="collapsedNilai1">
-              <div class="card card-body gy-5">
-                <div class="row nilai nilai-total">
-                  <div class="col-10">
-                    <span>Total</span>
-                  </div>
-                  <div class="col-2 text-end text-nowrap">
-                    <span>95</span>
-                  </div>
-                </div>
-                <div class="row nilai">
-                  <div class="col-10 ">
-                    <span>Tugas</span>
-                  </div>
-                  <div class="col-2 text-end text-nowrap">
-                    <span>90</span>
-                  </div>
-                </div>
-                <div class="row nilai">
-                  <div class="col-10">
-                    <span>UTS</span>
-                  </div>
-                  <div class="col-2 text-end text-nowrap">
-                    <span>85</span>
-                  </div>
-                </div>
-                <div class="row nilai">
-                  <div class="col-10">
-                    <span>UAS</span>
-                  </div>
-                  <div class="col-2 text-end text-nowrap">
-                    <span>93</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <?php
+              $no++;
+            } 
+            ?>
           </div>
         </div>
       </div>
@@ -152,7 +142,7 @@
     $(document).click(function(event) {
       if ($('#' + event.target.id).hasClass('nilai-collapse')) {
         $('#' + event.target.id + '>svg').toggleClass('down');
-        console.log('asaaasas');
+        console.log(event.target.id);
       }
     });
   });

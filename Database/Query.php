@@ -34,7 +34,7 @@ class Query {
     public function table($table)
     {
         $this->mainTable = $table;
-        $this->select = "SELECT " . implode(", ", $this->columns) . " FROM $table ";
+        $this->select = "SELECT " . implode(",", $this->columns) . " FROM $table AS $table ";
         
         return $this;
     }
@@ -94,7 +94,7 @@ class Query {
         . implode(" AND ", $this->where)
         . $this->limit 
         . $this->orderBy;
-        // var_dump($this->where);
+        // var_dump($this->columns[0]);
         // echo "<br><br>";
         // var_dump($sql);
 

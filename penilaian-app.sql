@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 23, 2022 at 10:11 AM
+-- Generation Time: May 24, 2022 at 04:50 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -25,11 +25,17 @@ DELIMITER $$
 --
 -- Functions
 --
-CREATE DEFINER=`root`@`localhost` FUNCTION `setPredikat` (`npmMhs` INT) RETURNS VARCHAR(4) CHARSET utf8mb4 BEGIN
-DECLARE predikat varchar(4);
-DECLARE nilaiTotal int;
+CREATE DEFINER=`root`@`localhost` FUNCTION `getNilaiSummary` (`npmMhs` INT) RETURNS DECIMAL(5,2) BEGIN
+DECLARE nTot decimal(5,2);
 
-SELECT (ntugas + nquiz + nuts + nuas) / 4  INTO nilaiTotal FROM nilai WHERE npm = npmMhs LIMIT 1;
+SELECT (SUM(ntugas) + SUM(nquiz) + SUM(nuts) + SUM(nuas)) / (COUNT(kd_matkul) * 4)  INTO nTot FROM nilai WHERE npm = npmMhs LIMIT 1;
+
+RETURN nTot;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `setPredikat` (`nilaiTotal` DECIMAL(5,2)) RETURNS VARCHAR(4) CHARSET utf8mb4 BEGIN
+DECLARE predikat varchar(4);
 
 IF nilaiTotal BETWEEN 90 AND 100 THEN SET 
 predikat = "A";
@@ -216,7 +222,8 @@ CREATE TABLE `materi` (
 INSERT INTO `materi` (`id_materi`, `kd_matkul`, `pertemuan`, `judul`, `highlight`, `deskripsi`, `last_update`) VALUES
 (1, 'PT502', 1, 'Operasi Sistem', 'Pengertian Operasi Sistem|Fungsi Operasi Sistem|Contoh Operasi Sistem', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis hendrerit nibh, a porttitor nisl. Fusce nec mollis eros, vel egestas purus. Vivamus elit est, convallis non blandit eleifend, imperdiet a velit. Aliquam vulputate feugiat tellus vitae pellentesque. Curabitur vel diam tincidunt, gravida nibh sed, semper dui. Proin nec efficitur felis. Etiam ultrices ante a tempus ultricies.\r\n\r\nIn ultricies ornare condimentum. Duis sed velit ut diam imperdiet eleifend eu eu est. Mauris convallis, sem eget gravida pretium, nisi neque dignissim metus, a volutpat risus orci nec nulla. Nullam imperdiet, nisl a aliquam egestas, magna nisi interdum nibh, sed feugiat diam ex at nulla. Etiam quis scelerisque nisi, vel porttitor leo. Vivamus in ex tincidunt, blandit augue in, fermentum quam. Sed sem quam, lobortis eu mollis eu, porta at arcu. In vitae placerat ex. Mauris pharetra mi in arcu mattis vestibulum.', '2022-05-23 03:14:24'),
 (2, 'RL209', 1, 'CRUD MySQL', 'Select. Insert, Update, dan Delete|Contoh Query', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis hendrerit nibh, a porttitor nisl. Fusce nec mollis eros, vel egestas purus. Vivamus elit est, convallis non blandit eleifend, imperdiet a velit. Aliquam vulputate feugiat tellus vitae pellentesque. Curabitur vel diam tincidunt, gravida nibh sed, semper dui. Proin nec efficitur felis. Etiam ultrices ante a tempus ultricies.\r\n\r\nIn ultricies ornare condimentum. Duis sed velit ut diam imperdiet eleifend eu eu est. Mauris convallis, sem eget gravida pretium, nisi neque dignissim metus, a volutpat risus orci nec nulla. Nullam imperdiet, nisl a aliquam egestas, magna nisi interdum nibh, sed feugiat diam ex at nulla. Etiam quis scelerisque nisi, vel porttitor leo. Vivamus in ex tincidunt, blandit augue in, fermentum quam. Sed sem quam, lobortis eu mollis eu, porta at arcu. In vitae placerat ex. Mauris pharetra mi in arcu mattis vestibulum.', '2022-05-24 08:59:42'),
-(3, 'RL209', 2, 'Connection', 'MySQL Connection|Contoh Syntax', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis hendrerit nibh, a porttitor nisl. Fusce nec mollis eros, vel egestas purus. Vivamus elit est, convallis non blandit eleifend, imperdiet a velit. Aliquam vulputate feugiat tellus vitae pellentesque. Curabitur vel diam tincidunt, gravida nibh sed, semper dui. Proin nec efficitur felis. Etiam ultrices ante a tempus ultricies.\r\n\r\nIn ultricies ornare condimentum. Duis sed velit ut diam imperdiet eleifend eu eu est. Mauris convallis, sem eget gravida pretium, nisi neque dignissim metus, a volutpat risus orci nec nulla. Nullam imperdiet, nisl a aliquam egestas, magna nisi interdum nibh, sed feugiat diam ex at nulla. Etiam quis scelerisque nisi, vel porttitor leo. Vivamus in ex tincidunt, blandit augue in, fermentum quam. Sed sem quam, lobortis eu mollis eu, porta at arcu. In vitae placerat ex. Mauris pharetra mi in arcu mattis vestibulum.', '2022-05-22 08:59:42');
+(3, 'RL209', 2, 'Connection', 'MySQL Connection|Contoh Syntax', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis hendrerit nibh, a porttitor nisl. Fusce nec mollis eros, vel egestas purus. Vivamus elit est, convallis non blandit eleifend, imperdiet a velit. Aliquam vulputate feugiat tellus vitae pellentesque. Curabitur vel diam tincidunt, gravida nibh sed, semper dui. Proin nec efficitur felis. Etiam ultrices ante a tempus ultricies.\r\n\r\nIn ultricies ornare condimentum. Duis sed velit ut diam imperdiet eleifend eu eu est. Mauris convallis, sem eget gravida pretium, nisi neque dignissim metus, a volutpat risus orci nec nulla. Nullam imperdiet, nisl a aliquam egestas, magna nisi interdum nibh, sed feugiat diam ex at nulla. Etiam quis scelerisque nisi, vel porttitor leo. Vivamus in ex tincidunt, blandit augue in, fermentum quam. Sed sem quam, lobortis eu mollis eu, porta at arcu. In vitae placerat ex. Mauris pharetra mi in arcu mattis vestibulum.', '2022-05-22 08:59:42'),
+(4, 'PT502', 2, 'Yes', 'Yeet', 'lor', '2022-05-24 03:07:13');
 
 -- --------------------------------------------------------
 
@@ -262,9 +269,9 @@ CREATE TABLE `nilai` (
 --
 
 INSERT INTO `nilai` (`id_nilai`, `npm`, `kd_matkul`, `ntugas`, `nquiz`, `nuts`, `nuas`) VALUES
-(1, 2000649, 'PT502', 95, 90, 89, 94),
+(1, 2000649, 'PT502', 24, 90, 89, 94),
 (2, 2000053, 'PT502', 42, 42, 42, 42),
-(3, 2000649, 'RL209', 90, 90, 90, 90);
+(3, 2000649, 'RL209', 0, 90, 90, 90);
 
 -- --------------------------------------------------------
 
@@ -304,7 +311,8 @@ CREATE TABLE `tugas` (
 
 INSERT INTO `tugas` (`id_tugas`, `judul`, `deskripsi`, `deadline`, `id_materi`) VALUES
 (1, 'Membuat Operasi Sistem', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis hendrerit nibh, a porttitor nisl. Fusce nec mollis eros, vel egestas purus. Vivamus elit est, convallis non blandit eleifend, imperdiet a velit. Aliquam vulputate feugiat tellus vitae pellentesque. Curabitur vel diam tincidunt, gravida nibh sed, semper dui. Proin nec efficitur felis. Etiam ultrices ante a tempus ultricies.\r\n\r\nIn ultricies ornare condimentum. Duis sed velit ut diam imperdiet eleifend eu eu est. Mauris convallis, sem eget gravida pretium, nisi neque dignissim metus, a volutpat risus orci nec nulla. Nullam imperdiet, nisl a aliquam egestas, magna nisi interdum nibh, sed feugiat diam ex at nulla. Etiam quis scelerisque nisi, vel porttitor leo. Vivamus in ex tincidunt, blandit augue in, fermentum quam. Sed sem quam, lobortis eu mollis eu, porta at arcu. In vitae placerat ex. Mauris pharetra mi in arcu mattis vestibulum.', '2022-05-31 08:17:58', 1),
-(2, 'Tugas 1', 'Buatlah superapp mengalahkan game pou', '2022-05-24 14:22:16', 2);
+(2, 'Tugas 1', 'Buatlah superapp mengalahkan game pou', '2022-05-24 14:22:16', 2),
+(3, 'as', 'deck', '2022-05-23 08:07:35', 4);
 
 -- --------------------------------------------------------
 
@@ -322,6 +330,14 @@ CREATE TABLE `upload_tugas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `upload_tugas`
+--
+
+INSERT INTO `upload_tugas` (`id_up_tugas`, `npm`, `id_tugas`, `kd_matkul`, `file`, `nilai`) VALUES
+(14, 2000649, 1, 'pt502', '1_2000649.png', 0),
+(15, 2000649, 3, 'pt502', '3_2000649.png', 0);
+
+--
 -- Triggers `upload_tugas`
 --
 DELIMITER $$
@@ -335,7 +351,23 @@ INNER JOIN materi AS b
 ON a.id_materi = b.id_materi 
 WHERE b.kd_matkul = new.kd_matkul LIMIT 1;
 
-UPDATE nilai SET ntugas = (ntugas + new.nilai) / countTugas WHERE npm = new.npm;
+UPDATE nilai SET ntugas = (ntugas + new.nilai) / countTugas WHERE npm = new.npm AND kd_matkul = new.kd_matkul;
+
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `editNTugas` AFTER INSERT ON `upload_tugas` FOR EACH ROW BEGIN
+
+DECLARE countTugas int;
+
+SELECT COUNT(a.id_tugas) INTO countTugas 
+FROM tugas AS a 
+INNER JOIN materi AS b 
+ON a.id_materi = b.id_materi 
+WHERE b.kd_matkul = new.kd_matkul LIMIT 1;
+
+UPDATE nilai SET ntugas = (ntugas + new.nilai) / countTugas WHERE npm = new.npm AND kd_matkul = new.kd_matkul;
 
 END
 $$
@@ -472,6 +504,7 @@ ALTER TABLE `tugas`
 -- Indexes for table `upload_tugas`
 --
 ALTER TABLE `upload_tugas`
+  ADD PRIMARY KEY (`id_up_tugas`),
   ADD KEY `id_tugas` (`id_tugas`,`kd_matkul`),
   ADD KEY `npm` (`npm`),
   ADD KEY `kd_matkul` (`kd_matkul`);
@@ -508,7 +541,7 @@ ALTER TABLE `mahasiswa`
 -- AUTO_INCREMENT for table `materi`
 --
 ALTER TABLE `materi`
-  MODIFY `id_materi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_materi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -532,13 +565,19 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `tugas`
 --
 ALTER TABLE `tugas`
-  MODIFY `id_tugas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_tugas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `upload_tugas`
+--
+ALTER TABLE `upload_tugas`
+  MODIFY `id_up_tugas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- Constraints for dumped tables

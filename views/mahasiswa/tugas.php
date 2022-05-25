@@ -58,6 +58,14 @@
       </div>
 
       <div class="row g-2">
+        <?php
+          $getTugas = $DB->table('tugas')->get()->fetch();
+          $checkTugas = $DB->table('tugas')
+          ->join('upload_tugas', 'id_tugas')
+          ->where('npm', $_SESSION['npm'])
+          ->get()->fetch();
+          
+        ?>
         <div class="col-lg-6 tugas-row">
           <div class="tugas-card shadow-sm rounded">
             <div class="tugas-info">

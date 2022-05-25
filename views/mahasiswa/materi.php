@@ -87,7 +87,7 @@
                   <b><?= $row[0]["judul"] ?></b>
                 </p>
                 <p class="text-muted mb-0">
-                  <?= $row[0]["description"] ?>
+                  <?= $row[0]["deskripsi"] ?>
                 </p>
               </div>
               <?php
@@ -118,11 +118,15 @@
                   ?>
                 </p>
                 <?php
+                  $DB->reset();
                   $checkUpload = $DB->table('upload_tugas')->where('npm', $_SESSION['npm'])->where('id_tugas', $idTugas)->get();
                   if($checkUpload->count() > 0) {
                     $upload = $checkUpload->fetch();
-                    echo $upload[0]["file"];
                 ?>
+                <div class="submission-info" style="width: 100%;">
+                  <span class="file float-left"><?= $upload[0]["file"] ?></span>
+                  <span class="nilai float-right" style="float: right">Nilai: <b><?= $upload[0]['nilai'] ?></b></span>
+                </div>
                 <a href="/deleteUploadTugas/<?= $upload[0]['id_up_tugas'] ?>" class="btn btn-primary hapus-tugas">
                       <i class="icon ico-dark" data-feather="trash"></i>
                       Hapus Tugas
