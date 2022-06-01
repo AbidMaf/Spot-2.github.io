@@ -12,7 +12,7 @@ $active_menu = 'class="active"';
     </div>
     <hr style="margin: 0;">
     <div class="login-info">
-      <img class="avatar" src="/assets/image/profile.jpg" alt="profile" width="72">
+      <!-- <img class="avatar" src="/assets/image/profile.jpg" alt="profile" width="72"> -->
       <span class="name"><?= $_SESSION['npm'] ?></span>
       <span class="nim"><?= ucwords(strtolower($_SESSION['name'])) ?></span>
     </div>

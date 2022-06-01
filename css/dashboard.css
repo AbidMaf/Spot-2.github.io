@@ -60,7 +60,6 @@ h1, h2, h3, h4 {
 /*Jadwal*/
 :root {
     --bg-color: #f5f8ff;
-    ;
     --main-color: #353536;
     --secondary-color: #8e92a4;
     --main-text-color: #5d606b;
@@ -108,7 +107,13 @@ h1, h2, h3, h4 {
     margin: 20px 0;
     padding: 16px;
     cursor: pointer;
-    box-shadow: 2px 2px 4px 0px rgba(235, 235, 235, 1);
+    /* box-shadow:
+  0px 2.9px 2px rgba(0, 0, 0, 0.006),
+  0px 6.9px 6.4px rgba(0, 0, 0, 0.015),
+  0px 13.5px 16.5px rgba(0, 0, 0, 0.03),
+  0px 29px 72px rgba(0, 0, 0, 0.06); */
+
+    background-color: white;
   }
 
   .task-box:hover {

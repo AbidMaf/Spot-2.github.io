@@ -86,7 +86,7 @@ th {
 }
 
 input[type=radio].opt-show-btn:checked + .opt-label {
-    background-color: crimson !important;
+    background-color: var(--primaryColor) !important;
     color: white !important;
 }
 
@@ -166,13 +166,13 @@ section.tugas {
 }
 
 .btn-primary {
-    background-color: crimson !important;
+    background-color: var(--primaryColor) !important;
     color: white !important;
     border: none;
 }
 
 .bg-primary {
-    background-color: crimson !important;
+    background-color: var(--primaryColor) !important;
 }
 
 span.badge.bg-secondary, span.badge.bg-alert, span.badge.bg-success, span.badge.bg-primary {

@@ -20,7 +20,7 @@
 }
 
 .btn-primary {
-  background-color: crimson !important;
+  background-color: var(--primaryColor) !important;
   color: white !important;
   border: none !important;
 }

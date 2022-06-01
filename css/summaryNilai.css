@@ -13,7 +13,7 @@ h1, h2, h3, h4 {
 }
 
 .btn-primary {
-    background-color: crimson !important;
+    background-color: var(--primaryColor) !important;
     color: white !important;
 }
 
@@ -40,7 +40,7 @@ h1, h2, h3, h4 {
 
 .predikat {
     display: block;
-    color: crimson;
+    color: var(--primaryColor);
     font-size: 72pt;
     font-weight: 500;
     margin-bottom: -5px;

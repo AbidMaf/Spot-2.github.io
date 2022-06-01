@@ -1,3 +1,7 @@
+:root {
+    --primaryColor: #e42c51;
+}
+
 nav {
     width: 85vw;
     background-color: rgb(255, 255, 255);
@@ -74,7 +78,7 @@ nav {
 }
 
 .sidebar a.active {
-    background-color: crimson;
+    background-color: var(--primaryColor);
     color: white;
 }
 
@@ -84,7 +88,7 @@ nav {
 }
 
 .sidebar a.badge-tugas:not(.active) {
-    background-color: crimson;
+    background-color: var(--primaryColor);
 }
 
 .badge {
@@ -96,13 +100,13 @@ nav {
 }
 
 a:not(.active)>.badge {
-    background-color: crimson;
+    background-color: var(--primaryColor);
     border-radius: 200px;
 }
 
 a.active>.badge {
     background-color: white;
-    color: crimson;
+    color: var(--primaryColor);
 }
 
 .icon {
@@ -181,7 +185,7 @@ a.logout {
         border-radius: 20px;
         position: absolute;
         float: right;
-        background-color: #dc143c;
+        background-color: var(--primaryColor);
     }
 }
 

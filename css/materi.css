@@ -16,7 +16,7 @@ h4 {
 }
 
 .btn-primary {
-    background-color: crimson !important;
+    background-color: var(--primaryColor) !important;
     color: white !important;
 }
 
@@ -43,7 +43,7 @@ h4 {
 
 .predikat {
     display: block;
-    color: crimson;
+    color: var(--primaryColor);
     font-size: 72pt;
     font-weight: 500;
     margin-bottom: -5px;
@@ -181,7 +181,7 @@ p.text-muted.mb-0 {
 a#materi-tab.nav-link.border-0.text-uppercase.font-weight-bold.active,
 a#tugas-tab.nav-link.border-0.text-uppercase.font-weight-bold.active,
 a#evaluasi-tab.nav-link.border-0.text-uppercase.font-weight-bold.active {
-    background-color: crimson !important;
+    background-color: var(--primaryColor) !important;
 }
 
 .nav-pills .nav-link {

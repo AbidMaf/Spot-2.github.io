@@ -77,12 +77,12 @@
               </div>
             </div>
             <div class="col-lg-4 col-md-12">
-              <div class="box flex-column rounded-2 p-3">
-                <h3 class="mb-0">Jadwal Perkuliahan</h3>
-                <div class="task-box red">
+              <div class="flex-column rounded-2 p-3">
+                <h5 class="mb-0">Jadwal Hari ini</h5>
+                <div class="task-box shadow-sm rounded">
                   <div class="description-task">
-                    <div class="time">Senin | 07:00 - 09:30 AM</div>
                     <div class="task-name">Jaringan Komputer</div>
+                    <div class="time">3 SKS | 07:00 - 09:30 AM</div>
                   </div>
                   <div class="more-button"></div>
                 </div>
