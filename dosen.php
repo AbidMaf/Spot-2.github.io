@@ -30,11 +30,11 @@
       <span class="name">Nama Dosen</span>
       <span class="nim">NIP</span>
     </div>
-    <a class="active" href="daftarMataKuliah.html">
+    <a class="active" href="dosen.php">
       <i class="icon" data-feather="list"></i>
       <span class="menu-name">&nbsp;Daftar Mata Kuliah</span>
     </a>
-    <a class="menu-nilai" href="dosen-nilai.html">
+    <a class="menu-nilai" href="dosen-nilai.php">
       <i class="icon" data-feather="star">2</i>
       <span class="menu-name">&nbsp;Nilai Mahasiswa</span>
     </a>
