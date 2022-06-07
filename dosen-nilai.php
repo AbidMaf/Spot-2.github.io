@@ -73,8 +73,6 @@
             </a>
             <!-- Dropdown Progweb -->
             <div class="collapse" id="content">
-              <button class="btn btn-primary col-lg-1 col-md-3 col-sm-4 mb-2" data-bs-toggle="modal" data-bs-target="#modweb" onclick="">Tambah</button> <br>
-              <button class="btn btn-primary col-lg-1 col-md-3 col-sm-4 mb-2" onclick="printpdf(content);">Print</button> <br>
               <!-- Table Progweb -->
               <?php
               $sql = 'SELECT a.npm, b.name, a.ntugas, a.nquiz, a.nuts, a.nuas 
@@ -87,8 +85,7 @@
               if (!$query) {
                 die ('SQL Error: ' . mysqli_error($conn));
               }
-
-              echo '
+              ?>
               <table class="table table-striped table-bordered">
                 <thead>
                   <th scope="col">NIM</th>
@@ -99,9 +96,12 @@
                   <th scope="col">Nilai UAS</th>
                   <th scope="col" colspan="2">Aksi</th>
                 </thead>
-                <tbody>';
+                <tbody>
+              <?php
+              
                 while ($row = mysqli_fetch_array($query)) {
-                  echo '<tr>
+                  echo '
+                    <tr>
                         <td>'.$row['0'].'</td>
                         <td>'.$row['1'].'</td>
                         <td>'.$row['2'].'</td>
@@ -114,48 +114,52 @@
                         <td>
                           <a href="#" data-bs-toggle="modal" data-bs-target="#modweb"><i class="text-dark" data-feather="trash"></i></a>
                         </td>
-                      </tr>';
+                    </tr>';
                 }
-              '</tbody>
-              </table>
-              </div>';
               ?>
+                </tbody>
+              </table>
 
-            <!-- Modal Progweb -->
-            <div class="modal fade" id="modweb" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah Nilai Mahasiswa Pemrograman Web</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    <form id="hitungweb" onsubmit="return false">
-                      <div class="mb-3 text-start">
-                        <label for="nim" class="col-form-label">NIM:</label>
-                        <input type="text" class="form-control" id="nim">
-                      </div>
-                      <div class="mb-3 text-start">
-                          <label for="ntugas" class="col-form-label">Nilai Tugas:</label>
-                          <input type="number" class="form-control" id="ntugas">
-                      </div>
-                      <div class="mb-3 text-start">
-                          <label for="nquiz" class="col-form-label">Nilai Quiz:</label>
-                          <input type="number" class="form-control" id="nquiz">
-                      </div>
-                      <div class="mb-3 text-start">
-                          <label for="nuts" class="col-form-label">Nilai UTS:</label>
-                          <input type="number" class="form-control" id="nuts">
-                      </div>
-                      <div class="mb-3 text-start">
-                          <label for="nuas" class="col-form-label">Nilai UAS:</label>
-                          <input type="number" class="form-control" id="nuas">
-                      </div>
-                      <input type="submit" value="Simpan" id="change" onclick="calculate()" class="btn btn-primary btn-lg mt-3"></input>
-                  </form>
-                  </div>
-                  <div class="modal-footer">
-                  </div>
+              <button class="btn btn-primary col-lg-1 col-md-3 col-sm-4 mb-2" data-bs-toggle="modal" data-bs-target="#modweb" onclick="">Tambah</button> <br>
+              <button class="btn btn-primary col-lg-1 col-md-3 col-sm-4 mb-2" onclick="printpdf(content);">Print</button> <br>
+            </div>
+              
+              
+              <!-- Modal Progweb -->
+              <div class="modal fade" id="modweb" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Tambah Nilai Mahasiswa Pemrograman Web</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="hitungweb" onsubmit="return false">
+                        <div class="mb-3 text-start">
+                          <label for="nim" class="col-form-label">NIM:</label>
+                          <input type="text" class="form-control" id="nim">
+                        </div>
+                        <div class="mb-3 text-start">
+                            <label for="ntugas" class="col-form-label">Nilai Tugas:</label>
+                            <input type="number" class="form-control" id="ntugas">
+                        </div>
+                        <div class="mb-3 text-start">
+                            <label for="nquiz" class="col-form-label">Nilai Quiz:</label>
+                            <input type="number" class="form-control" id="nquiz">
+                        </div>
+                        <div class="mb-3 text-start">
+                            <label for="nuts" class="col-form-label">Nilai UTS:</label>
+                            <input type="number" class="form-control" id="nuts">
+                        </div>
+                        <div class="mb-3 text-start">
+                            <label for="nuas" class="col-form-label">Nilai UAS:</label>
+                            <input type="number" class="form-control" id="nuas">
+                        </div>
+                        <input type="submit" value="Simpan" id="change" onclick="calculate()" class="btn btn-primary btn-lg mt-3"></input>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
                 </div>
               </div>
             </div>
@@ -210,9 +214,9 @@
                       </tr>';
                 }
               '</tbody>
-              </table>
-              </div>';
+              </table>';
               ?>
+              </div>
             
             <!-- Modal BTI -->
             <div class="modal fade" id="modbti" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

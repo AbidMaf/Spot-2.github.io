@@ -49,11 +49,11 @@
         </div>
         <div class="col-lg-8 order-lg-1">
           <div class="sum-nilai-matkul-card shadow-sm rounded">
-          <?php
-            $no = 1;
-            $getMatkul = $DB->table('matakuliah')->get()->fetch();
-            foreach ($getMatkul as $matkul) {
-          ?>
+            <?php
+              $no = 1;
+              $getMatkul = $DB->table('matakuliah')->get()->fetch();
+              foreach ($getMatkul as $matkul) {
+            ?>
             <a class="btn btn-light nilai-collapse shadow-sm" data-bs-toggle="collapse" href="#collapsedNilai<?= $no ?>" role="button" aria-expanded="false" aria-controls="collapseExample" id="nilaiMataKuliah<?= $no ?>" >
               <span class="matkul-name"><?= $matkul['nama_matkul'] ?></span>
               <i class="ico ico-dark rotate180deg" data-feather="chevron-down"></i>
@@ -121,10 +121,10 @@
                 </div>
               </div>
             </div>
-            <?php
-              $no++;
-            } 
-            ?>
+              <?php
+                $no++;
+              } 
+              ?>
           </div>
         </div>
       </div>
