@@ -19,6 +19,7 @@
     
   </nav>
   <!-- Sidebar -->
+  <?php //include('components/sidebar.php'); ?>
   <div class="sidebar shadow-sm">
     <div class="brand">
       <img class="logo" src="assets/image/Logo_Almamater_UPI.svg" width="45">
@@ -31,7 +32,7 @@
       <span class="name">Nama Dosen</span>
       <span class="nim">NIP</span>
     </div>
-    <a class="menu-nilai" href="dosen.html">
+    <a class="menu-nilai" href="dosen.php">
       <i class="icon" data-feather="list"></i>
       <span class="menu-name">&nbsp;Daftar Mata Kuliah</span>
     </a>
@@ -46,6 +47,7 @@
   </div>
   
   <!-- Main Content -->
+  <?php include('Database/Connection.php'); ?>
   <div class="main-content">
     <div class="p-3">
       <div class="row">
@@ -74,6 +76,19 @@
               <button class="btn btn-primary col-lg-1 col-md-3 col-sm-4 mb-2" data-bs-toggle="modal" data-bs-target="#modweb" onclick="">Tambah</button> <br>
               <button class="btn btn-primary col-lg-1 col-md-3 col-sm-4 mb-2" onclick="printpdf(content);">Print</button> <br>
               <!-- Table Progweb -->
+              <?php
+              $sql = 'SELECT a.npm, b.name, a.ntugas, a.nquiz, a.nuts, a.nuas 
+              FROM nilai AS a
+              INNER JOIN mahasiswa AS b ON a.npm = b.npm
+              WHERE kd_matkul = "RL209"';
+              
+              $query = mysqli_query($conn, $sql);
+
+              if (!$query) {
+                die ('SQL Error: ' . mysqli_error($conn));
+              }
+
+              echo '
               <table class="table table-striped table-bordered">
                 <thead>
                   <th scope="col">NIM</th>
@@ -82,45 +97,29 @@
                   <th scope="col">Nilai Quiz</th>
                   <th scope="col">Nilai UTS</th>
                   <th scope="col">Nilai UAS</th>
-                  <th scope="col">Aksi</th>
+                  <th scope="col" colspan="2">Aksi</th>
                 </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">2000637</th>
-                    <td>Adrian Sugandi Wijaya</td>
-                    <td>95</td>
-                    <td>90</td>
-                    <td>89</td>
-                    <td>420</td>
-                    <td>
-                      <a href="#" data-bs-toggle="modal" data-bs-target="#modweb"><i class="text-dark" data-feather="edit"></i></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2000649</th>
-                    <td>Abid Mafahim</td>
-                    <td>95</td>
-                    <td>90</td>
-                    <td>89</td>
-                    <td>420</td>
-                    <td>
-                      <a href="#" data-bs-toggle="modal" data-bs-target="#modweb"><i class="text-dark" data-feather="edit"></i></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2000427</th>
-                    <td>Faaris Muda Dwi Nugraha</td>
-                    <td>95</td>
-                    <td>90</td>
-                    <td>89</td>
-                    <td>420</td>
-                    <td>
-                      <a href="#" data-bs-toggle="modal" data-bs-target="#modweb"><i class="text-dark" data-feather="edit"></i></a>
-                    </td>
-                  </tr>
-                </tbody>
+                <tbody>';
+                while ($row = mysqli_fetch_array($query)) {
+                  echo '<tr>
+                        <td>'.$row['0'].'</td>
+                        <td>'.$row['1'].'</td>
+                        <td>'.$row['2'].'</td>
+                        <td>'.$row['3'].'</td>
+                        <td>'.$row['4'].'</td>
+                        <td>'.$row['5'].'</td>
+                        <td>
+                          <a href="#" data-bs-toggle="modal" data-bs-target="#modbti"><i class="text-dark" data-feather="edit"></i></a>
+                        </td>
+                        <td>
+                          <a href="#" data-bs-toggle="modal" data-bs-target="#modweb"><i class="text-dark" data-feather="trash"></i></a>
+                        </td>
+                      </tr>';
+                }
+              '</tbody>
               </table>
-            </div>
+              </div>';
+              ?>
 
             <!-- Modal Progweb -->
             <div class="modal fade" id="modweb" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -135,10 +134,6 @@
                       <div class="mb-3 text-start">
                         <label for="nim" class="col-form-label">NIM:</label>
                         <input type="text" class="form-control" id="nim">
-                      </div>
-                      <div class="mb-3 text-start">
-                        <label for="nama" class="col-form-label">Nama:</label>
-                        <input type="text" class="form-control" id="nama">
                       </div>
                       <div class="mb-3 text-start">
                           <label for="ntugas" class="col-form-label">Nilai Tugas:</label>
@@ -174,6 +169,19 @@
             <div class="collapse" id="collapsedNilai1">
               <button class="btn btn-primary col-lg-1 col-md-3 col-sm-4 mb-2" onclick="" data-bs-toggle="modal" data-bs-target="#modbti">Tambah</button> <br>
               <button class="btn btn-primary col-lg-1 col-md-3 col-sm-4 mb-2" onclick="printpdf();">Print</button> <br>
+              <?php
+              $sql = 'SELECT a.npm, b.name, a.ntugas, a.nquiz, a.nuts, a.nuas 
+              FROM nilai AS a
+              INNER JOIN mahasiswa AS b ON a.npm = b.npm
+              WHERE kd_matkul = "PT502"';
+              
+              $query = mysqli_query($conn, $sql);
+
+              if (!$query) {
+                die ('SQL Error: ' . mysqli_error($conn));
+              }
+
+              echo '
               <table class="table table-striped table-bordered">
                 <thead>
                   <th scope="col">NIM</th>
@@ -182,45 +190,29 @@
                   <th scope="col">Nilai Quiz</th>
                   <th scope="col">Nilai UTS</th>
                   <th scope="col">Nilai UAS</th>
-                  <th scope="col">Aksi</th>
+                  <th scope="col" colspan="2">Aksi</th>
                 </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">2000637</th>
-                    <td>Adrian Sugandi Wijaya</td>
-                    <td>95</td>
-                    <td>90</td>
-                    <td>89</td>
-                    <td>69</td>
-                    <td>
-                      <a href="#" data-bs-toggle="modal" data-bs-target="#modbti"><i class="text-dark" data-feather="edit"></i></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2000649</th>
-                    <td>Abid Mafahim</td>
-                    <td>95</td>
-                    <td>90</td>
-                    <td>89</td>
-                    <td>69</td>
-                    <td>
-                      <a href="#" data-bs-toggle="modal" data-bs-target="#modbti"><i class="text-dark" data-feather="edit"></i></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2000427</th>
-                    <td>Faaris Muda Dwi Nugraha</td>
-                    <td>95</td>
-                    <td>90</td>
-                    <td>89</td>
-                    <td>69</td>
-                    <td>
-                      <a href="#" data-bs-toggle="modal" data-bs-target="#modbti"><i class="text-dark" data-feather="edit"></i></a>
-                    </td>
-                  </tr>
-                </tbody>
+                <tbody>';
+                while ($row = mysqli_fetch_array($query)) {
+                  echo '<tr>
+                        <td>'.$row['0'].'</td>
+                        <td>'.$row['1'].'</td>
+                        <td>'.$row['2'].'</td>
+                        <td>'.$row['3'].'</td>
+                        <td>'.$row['4'].'</td>
+                        <td>'.$row['5'].'</td>
+                        <td>
+                          <a href="#" data-bs-toggle="modal" data-bs-target="#modbti"><i class="text-dark" data-feather="edit"></i></a>
+                        </td>
+                        <td>
+                          <a href="#" data-bs-toggle="modal" data-bs-target="#modweb"><i class="text-dark" data-feather="trash"></i></a>
+                        </td>
+                      </tr>';
+                }
+              '</tbody>
               </table>
-            </div>
+              </div>';
+              ?>
             
             <!-- Modal BTI -->
             <div class="modal fade" id="modbti" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -235,10 +227,6 @@
                       <div class="mb-3 text-start">
                         <label for="ntugas" class="col-form-label">NIM:</label>
                         <input type="text" class="form-control" id="nim">
-                      </div>
-                      <div class="mb-3 text-start">
-                        <label for="ntugas" class="col-form-label">Nama:</label>
-                        <input type="text" class="form-control" id="nama">
                       </div>
                       <div class="mb-3 text-start">
                           <label for="ntugas" class="col-form-label">Nilai Tugas:</label>
