@@ -8,9 +8,9 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   <title>SPOT</title>
-  <link href="css/dosen-nilai.css" rel="stylesheet" type="text/css" />
-  <link href="css/component/navbar.css" rel="stylesheet" type="text/css" />
-  <script src="script.js"></script>
+  <link href="../../css/dosen-nilai.css" rel="stylesheet" type="text/css" />
+  <link href="../../css/component/navbar.css" rel="stylesheet" type="text/css" />
+  <script src="../../script.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 
@@ -22,13 +22,13 @@
   <?php //include('components/sidebar.php'); ?>
   <div class="sidebar shadow-sm">
     <div class="brand">
-      <img class="logo" src="assets/image/Logo_Almamater_UPI.svg" width="45">
+      <img class="logo" src="../../assets/image/Logo_Almamater_UPI.svg" width="45">
       <span class="brand-name">SPOT</span>
       <span class="brand-version">2.0</span>
     </div>
     <hr style="margin: 0;">
     <div class="login-info">
-      <img class="avatar" src="assets/image/profile.jpg" alt="profile" width="72">
+      <img class="avatar" src="../../assets/image/profile.jpg" alt="profile" width="72">
       <span class="name">Nama Dosen</span>
       <span class="nim">NIP</span>
     </div>
@@ -47,7 +47,7 @@
   </div>
   
   <!-- Main Content -->
-  <?php include('Database/Connection.php'); ?>
+  <?php include('../../Database/Connection.php'); ?>
   <div class="main-content">
     <div class="p-3">
       <div class="row">
@@ -73,6 +73,8 @@
             </a>
             <!-- Dropdown Progweb -->
             <div class="collapse" id="content">
+              <button class="btn btn-primary col-lg-1 col-md-3 col-sm-4 mb-2" data-bs-toggle="modal" data-bs-target="#modweb" onclick="">Tambah</button> <br>
+              <button class="btn btn-primary col-lg-1 col-md-3 col-sm-4 mb-2" onclick="printpdf();">Print</button> <br>
               <!-- Table Progweb -->
               <?php
               $sql = 'SELECT a.npm, b.name, a.ntugas, a.nquiz, a.nuts, a.nuas 
@@ -109,7 +111,7 @@
                         <td>'.$row['4'].'</td>
                         <td>'.$row['5'].'</td>
                         <td>
-                          <a href="#" data-bs-toggle="modal" data-bs-target="#modbti"><i class="text-dark" data-feather="edit"></i></a>
+                          <a href="#" data-bs-toggle="modal" data-bs-target="#modweb"><i class="text-dark" data-feather="edit"></i></a>
                         </td>
                         <td>
                           <a href="#" data-bs-toggle="modal" data-bs-target="#modweb"><i class="text-dark" data-feather="trash"></i></a>
@@ -119,9 +121,6 @@
               ?>
                 </tbody>
               </table>
-
-              <button class="btn btn-primary col-lg-1 col-md-3 col-sm-4 mb-2" data-bs-toggle="modal" data-bs-target="#modweb" onclick="">Tambah</button> <br>
-              <button class="btn btn-primary col-lg-1 col-md-3 col-sm-4 mb-2" onclick="printpdf(content);">Print</button> <br>
             </div>
               
               
@@ -134,28 +133,28 @@
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                      <form id="hitungweb" onsubmit="return false">
+                      <form id="hitungweb" action="insertweb.php" method="POST">
                         <div class="mb-3 text-start">
                           <label for="nim" class="col-form-label">NIM:</label>
-                          <input type="text" class="form-control" id="nim">
+                          <input type="text" class="form-control" name="nim">
                         </div>
                         <div class="mb-3 text-start">
                             <label for="ntugas" class="col-form-label">Nilai Tugas:</label>
-                            <input type="number" class="form-control" id="ntugas">
+                            <input type="number" class="form-control" name="ntugas">
                         </div>
                         <div class="mb-3 text-start">
                             <label for="nquiz" class="col-form-label">Nilai Quiz:</label>
-                            <input type="number" class="form-control" id="nquiz">
+                            <input type="number" class="form-control" name="nquiz">
                         </div>
                         <div class="mb-3 text-start">
                             <label for="nuts" class="col-form-label">Nilai UTS:</label>
-                            <input type="number" class="form-control" id="nuts">
+                            <input type="number" class="form-control" name="nuts">
                         </div>
                         <div class="mb-3 text-start">
                             <label for="nuas" class="col-form-label">Nilai UAS:</label>
-                            <input type="number" class="form-control" id="nuas">
+                            <input type="number" class="form-control" name="nuas">
                         </div>
-                        <input type="submit" value="Simpan" id="change" onclick="calculate()" class="btn btn-primary btn-lg mt-3"></input>
+                        <input type="submit" value="Simpan" id="change" class="btn btn-primary btn-lg mt-3"></input>
                       </form>
                     </div>
                     <div class="modal-footer">
@@ -165,12 +164,12 @@
             </div>
             
             <!-- BTI -->
-            <a class="btn btn-light nilai-collapse shadow-sm" data-bs-toggle="collapse" href="#collapsedNilai1" role="button" aria-expanded="false" aria-controls="collapseExample" id="nilaiMataKuliah1" >
+            <a class="btn btn-light nilai-collapse shadow-sm" data-bs-toggle="collapse" href="#nilbti" role="button" aria-expanded="false" aria-controls="collapseExample" id="nilaiMataKuliah1" >
               <span class="matkul-name">Bisnis Teknologi Informasi</span>
               <i class="ico ico-dark rotate180deg" data-feather="chevron-down"></i>
             </a>
             <!-- Dropdown BTI -->
-            <div class="collapse" id="collapsedNilai1">
+            <div class="collapse" id="nilbti">
               <button class="btn btn-primary col-lg-1 col-md-3 col-sm-4 mb-2" onclick="" data-bs-toggle="modal" data-bs-target="#modbti">Tambah</button> <br>
               <button class="btn btn-primary col-lg-1 col-md-3 col-sm-4 mb-2" onclick="printpdf();">Print</button> <br>
               <?php
@@ -209,7 +208,7 @@
                           <a href="#" data-bs-toggle="modal" data-bs-target="#modbti"><i class="text-dark" data-feather="edit"></i></a>
                         </td>
                         <td>
-                          <a href="#" data-bs-toggle="modal" data-bs-target="#modweb"><i class="text-dark" data-feather="trash"></i></a>
+                          <a href="#" data-bs-toggle="modal" data-bs-target="#modbti"><i class="text-dark" data-feather="trash"></i></a>
                         </td>
                       </tr>';
                 }
@@ -227,29 +226,29 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                    <form id="hitungbti" onsubmit="return false">
-                      <div class="mb-3 text-start">
-                        <label for="ntugas" class="col-form-label">NIM:</label>
-                        <input type="text" class="form-control" id="nim">
-                      </div>
-                      <div class="mb-3 text-start">
-                          <label for="ntugas" class="col-form-label">Nilai Tugas:</label>
-                          <input type="number" class="form-control" id="ntugas">
-                      </div>
-                      <div class="mb-3 text-start">
-                          <label for="nquiz" class="col-form-label">Nilai Quiz:</label>
-                          <input type="number" class="form-control" id="nquiz">
-                      </div>
-                      <div class="mb-3 text-start">
-                          <label for="nuts" class="col-form-label">Nilai UTS:</label>
-                          <input type="number" class="form-control" id="nuts">
-                      </div>
-                      <div class="mb-3 text-start">
-                          <label for="nuas" class="col-form-label">Nilai UAS:</label>
-                          <input type="number" class="form-control" id="nuas">
-                      </div>
-                      <input type="submit" value="Simpan" id="change" onclick="calculate()" class="btn btn-primary btn-lg mt-3"></input>
-                  </form>
+                      <form id="hitungbti" action="insertbti.php" method="POST">
+                        <div class="mb-3 text-start">
+                          <label for="nim" class="col-form-label">NIM:</label>
+                          <input type="text" class="form-control" name="nim">
+                        </div>
+                        <div class="mb-3 text-start">
+                            <label for="ntugas" class="col-form-label">Nilai Tugas:</label>
+                            <input type="number" class="form-control" name="ntugas">
+                        </div>
+                        <div class="mb-3 text-start">
+                            <label for="nquiz" class="col-form-label">Nilai Quiz:</label>
+                            <input type="number" class="form-control" name="nquiz">
+                        </div>
+                        <div class="mb-3 text-start">
+                            <label for="nuts" class="col-form-label">Nilai UTS:</label>
+                            <input type="number" class="form-control" name="nuts">
+                        </div>
+                        <div class="mb-3 text-start">
+                            <label for="nuas" class="col-form-label">Nilai UAS:</label>
+                            <input type="number" class="form-control" name="nuas">
+                        </div>
+                        <input type="submit" value="Simpan" id="change" class="btn btn-primary btn-lg mt-3"></input>
+                      </form>
                   </div>
                   <div class="modal-footer">
                   </div>

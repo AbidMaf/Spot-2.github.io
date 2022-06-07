@@ -8,9 +8,9 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   <title>SPOT</title>
-  <link href="css/dosen.css" rel="stylesheet" type="text/css" />
-  <link href="css/component/navbar.css" rel="stylesheet" type="text/css" />
-  <script src="script.js"></script>
+  <link href="../../css/dosen.css" rel="stylesheet" type="text/css" />
+  <link href="../../css/component/navbar.css" rel="stylesheet" type="text/css" />
+  <script src="../../script.js"></script>
 </head>
 
 <body>
@@ -20,13 +20,13 @@
   <!-- Sidebar -->
   <div class="sidebar shadow-sm">
     <div class="brand">
-      <img class="logo" src="assets/image/Logo_Almamater_UPI.svg" width="45">
+      <img class="logo" src="../../assets/image/Logo_Almamater_UPI.svg" width="45">
       <span class="brand-name">SPOT</span>
       <span class="brand-version">2.0</span>
     </div>
     <hr style="margin: 0;">
     <div class="login-info">
-      <img class="avatar" src="assets/image/profile.jpg" alt="profile" width="72">
+      <img class="avatar" src="../../assets/image/profile.jpg" alt="profile" width="72">
       <span class="name">Nama Dosen</span>
       <span class="nim">NIP</span>
     </div>

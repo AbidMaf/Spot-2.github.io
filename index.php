@@ -68,6 +68,14 @@ switch (strtolower($request)) {
         require "views/mahasiswa/summaryNilai.php";
         break;
     
+    case '/dosen':
+        require "views/dosen/dosen.php";
+        break;
+    
+    case '/dosen-nilai':
+        require "views/dosen/dosen-nilai.php";
+        break;
+
     default:
         http_response_code(404);
         echo $request;
