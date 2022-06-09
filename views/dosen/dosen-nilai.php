@@ -19,7 +19,6 @@
     
   </nav>
   <!-- Sidebar -->
-  <?php //include('components/sidebar.php'); ?>
   <div class="sidebar shadow-sm">
     <div class="brand">
       <img class="logo" src="../../assets/image/Logo_Almamater_UPI.svg" width="45">

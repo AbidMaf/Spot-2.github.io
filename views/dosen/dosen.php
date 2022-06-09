@@ -34,7 +34,7 @@
       <i class="icon" data-feather="list"></i>
       <span class="menu-name">&nbsp;Daftar Mata Kuliah</span>
     </a>
-    <a class="menu-nilai" href="dosen-nilai.php">
+    <a class="menu-nilai" href="/dosen-nilai">
       <i class="icon" data-feather="star">2</i>
       <span class="menu-name">&nbsp;Nilai Mahasiswa</span>
     </a>
