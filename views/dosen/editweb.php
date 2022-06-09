@@ -5,7 +5,7 @@
      $nuts = $_POST['nuts'];
      $nuas = $_POST['nuas'];
      $kd_matkul = "RL209";
-     $sql = "UPDATE nilai SET ntugas='$ntugas', nquiz='$nquiz', nuts='$nuts', nuas='$nuas' WHERE npm='$nim' && kd_matkul='$kd_matkul'";
+     $sql = "UPDATE nilai SET nquiz='$nquiz', nuts='$nuts', nuas='$nuas' WHERE npm='$nim' && kd_matkul='$kd_matkul'";
      if (mysqli_query($conn, $sql)) {
       echo ("<script LANGUAGE='JavaScript'>
          window.alert('Data Berhasil Diupdate');

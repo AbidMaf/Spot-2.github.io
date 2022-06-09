@@ -124,11 +124,11 @@
                             <form id="editweb" action="/editweb" method="POST">
                               <div class="mb-3 text-start">
                                 <label for="nim" class="col-form-label">NIM:</label>
-                                <input type="text" class="form-control" name="nim" value="<?= $row[0] ?>" disabled>
+                                <input type="text" class="form-control" name="nim" value="<?= $row[0] ?>" readonly hidden>
                               </div>
                               <div class="mb-3 text-start">
                                   <label for="ntugas" class="col-form-label">Nilai Tugas:</label>
-                                  <input type="number" class="form-control" name="ntugas" value="<?= $row[2] ?>" disabled>
+                                  <input type="number" class="form-control" name="ntugas" value="<?= $row[2] ?>" readonly>
                               </div>
                               <div class="mb-3 text-start">
                                   <label for="nquiz" class="col-form-label">Nilai Quiz:</label>
