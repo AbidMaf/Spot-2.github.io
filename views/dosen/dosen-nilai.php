@@ -46,7 +46,6 @@
   </div>
   
   <!-- Main Content -->
-  <?php include('../../Database/Connection.php'); ?>
   <div class="main-content">
     <div class="p-3">
       <div class="row">
