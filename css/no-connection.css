@@ -1,17 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500&display=swap');
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 body {
+    width: 100vw;
+    height: 100vh;
     text-align: center;
     margin: 0;
+    overflow: hidden;
 }
 
 .text {
+    width: 100vw;
     height: 30vh;
     display: flex;
     flex-direction: column;
@@ -21,7 +26,7 @@ body {
 }
 
 h1 {
-    font-family: 'Fredoka One', cursive;
+    font-family: 'Fredoka', sans-serif;
     letter-spacing: .07rem;
     color: #D95033;
 }
@@ -50,12 +55,13 @@ button:hover {
 }
 
 .illustration {
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
     position: absolute;
     bottom: 0;
     right: 0;
     left: 0;
+    width: fit-content;
 }
 
 #Disk {
@@ -102,6 +108,37 @@ button:hover {
     animation: cloud-move 9.7s ease-in-out infinite;
 }
 
+@media screen and (min-width: 360px) and (max-width: 480px) {
+    
+    .illustration {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: flex-end;
+        width: 100vw;
+        height: 100vh;
+        transform: scale(1.1) translateY(25%);
+        overflow: hidden;
+    }
+
+    .illustration > svg {
+        overflow: hidden;
+    }
+
+    .text {
+        overflow: hidden;
+        margin-top: 50%;
+    }
+
+    h1 {
+        font-size: 1.2em;
+    }
+
+    p {
+        font-size: 0.8em;
+    }
+}
+
 @keyframes disk-spin {
     0% {
         transform: rotateZ(8deg);
@@ -116,13 +153,13 @@ button:hover {
 
 @keyframes signals-rotate {
     0% {
-        transform: rotateZ(6deg);
+        transform: rotateZ(7.8deg);
     }
     50% {
-        transform: rotateZ(-6deg);
+        transform: rotateZ(-7.8deg);
     }
     100% {
-        transform: rotateZ(6deg);
+        transform: rotateZ(7.8deg);
     }
 }
 
