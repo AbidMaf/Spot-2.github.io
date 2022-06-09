@@ -79,13 +79,28 @@
             <div class="col-lg-4 col-md-12">
               <div class="flex-column rounded-2 p-3">
                 <h5 class="mb-0">Jadwal Hari ini</h5>
-                <div class="task-box shadow-sm rounded">
-                  <div class="description-task">
-                    <div class="task-name">Jaringan Komputer</div>
-                    <div class="time">3 SKS | 07:00 - 09:30 AM</div>
+
+              <?php
+                $today = $helper->convertDay(date('w'));
+                $getJadwal = $DB->table('matakuliah')->where('hari', $today)->get();
+                if ($getJadwal->count() > 0) {
+                  $jadwal = $getJadwal->fetch();
+                  foreach ($jadwal as $p) {
+                  ?>
+                  <div class="task-box shadow-sm rounded">
+                    <div class="description-task">
+                      <div class="task-name"><?= $p['nama_matkul'] ?></div>
+                      <div class="time"><?= $p['sks'] ?> SKS | <?= $p['waktu'] ?></div>
+                    </div>
+                    <div class="more-button"></div>
                   </div>
-                  <div class="more-button"></div>
-                </div>
+                  <?php
+                  }
+                } else {
+              ?>
+
+                  
+              <?php } ?>
                 <div class="task-box red">
                   <div class="description-task">
                     <div class="time">Senin | 09:30 - 11:00 AM</div>
@@ -139,6 +154,23 @@
   </div>
 
   </div>
+
+  <?php
+    $kd_matkul = [];
+    $ntugas = array();
+    $nquiz = array();
+    $nuts = array();
+    $nuas = array();
+    $nilai = $DB->table('nilai')->where('npm', $_SESSION['npm'])->get()->fetch();
+    foreach ($nilai as $n) {
+      array_push($kd_matkul, $n['kd_matkul']);
+      array_push($ntugas, $n['ntugas']);
+      array_push($nquiz, $n['nquiz']);
+      array_push($nuts, $n['nuts']);
+      array_push($nuas, $n['nuas']);
+    }
+  ?>
+
   <script>
     // Global defaults
     Chart.defaults.global.animation.duration = 2000; // Animation duration
@@ -172,30 +204,51 @@
     Chart.defaults.global.responsive = true
     Chart.defaults.global.maintainAspectRatio = false
 
+    
+
     var myChart = new Chart(document.getElementById('myChart'), {
       type: 'bar',
       data: {
-        labels: ["RL211", "RL209", "RL207", "RL212", 'RL210', 'RL213', 'RL208'],
+        labels: 
+          <?=
+            json_encode($kd_matkul);
+          ?>
+        ,
         datasets: [{
           label: "Tugas",
-          data: [45, 25, 40, 20, 10, 20, 100],
-          backgroundColor: "#0D6EFD",
+          data: 
+            <?=
+              json_encode($ntugas);
+            ?>
+          ,
+          backgroundColor: "#b6c8e3",
+          hoverBackgroundColor: "#0D6EFD",
           borderColor: 'transparent',
           borderWidth: 2.5,
           barPercentage: 0.4,
         }, {
           label: "UTS",
           startAngle: 2,
-          data: [20, 40, 20, 50, 25, 40, 25],
-          backgroundColor: "#DC3545",
+          data: 
+            <?=
+              json_encode($nuts);
+            ?>
+          ,
+          backgroundColor: "#e3bcc0",
+          hoverBackgroundColor: "#DC3545",
           borderColor: 'transparent',
           borderWidth: 2.5,
           barPercentage: 0.4,
         }, {
           label: "UAS",
           startAngle: 2,
-          data: [20, 40, 20, 50, 25, 40, 25],
-          backgroundColor: "#198754",
+          data: 
+            <?=
+              json_encode($nuas);
+            ?>
+          ,
+          backgroundColor: "#b6d6c7",
+          hoverBackgroundColor: "#198754",
           borderColor: 'transparent',
           borderWidth: 2.5,
           barPercentage: 0.4,
