@@ -125,7 +125,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <div class="modal-body">
-                              <form id="editnilai" action="editweb.php" method="GET">';
+                              <form id="/editnilai" action="editweb.php" method="GET">';
                               ?>
                               <?php
                                 $id = $data["npm"];
@@ -262,7 +262,7 @@
                           <a href="#" data-bs-toggle="modal" data-bs-target="#modbti"><i class="text-dark" data-feather="trash"></i></a>
                         </td>
                       </tr>'; ?>
-                      // Modal BTI
+                  <!-- Modal BTI -->
                   <div class="modal fade" id="modbti<?= $row[0] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                       <div class="modal-content">
