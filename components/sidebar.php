@@ -3,6 +3,7 @@ $request = $_SERVER['REQUEST_URI'];
 $requestParsed = explode("/", strtolower(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)));
 $active_menu = 'class="active"';
 ?>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
 <div class="sidebar shadow-sm">
     <div class="brand">
@@ -12,7 +13,20 @@ $active_menu = 'class="active"';
     </div>
     <hr style="margin: 0;">
     <div class="login-info">
-      <!-- <img class="avatar" src="/assets/image/profile.jpg" alt="profile" width="72"> -->
+      <div class="avatar-circle" id="profilePicture">
+        <?php
+          $fileName = $DB->columns(['avatar'])->table('mahasiswa')->where('npm', $_SESSION['npm'])->limit('1')->get()->fetch();
+          $DB->reset();
+        ?>
+        <img class="avatar" id="avatarPicture" src="/assets/image/profile/<?= $fileName[0]['avatar'] ?>" alt="profile" width="72">
+        <div class="overlay-change">
+          <i class="icon" data-feather="camera"></i>
+          <span>Click here to change photo</span>
+        </div>
+      </div>
+      <form action="/changeAvatar" method="post" id="formImage">
+      <input type="file" name="upload-image" id="uploadImage" accept="image/*" style="display: none;"/>
+      </form>
       <span class="name"><?= $_SESSION['npm'] ?></span>
       <span class="nim"><?= ucwords(strtolower($_SESSION['name'])) ?></span>
     </div>
@@ -45,3 +59,38 @@ $active_menu = 'class="active"';
       <span class="menu-name">&nbsp;Logout</span>
     </a>
   </div>
+
+  <script>
+      $('#profilePicture').on('click', function(e) {
+        $('#uploadImage').trigger('click');
+      });
+  </script>
+
+  <script>
+    $('#uploadImage').change(function(e) {
+      e.preventDefault();
+
+      var formData = new FormData();
+      formData.append('upload-image', $('#uploadImage')[0].files[0]);
+
+      $.ajax({
+        url: '/changeAvatar',
+        type: 'post',
+        data: formData,
+        async: false,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function(data) {
+          d = new Date();
+          $('#avatarPicture').attr("src", "/assets/image/profile/" + data + "?" + d.getTime());
+        },
+        error: function(){
+          alert('error in ajax');
+        }
+      });
+
+      return false;
+      // $('#formImage').submit();
+    });
+  </script>

@@ -35,7 +35,10 @@ switch (strtolower($request)) {
         require "views/mahasiswa/dashboard.php";
         break;
 
-    
+    case '/changeavatar':
+        require "App/Controller/changeAvatarController.php";
+        break;
+
     case '/matakuliah':
         require "views/mahasiswa/daftarMataKuliah.php";
         break;
@@ -78,6 +81,7 @@ switch (strtolower($request)) {
 
     default:
         http_response_code(404);
-        echo $request;
+        // echo $request;
+        require "views/404.php";
         break;
 }

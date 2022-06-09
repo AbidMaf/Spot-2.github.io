@@ -9,6 +9,15 @@
   background-color: #d3d3d3;
 }
 
+.alert {
+  margin: 2rem auto !important;
+  width: fit-content !important;
+  padding: 1rem 1.75rem !important;
+  display: flex !important;
+  justify-content: space-around !important;
+  gap: 40px;
+}
+
 .container {
   position: relative;
 }

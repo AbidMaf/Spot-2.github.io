@@ -28,8 +28,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             header("Location: /dashboardDosen");
         }
     }else{
-        echo "Username atau password salah ";
-        echo $password . " " . $username;
+        $_SESSION["error"] = "Username atau Password salah!";
+        header("location: /login");
     }
 }
 

@@ -137,9 +137,12 @@ class Query {
         return mysqli_query(mysqli_connect("localhost", "root", "", "penilaian-app"), $query);
     }
 
-    public function update($table, $columns, $values, $where) {
-        $query = "UPDATE $table SET $columns = $values WHERE $where";
-        return $query;
+    public function update($table, array $targets, array $where) {
+        $change = str_replace('=', " = '", http_build_query($targets, '', "' ,"));
+        $condition = str_replace('=', " = '", http_build_query($where, '', "' AND "));
+        $query = "UPDATE $table SET " . $change . "' WHERE $condition'";
+        // $query = "UPDATE $table SET avatar = 'default.jpg' WHERE $where";
+        return mysqli_query(mysqli_connect("localhost", "root", "", "penilaian-app"), $query);
     }
 
     public function delete($table, $where) {

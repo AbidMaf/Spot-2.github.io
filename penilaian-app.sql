@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 25, 2022 at 06:15 AM
+-- Generation Time: Jun 09, 2022 at 08:47 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -120,71 +120,60 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dummytable`
---
-
-CREATE TABLE `dummytable` (
-  `test1id` int(11) NOT NULL,
-  `test1` varchar(255) NOT NULL,
-  `test2` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `mahasiswa`
 --
 
 CREATE TABLE `mahasiswa` (
   `npm` int(10) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'default.jpg'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `mahasiswa`
 --
 
-INSERT INTO `mahasiswa` (`npm`, `name`) VALUES
-(2000053, 'DHAFIN RIZQULLAH HADIPUTRO'),
-(2000065, 'NAUFAL FAWWAZ ANDRIAWAN'),
-(2000078, 'ARYAPUTRA HAIDAR AKBAR'),
-(2000388, 'MIFTAH FIRDAUS'),
-(2000427, 'FAARIS MUDA DWI NUGRAHA'),
-(2000637, 'ADRIAN SUGANDI WIJAYA'),
-(2000649, 'ABID MAFAHIM'),
-(2000696, 'FATHONI ZIKRI NUGROHO'),
-(2000746, 'DIMAS ADITYA PERMANA'),
-(2000782, 'RAKA RYANDRA GUNTARA'),
-(2001237, 'AFILA ANSORI'),
-(2001518, 'SALMAN ALFARIZI'),
-(2001657, 'ALI AZIZ FADILLAH'),
-(2001711, 'IRHAM NUR ALIM'),
-(2001764, 'NASSYA PUTRI RIYANI'),
-(2002923, 'ARIF RAHMAN PAMUNGKAS'),
-(2003015, 'CHINTANAKASIH AMARASULLY'),
-(2003018, 'RADEN SURYA MENGGALA PUTRA'),
-(2003286, 'TRI NUGRAHA PRAWIRA'),
-(2003354, 'ALMIRA DARMA UTAMI FADILLAH'),
-(2003425, 'MUHAMAD IKHSAN FIRDAUS'),
-(2003652, 'ZHOFRON AL FAJR GUNARKO PUTRA'),
-(2003657, 'SANJAYA WISNU RAMADHAN'),
-(2003918, 'SANDI FAISAL FERDIANSYAH'),
-(2003982, 'ALIFTA FURQONNADA NUGRAHA'),
-(2004060, 'ADNAN ARSY AKBAR'),
-(2004212, 'ALFIN MUHAMMAD ILMI'),
-(2004310, 'NABILA INDHY NOVANIS'),
-(2004488, 'RIVALDI AGUSTINUS NUGRAHA SIRINGORINGO'),
-(2004717, 'AZZAHRA AYU VAHENDRA'),
-(2005328, 'ADRIANUS INDRAPRASTA DWICAKSANA'),
-(2006012, 'NERISSA ARVIANA SUKMANANDA'),
-(2006080, 'ANGELINE MEGA KRISTINA'),
-(2006434, 'MUHAMMAD YAHYA AYYASH'),
-(2007530, 'REGY YOGA PRAMANA'),
-(2008114, 'MUHAMMAD FADHLI TAQDIRUL JABBAR'),
-(2008261, 'SURYANI LESTARI'),
-(2008322, 'DHAFIN TAUFIQI'),
-(2008752, 'RANGGA KALAM SIDIQ'),
-(2009077, 'DIMAS AJISAKA KURNIAWAN');
+INSERT INTO `mahasiswa` (`npm`, `name`, `avatar`) VALUES
+(2000053, 'DHAFIN RIZQULLAH HADIPUTRO', 'default.jpg'),
+(2000065, 'NAUFAL FAWWAZ ANDRIAWAN', 'default.jpg'),
+(2000078, 'ARYAPUTRA HAIDAR AKBAR', 'default.jpg'),
+(2000388, 'MIFTAH FIRDAUS', 'default.jpg'),
+(2000427, 'FAARIS MUDA DWI NUGRAHA', 'default.jpg'),
+(2000637, 'ADRIAN SUGANDI WIJAYA', 'default.jpg'),
+(2000649, 'ABID MAFAHIM', 'profile_2000649.png'),
+(2000696, 'FATHONI ZIKRI NUGROHO', 'default.jpg'),
+(2000746, 'DIMAS ADITYA PERMANA', 'default.jpg'),
+(2000782, 'RAKA RYANDRA GUNTARA', 'default.jpg'),
+(2001237, 'AFILA ANSORI', 'default.jpg'),
+(2001518, 'SALMAN ALFARIZI', 'default.jpg'),
+(2001657, 'ALI AZIZ FADILLAH', 'default.jpg'),
+(2001711, 'IRHAM NUR ALIM', 'default.jpg'),
+(2001764, 'NASSYA PUTRI RIYANI', 'default.jpg'),
+(2002923, 'ARIF RAHMAN PAMUNGKAS', 'default.jpg'),
+(2003015, 'CHINTANAKASIH AMARASULLY', 'default.jpg'),
+(2003018, 'RADEN SURYA MENGGALA PUTRA', 'default.jpg'),
+(2003286, 'TRI NUGRAHA PRAWIRA', 'default.jpg'),
+(2003354, 'ALMIRA DARMA UTAMI FADILLAH', 'default.jpg'),
+(2003425, 'MUHAMAD IKHSAN FIRDAUS', 'default.jpg'),
+(2003652, 'ZHOFRON AL FAJR GUNARKO PUTRA', 'default.jpg'),
+(2003657, 'SANJAYA WISNU RAMADHAN', 'default.jpg'),
+(2003918, 'SANDI FAISAL FERDIANSYAH', 'default.jpg'),
+(2003982, 'ALIFTA FURQONNADA NUGRAHA', 'default.jpg'),
+(2004060, 'ADNAN ARSY AKBAR', 'default.jpg'),
+(2004212, 'ALFIN MUHAMMAD ILMI', 'default.jpg'),
+(2004310, 'NABILA INDHY NOVANIS', 'default.jpg'),
+(2004488, 'RIVALDI AGUSTINUS NUGRAHA SIRINGORINGO', 'default.jpg'),
+(2004717, 'AZZAHRA AYU VAHENDRA', 'default.jpg'),
+(2005328, 'ADRIANUS INDRAPRASTA DWICAKSANA', 'default.jpg'),
+(2006012, 'NERISSA ARVIANA SUKMANANDA', 'default.jpg'),
+(2006080, 'ANGELINE MEGA KRISTINA', 'default.jpg'),
+(2006434, 'MUHAMMAD YAHYA AYYASH', 'default.jpg'),
+(2007530, 'REGY YOGA PRAMANA', 'default.jpg'),
+(2008114, 'MUHAMMAD FADHLI TAQDIRUL JABBAR', 'default.jpg'),
+(2008261, 'SURYANI LESTARI', 'default.jpg'),
+(2008322, 'DHAFIN TAUFIQI', 'default.jpg'),
+(2008752, 'RANGGA KALAM SIDIQ', 'default.jpg'),
+(2009077, 'DIMAS AJISAKA KURNIAWAN', 'default.jpg');
 
 --
 -- Triggers `mahasiswa`
@@ -425,7 +414,7 @@ INSERT INTO `user` (`id_user`, `username`, `password`, `level`) VALUES
 (4, '2000388', '53bb5d4', 'mahasiswa'),
 (5, '2000427', '7810209', 'mahasiswa'),
 (6, '2000637', 'fb09b4c', 'mahasiswa'),
-(7, '2000649', 'fe173f7', 'mahasiswa'),
+(7, '2000649', '1234', 'mahasiswa'),
 (8, '2000696', '07d20c2', 'mahasiswa'),
 (9, '2000746', '0c12900', 'mahasiswa'),
 (10, '2000782', 'da3c3ba', 'mahasiswa'),
@@ -471,12 +460,6 @@ INSERT INTO `user` (`id_user`, `username`, `password`, `level`) VALUES
 --
 ALTER TABLE `dosen`
   ADD PRIMARY KEY (`nid`);
-
---
--- Indexes for table `dummytable`
---
-ALTER TABLE `dummytable`
-  ADD PRIMARY KEY (`test1id`);
 
 --
 -- Indexes for table `mahasiswa`
@@ -552,12 +535,6 @@ ALTER TABLE `user`
 --
 ALTER TABLE `dosen`
   MODIFY `nid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7654322;
-
---
--- AUTO_INCREMENT for table `dummytable`
---
-ALTER TABLE `dummytable`
-  MODIFY `test1id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `mahasiswa`
