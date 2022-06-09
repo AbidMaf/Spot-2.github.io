@@ -13,6 +13,7 @@ class Query {
     private $orderBy;
     private $joinVal = array("");
     private $mainTable;
+    private $groupBy;
 
     public function reset() {
         $this->resource = null;
@@ -23,6 +24,7 @@ class Query {
         $this->orderBy = null;
         $this->joinVal = array("");
         $this->mainTable = null;
+        $this->groupBy = null;
     }
 
     // Use this for custom query
@@ -57,6 +59,11 @@ class Query {
     {
         array_push($this->where, " $column $operator '$value' ");
         $this->where[0] = (count($this->where) < 2 ? " WHERE " . $this->where[0] : $this->where[0]);
+        return $this;
+    }
+
+    public function groupBy(array $columns) {
+        $this->groupBy = " GROUP BY " . implode(",", $columns);
         return $this;
     }
 
@@ -98,6 +105,7 @@ class Query {
         $sql = $this->select  
         . implode("", $this->joinVal)
         . implode(" AND ", $this->where)
+        . $this->groupBy 
         . $this->limit 
         . $this->orderBy;
         // echo "<br><br>";

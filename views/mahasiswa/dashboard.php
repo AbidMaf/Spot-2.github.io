@@ -90,7 +90,7 @@
                   <div class="task-box shadow-sm rounded">
                     <div class="description-task">
                       <div class="task-name"><?= $p['nama_matkul'] ?></div>
-                      <div class="time"><?= $p['sks'] ?> SKS | <?= $p['waktu'] ?></div>
+                      <div class="time"><?= $p['sks'] ?> SKS | <?= date('H:i', strtotime($p['waktu'])) ?> -  <?= $helper->countSKSEndTime($p['sks'], $p['waktu']) ?></div>
                     </div>
                     <div class="more-button"></div>
                   </div>
@@ -98,8 +98,12 @@
                   }
                 } else {
               ?>
-
-                  
+                <div class="task-box shadow-sm rounded">
+                  <div class="description-task">
+                    <div class="task-name">Tidak ada jadwal hari ini</div>
+                  </div>
+                  <div class="more-button"></div>
+                </div>
               <?php } ?>
                 <div class="task-box red">
                   <div class="description-task">
@@ -161,6 +165,7 @@
     $nquiz = array();
     $nuts = array();
     $nuas = array();
+    $DB->reset();
     $nilai = $DB->table('nilai')->where('npm', $_SESSION['npm'])->get()->fetch();
     foreach ($nilai as $n) {
       array_push($kd_matkul, $n['kd_matkul']);

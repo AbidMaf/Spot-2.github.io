@@ -48,6 +48,14 @@ class Helper {
         return $highlight;
     }
 
+    public function countSKSEndTime($sks, $startTime)
+    {
+        $time = date('H:i', strtotime($startTime));
+        $countSKS = (int)$sks * 50;
+        $endTime = date('H:i', strtotime($time . ' + ' . $countSKS . ' minutes'));
+        return $endTime;
+    }
+
     public function checkSession()
     {
         if(!isset($_SESSION)){
