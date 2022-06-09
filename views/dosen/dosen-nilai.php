@@ -256,56 +256,59 @@
                         <td>'.$row['4'].'</td>
                         <td>'.$row['5'].'</td>
                         <td>
-                          <a href="#" data-bs-toggle="modal" data-bs-target="#modbti"><i class="text-dark" data-feather="edit"></i></a>
+                          <a href="#" data-bs-toggle="modal" data-bs-target="#modbti'.$row["0"].'"><i class="text-dark" data-feather="edit"></i></a>
                         </td>
                         <td>
                           <a href="#" data-bs-toggle="modal" data-bs-target="#modbti"><i class="text-dark" data-feather="trash"></i></a>
                         </td>
-                      </tr>';
+                      </tr>'; ?>
+                  <div class="modal fade" id="modbti<?= $row[0] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Tambah Nilai Mahasiswa Bisnis Teknologi Informasi</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="hitungbti" action="insertbti.php" method="POST">
+                              <div class="mb-3 text-start">
+                                <label for="nim" class="col-form-label">NIM:</label>
+                                <input type="text" class="form-control" name="nim" value="<?= $row[0] ?>" disabled>
+                              </div>
+                              <div class="mb-3 text-start">
+                                  <label for="ntugas" class="col-form-label">Nilai Tugas:</label>
+                                  <input type="number" class="form-control" name="ntugas" value="<?= $row[2] ?>">
+                              </div>
+                              <div class="mb-3 text-start">
+                                  <label for="nquiz" class="col-form-label">Nilai Quiz:</label>
+                                  <input type="number" class="form-control" name="nquiz" value="<?= $row[3] ?>">
+                              </div>
+                              <div class="mb-3 text-start">
+                                  <label for="nuts" class="col-form-label">Nilai UTS:</label>
+                                  <input type="number" class="form-control" name="nuts" value="<?= $row[4] ?>">
+                              </div>
+                              <div class="mb-3 text-start">
+                                  <label for="nuas" class="col-form-label">Nilai UAS:</label>
+                                  <input type="number" class="form-control" name="nuas" value="<?= $row[5] ?>">
+                              </div>
+                              <input type="submit" value="Simpan" id="change" class="btn btn-primary btn-lg mt-3"></input>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <?php
                 }
-              '</tbody>
-              </table>';
-              ?>
+                ?>
+                </tbody>
+              </table>
+              
               </div>
             
             <!-- Modal BTI -->
-            <div class="modal fade" id="modbti" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah Nilai Mahasiswa Bisnis Teknologi Informasi</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                      <form id="hitungbti" action="insertbti.php" method="POST">
-                        <div class="mb-3 text-start">
-                          <label for="nim" class="col-form-label">NIM:</label>
-                          <input type="text" class="form-control" name="nim">
-                        </div>
-                        <div class="mb-3 text-start">
-                            <label for="ntugas" class="col-form-label">Nilai Tugas:</label>
-                            <input type="number" class="form-control" name="ntugas">
-                        </div>
-                        <div class="mb-3 text-start">
-                            <label for="nquiz" class="col-form-label">Nilai Quiz:</label>
-                            <input type="number" class="form-control" name="nquiz">
-                        </div>
-                        <div class="mb-3 text-start">
-                            <label for="nuts" class="col-form-label">Nilai UTS:</label>
-                            <input type="number" class="form-control" name="nuts">
-                        </div>
-                        <div class="mb-3 text-start">
-                            <label for="nuas" class="col-form-label">Nilai UAS:</label>
-                            <input type="number" class="form-control" name="nuas">
-                        </div>
-                        <input type="submit" value="Simpan" id="change" class="btn btn-primary btn-lg mt-3"></input>
-                      </form>
-                  </div>
-                  <div class="modal-footer">
-                  </div>
-                </div>
-              </div>
-            </div>
+            
 
           </div>
         </div>
