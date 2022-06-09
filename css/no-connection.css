@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    text-align: center;
+    margin: 0;
+}
+
+.text {
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .75rem;
+}
+
+h1 {
+    font-family: 'Fredoka One', cursive;
+    letter-spacing: .07rem;
+    color: #D95033;
+}
+
+p {
+    font-size: 1.25em;
+    color: #252524;
+}
+
+button {
+    background-color: #D95033;
+    color: white;
+    font-weight: 600;
+    font-size: 1em;
+    padding: .75rem 1rem;
+    border-radius: .5rem;
+    border: 2px solid white;
+    cursor: pointer;
+    transition: .25s;
+}
+
+button:hover {
+    background-color: white;
+    color: #252524;
+    border: 2px solid #D95033;
+}
+
+.illustration {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+#Disk {
+    animation: disk-spin 7s ease-in-out infinite;
+    transform-origin: bottom;
+    transform-box: fill-box;
+}
+
+#Signals {
+    animation: signals-rotate 7s ease-in-out infinite;
+    transform-origin: bottom;
+    transform-box: content-box;
+}
+
+#Signal1 {
+    opacity: 0;
+    animation-delay: 1s;
+    animation: signals-fade1 2s linear infinite;
+}
+
+#Signal2 {
+    opacity: 0;
+    animation-delay: 1.25s;
+    animation: signals-fade2 2s linear infinite;
+}
+
+#Signal3 {
+    opacity: 0;
+    animation-delay: 1.5s;
+    animation: signals-fade3 2s linear infinite;
+}
+
+#CloudSm {
+    animation: cloud-move 9s ease-in-out infinite;
+}
+
+
+#CloudMd {
+    animation: cloud-move 9.2s ease-in-out infinite;
+}
+
+
+#CloudBg {
+    animation: cloud-move 9.7s ease-in-out infinite;
+}
+
+@keyframes disk-spin {
+    0% {
+        transform: rotateZ(8deg);
+    }
+    50% {
+        transform: rotateZ(-8deg);
+    }
+    100% {
+        transform: rotateZ(8deg);
+    }
+}
+
+@keyframes signals-rotate {
+    0% {
+        transform: rotateZ(6deg);
+    }
+    50% {
+        transform: rotateZ(-6deg);
+    }
+    100% {
+        transform: rotateZ(6deg);
+    }
+}
+
+@keyframes signals-fade1 {
+    40% {
+        opacity: 0;
+    }
+    60% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 0;
+    }
+}
+
+@keyframes signals-fade2 {
+    50% {
+        opacity: 0;
+    }
+    70% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 0;
+    }
+}
+
+@keyframes signals-fade3 {
+    60% {
+        opacity: 0;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes cloud-move {
+    0% {
+        transform: translateY(0%);
+    }
+    50% {
+        transform: translateY(-2.5%);
+    }
+    100% {
+        transform: translateY(0%);
+    }
+}

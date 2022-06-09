@@ -79,6 +79,10 @@ switch (strtolower($request)) {
         require "views/dosen/dosen-nilai.php";
         break;
 
+    case '/noconnection':
+        require "views/no-connection.php";
+        break;
+
     default:
         http_response_code(404);
         // echo $request;
