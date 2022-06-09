@@ -262,6 +262,7 @@
                           <a href="#" data-bs-toggle="modal" data-bs-target="#modbti"><i class="text-dark" data-feather="trash"></i></a>
                         </td>
                       </tr>'; ?>
+                      // Modal BTI
                   <div class="modal fade" id="modbti<?= $row[0] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                       <div class="modal-content">
@@ -304,12 +305,7 @@
                 ?>
                 </tbody>
               </table>
-              
-              </div>
-            
-            <!-- Modal BTI -->
-            
-
+            </div>
           </div>
         </div>
       </div>
