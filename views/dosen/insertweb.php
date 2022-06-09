@@ -1,5 +1,4 @@
 <?php
-include_once '../../Database/Connection.php';
      $nim = $_POST['nim'];
      $ntugas = $_POST['ntugas'];
      $nquiz = $_POST['nquiz'];
@@ -10,7 +9,7 @@ include_once '../../Database/Connection.php';
      if (mysqli_query($conn, $sql)) {
       echo ("<script LANGUAGE='JavaScript'>
          window.alert('Data Berhasil Disimpan');
-         window.location.href='dosen-nilai.php';
+         window.location.href='/dosen-nilai';
          </script>");
      } else {
         echo "Error: " . $sql . ":-" . mysqli_error($conn);

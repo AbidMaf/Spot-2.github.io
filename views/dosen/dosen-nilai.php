@@ -85,7 +85,8 @@
               if (!$query) {
                 die ('SQL Error: ' . mysqli_error($conn));
               }
-              ?>
+
+              echo '
               <table class="table table-striped table-bordered">
                 <thead>
                   <th scope="col">NIM</th>
@@ -96,80 +97,62 @@
                   <th scope="col">Nilai UAS</th>
                   <th scope="col" colspan="2">Aksi</th>
                 </thead>
-                <tbody>
-              <?php
-              
-                while ($data = mysqli_fetch_array($query)) {
-                    echo "<tr>";
-                        echo "<td>".$data["npm"]."</td>";
-                        echo "<td>".$data["name"]."</td>";
-                        echo "<td>".$data["ntugas"]."</td>";
-                        echo "<td>".$data["nquiz"]."</td>";
-                        echo "<td>".$data["nuts"]."</td>";
-                        echo "<td>".$data["nuas"]."</td>";
-                        echo '<td>
-                          <a href="#" data-bs-toggle="modal" data-bs-target="#modedit'.$data["npm"].'"><i class="text-dark" data-feather="edit"></i></a>
-                        </td>';
-                        echo '<td>
-                          <a href="#" data-bs-toggle="modal" data-bs-target="#modweb"><i class="text-dark" data-feather="trash"></i></a>
+                <tbody>';
+                while ($row = mysqli_fetch_array($query)) {
+                  echo '<tr>
+                        <td>'.$row['0'].'</td>
+                        <td>'.$row['1'].'</td>
+                        <td>'.$row['2'].'</td>
+                        <td>'.$row['3'].'</td>
+                        <td>'.$row['4'].'</td>
+                        <td>'.$row['5'].'</td>
+                        <td>
+                          <a href="#" data-bs-toggle="modal" data-bs-target="#editweb'.$row["0"].'"><i class="text-dark" data-feather="edit"></i></a>
                         </td>
-                    </tr>';
-                    echo 
-                    // Modal Edit
-                    '
-                    <div class="modal fade" id="modedit'.$data["npm"].'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Edit Nilai Mahasiswa Pemrograman Web</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                          </div>
-                          <div class="modal-body">
-                              <form id="editnilai" action="editweb.php" method="GET">';
-                              ?>
-                              <?php
-                                $id = $data["npm"];
-                                $sql = "SELECT * FROM nilai WHERE npm = '$id' && kd_matkul = 'RL209'";
-
-                                $query = mysqli_query($conn, $sql);
-
-                                if (!$query) {
-                                  die ('SQL Error: ' . mysqli_error($conn));
-                                }
-
-                                while ($row = mysqli_fetch_array($query)) {
-                                echo'
-                                <div class="mb-3 text-start">
-                                  <label for="nim" class="col-form-label">NIM:</label>
-                                  <input type="text" class="form-control" name="nim" value="'.$row["npm"].'" readonly>
-                                </div>
-                                <div class="mb-3 text-start">
-                                    <label for="ntugas" class="col-form-label">Nilai Tugas:</label>
-                                    <input type="number" class="form-control" name="ntugas" value="'.$row["ntugas"].'">
-                                </div>
-                                <div class="mb-3 text-start">
-                                    <label for="nquiz" class="col-form-label">Nilai Quiz:</label>
-                                    <input type="number" class="form-control" name="nquiz" value="'.$row["nquiz"].'">
-                                </div>
-                                <div class="mb-3 text-start">
-                                    <label for="nuts" class="col-form-label">Nilai UTS:</label>
-                                    <input type="number" class="form-control" name="nuts" value="'.$row["nuts"].'">
-                                </div>
-                                <div class="mb-3 text-start">
-                                    <label for="nuas" class="col-form-label">Nilai UAS:</label>
-                                    <input type="number" class="form-control" name="nuas" value="'.$row["nuas"].'">
-                                </div>
-                                <input type="submit" value="Update" id="change" class="btn btn-primary btn-lg mt-3"></input>
-                              </form>
-                          </div>
-                          <div class="modal-footer">
-                          </div>
+                        <td>
+                          <a href="#" data-bs-toggle="modal" data-bs-target="#modbti"><i class="text-dark" data-feather="trash"></i></a>
+                        </td>
+                      </tr>'; ?>
+                  <div class="modal fade" id="editweb<?= $row[0] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Ubah Nilai Mahasiswa Pemrograman Web</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="editweb" action="/editweb" method="POST">
+                              <div class="mb-3 text-start">
+                                <label for="nim" class="col-form-label">NIM:</label>
+                                <input type="text" class="form-control" name="nim" value="<?= $row[0] ?>" disabled>
+                              </div>
+                              <div class="mb-3 text-start">
+                                  <label for="ntugas" class="col-form-label">Nilai Tugas:</label>
+                                  <input type="number" class="form-control" name="ntugas" value="<?= $row[2] ?>" disabled>
+                              </div>
+                              <div class="mb-3 text-start">
+                                  <label for="nquiz" class="col-form-label">Nilai Quiz:</label>
+                                  <input type="number" class="form-control" name="nquiz" value="<?= $row[3] ?>">
+                              </div>
+                              <div class="mb-3 text-start">
+                                  <label for="nuts" class="col-form-label">Nilai UTS:</label>
+                                  <input type="number" class="form-control" name="nuts" value="<?= $row[4] ?>">
+                              </div>
+                              <div class="mb-3 text-start">
+                                  <label for="nuas" class="col-form-label">Nilai UAS:</label>
+                                  <input type="number" class="form-control" name="nuas" value="<?= $row[5] ?>">
+                              </div>
+                              <input type="submit" value="Update" id="change" class="btn btn-primary btn-lg mt-3"></input>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
                         </div>
                       </div>
-                    </div>';
-                                }
+                    </div>
+                  </div>
+                <?php
                 }
-              ?>
+                ?>
                 </tbody>
               </table>
             </div>
@@ -184,14 +167,14 @@
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                      <form id="hitungweb" action="insertweb.php" method="POST">
+                      <form id="hitungweb" action="/insertweb" method="POST">
                         <div class="mb-3 text-start">
                           <label for="nim" class="col-form-label">NIM:</label>
                           <input type="text" class="form-control" name="nim">
                         </div>
                         <div class="mb-3 text-start">
                             <label for="ntugas" class="col-form-label">Nilai Tugas:</label>
-                            <input type="number" class="form-control" name="ntugas">
+                            <input type="number" class="form-control" name="ntugas" disabled>
                         </div>
                         <div class="mb-3 text-start">
                             <label for="nquiz" class="col-form-label">Nilai Quiz:</label>
@@ -223,6 +206,7 @@
             <div class="collapse" id="nilbti">
               <button class="btn btn-primary col-lg-1 col-md-3 col-sm-4 mb-2" onclick="" data-bs-toggle="modal" data-bs-target="#modbti">Tambah</button> <br>
               <button class="btn btn-primary col-lg-1 col-md-3 col-sm-4 mb-2" onclick="printpdf();">Print</button> <br>
+              <!-- Tabel BTI -->
               <?php
               $sql = 'SELECT a.npm, b.name, a.ntugas, a.nquiz, a.nuts, a.nuas 
               FROM nilai AS a
@@ -256,29 +240,28 @@
                         <td>'.$row['4'].'</td>
                         <td>'.$row['5'].'</td>
                         <td>
-                          <a href="#" data-bs-toggle="modal" data-bs-target="#modbti'.$row["0"].'"><i class="text-dark" data-feather="edit"></i></a>
+                          <a href="#" data-bs-toggle="modal" data-bs-target="#editbti'.$row["0"].'"><i class="text-dark" data-feather="edit"></i></a>
                         </td>
                         <td>
                           <a href="#" data-bs-toggle="modal" data-bs-target="#modbti"><i class="text-dark" data-feather="trash"></i></a>
                         </td>
                       </tr>'; ?>
-                      // Modal BTI
-                  <div class="modal fade" id="modbti<?= $row[0] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal fade" id="editbti<?= $row[0] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">Tambah Nilai Mahasiswa Bisnis Teknologi Informasi</h5>
+                          <h5 class="modal-title" id="exampleModalLabel">Ubah Nilai Mahasiswa Bisnis Teknologi Informasi</h5>
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form id="hitungbti" action="insertbti.php" method="POST">
+                            <form id="editbti" action="/editbti" method="GET">
                               <div class="mb-3 text-start">
                                 <label for="nim" class="col-form-label">NIM:</label>
                                 <input type="text" class="form-control" name="nim" value="<?= $row[0] ?>" disabled>
                               </div>
                               <div class="mb-3 text-start">
                                   <label for="ntugas" class="col-form-label">Nilai Tugas:</label>
-                                  <input type="number" class="form-control" name="ntugas" value="<?= $row[2] ?>">
+                                  <input type="number" class="form-control" name="ntugas" value="<?= $row[2] ?>" disabled>
                               </div>
                               <div class="mb-3 text-start">
                                   <label for="nquiz" class="col-form-label">Nilai Quiz:</label>
@@ -306,6 +289,46 @@
                 </tbody>
               </table>
             </div>
+
+            <!-- Modal BTI -->
+            <div class="modal fade" id="modbti" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Tambah Nilai Mahasiswa Pemrograman Web</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="hitungweb" action="/insertbti" method="POST">
+                        <div class="mb-3 text-start">
+                          <label for="nim" class="col-form-label">NIM:</label>
+                          <input type="text" class="form-control" name="nim">
+                        </div>
+                        <div class="mb-3 text-start">
+                            <label for="ntugas" class="col-form-label">Nilai Tugas:</label>
+                            <input type="number" class="form-control" name="ntugas" disabled>
+                        </div>
+                        <div class="mb-3 text-start">
+                            <label for="nquiz" class="col-form-label">Nilai Quiz:</label>
+                            <input type="number" class="form-control" name="nquiz">
+                        </div>
+                        <div class="mb-3 text-start">
+                            <label for="nuts" class="col-form-label">Nilai UTS:</label>
+                            <input type="number" class="form-control" name="nuts">
+                        </div>
+                        <div class="mb-3 text-start">
+                            <label for="nuas" class="col-form-label">Nilai UAS:</label>
+                            <input type="number" class="form-control" name="nuas">
+                        </div>
+                        <input type="submit" value="Simpan" id="change" class="btn btn-primary btn-lg mt-3"></input>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+              </div>
+            </div>
+            
           </div>
         </div>
       </div>

@@ -79,6 +79,22 @@ switch (strtolower($request)) {
         require "views/dosen/dosen-nilai.php";
         break;
 
+    case '/insertweb':
+        require "views/dosen/insertweb.php";
+        break;
+
+    case '/editweb':
+        require "views/dosen/editweb.php";
+        break;
+
+    case '/editbti':
+        require "views/dosen/editbti.php";
+        break;
+
+    case '/insertbti':
+        require "views/dosen/insertbti.php";
+        break;
+
     case '/noconnection':
         require "views/no-connection.php";
         break;
