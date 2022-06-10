@@ -40,11 +40,12 @@
             <h6 class="avg-card-title">Nilai keseluruhan sementara</h6>
             <?php
               $nilaiTotal = $DB->query("SELECT getNilaiSummary('$_SESSION[npm]') AS nilai")->fetch();
-              $predikat = $DB->query("SELECT setPredikat('" . $nilaiTotal[0]["nilai"] . "') AS predikat")->fetch();
+              // var_dump($nilaiTotal);
+              $predikat = $DB->query("SELECT setPredikat('" . (int)$nilaiTotal[0]["nilai"] . "') AS predikat")->fetch();
             ?>
             <h1 class="h1 predikat"><?= $predikat[0]["predikat"] ?></h1>
             <span class="score">(<?= $nilaiTotal[0]["nilai"] ?>)</span>
-            <p class="nilai-desc"><b>Sangat bagus</b>. Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae et nobis repellendus quis quae libero assumenda.</p>
+            <p class="nilai-desc"><?= $helper->getNilaiDesc($predikat[0]["predikat"]) ?></p>
           </div>
         </div>
         <div class="col-lg-8 order-lg-1">
@@ -67,8 +68,9 @@
                         <tr>
                           <?php
                           $getTugas = $DB->table('materi')->join('tugas', 'id_materi')->where('materi.kd_matkul', $matkul['kd_matkul'])->get();
+                          $countTugas = $getTugas->count();
                           ?>
-                          <th colspan="<?= $getTugas->count() ?>">Tugas</th>
+                          <th colspan="<?= $countTugas ?>">Tugas</th>
                           <th rowspan="2">Kuis</th>
                           <th rowspan="2">UTS</th>
                           <th rowspan="2">UAS</th>
@@ -92,6 +94,13 @@
                           ?>
                           <td><?= $nilai['nilai'] ?></td>
                           <?php
+                            }
+                            if($countNilai < $countTugas){
+                              for($i = 0; $i < $countTugas - $countNilai; $i++){
+                          ?>
+                          <td>-</td>
+                          <?php
+                              }
                             }
                           ?>
                           <td><?= $fetchNilai[0]['nquiz'] ?></td>

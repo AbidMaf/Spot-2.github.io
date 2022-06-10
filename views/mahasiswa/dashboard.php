@@ -80,77 +80,36 @@
               <div class="flex-column rounded-2 p-3">
                 <h5 class="mb-0">Jadwal Hari ini</h5>
 
-              <?php
-                $today = $helper->convertDay(date('w'));
-                $getJadwal = $DB->table('matakuliah')->where('hari', $today)->get();
-                if ($getJadwal->count() > 0) {
-                  $jadwal = $getJadwal->fetch();
-                  foreach ($jadwal as $p) {
-                  ?>
+                <?php
+                  $today = $helper->convertDay(date('w'));
+                  $getJadwal = $DB->table('matakuliah')->where('hari', $today)->get();
+                  if ($getJadwal->count() > 0) {
+                    $jadwal = $getJadwal->fetch();
+                    foreach ($jadwal as $p) {
+                    ?>
+                    <div class="task-box shadow-sm rounded">
+                      <div class="description-task">
+                        <div class="task-name"><?= $p['nama_matkul'] ?></div>
+                        <div class="time"><?= $p['sks'] ?> SKS | <?= date('H:i', strtotime($p['waktu'])) ?> -  <?= $helper->countSKSEndTime($p['sks'], $p['waktu']) ?></div>
+                      </div>
+                      <div class="more-button"></div>
+                    </div>
+                    <?php
+                    }
+                  } else {
+                ?>
                   <div class="task-box shadow-sm rounded">
                     <div class="description-task">
-                      <div class="task-name"><?= $p['nama_matkul'] ?></div>
-                      <div class="time"><?= $p['sks'] ?> SKS | <?= date('H:i', strtotime($p['waktu'])) ?> -  <?= $helper->countSKSEndTime($p['sks'], $p['waktu']) ?></div>
+                      <div class="task-name">Tidak ada jadwal hari ini</div>
                     </div>
                     <div class="more-button"></div>
                   </div>
-                  <?php
-                  }
-                } else {
-              ?>
-                <div class="task-box shadow-sm rounded">
-                  <div class="description-task">
-                    <div class="task-name">Tidak ada jadwal hari ini</div>
-                  </div>
-                  <div class="more-button"></div>
-                </div>
-              <?php } ?>
-                <div class="task-box red">
-                  <div class="description-task">
-                    <div class="time">Senin | 09:30 - 11:00 AM</div>
-                    <div class="task-name">Pemrograman Berbasis Objek</div>
-                  </div>
-                  <div class="more-button"></div>
-                </div>
-                <div class="task-box yellow">
-                  <div class="description-task">
-                    <div class="time">Selasa | 01:00 - 03:30 PM</div>
-                    <div class="task-name">Sistem Operasi</div>
-                  </div>
-                  <div class="more-button"></div>
-                </div>
-                <div class="task-box yellow">
-                  <div class="description-task">
-                    <div class="time">Rabu | 07:00 - 09:30 AM</div>
-                    <div class="task-name">Konstruksi Perangkat Lunak</div>
-                  </div>
-                  <div class="more-button"></div>
-                </div>
-                <div class="task-box yellow">
-                  <div class="description-task">
-                    <div class="time">Rabu | 01:00 - 03:30 PM</div>
-                    <div class="task-name">Pemrograman Web</div>
-                  </div>
-                  <div class="more-button"></div>
-                </div>
-                <div class="task-box blue">
-                  <div class="description-task">
-                    <div class="time">Kamis | 8:40 - 11:00 AM</div>
-                    <div class="task-name">Bisnis Teknologi Informasi</div>
-                  </div>
-                  <div class="more-button"></div>
-                </div>
-                <div class="task-box blue">
-                  <div class="description-task">
-                    <div class="time">Kamis | 01:00 - 03:30 PM</div>
-                    <div class="task-name">Teknologi Basis Data</div>
-                  </div>
-                  <div class="more-button"></div>
-                </div>
+                <?php } ?>
+                
               </div>
             </div>
           </div>
-      </div>
+        </div>
       </section>
 
     </div>
