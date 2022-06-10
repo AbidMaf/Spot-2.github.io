@@ -12,6 +12,10 @@
   <link href="../../css/component/navbar.css" rel="stylesheet" type="text/css" />
   <script src="../../script.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 </head>
 
 <body>
@@ -130,7 +134,7 @@
                               </div>
                               <div class="mb-3 text-start">
                                   <label for="ntugas" class="col-form-label">Nilai Tugas:</label>
-                                  <input type="number" class="form-control" name="ntugas" value="<?= $row[2] ?>" readonly>
+                                  <input type="number" class="form-control" name="ntugas" value="<?= $row[2] ?>" readonly title="Nilai didapatkan secara otomatis dari hasil penilaian tugas mahasiswa">
                               </div>
                               <div class="mb-3 text-start">
                                   <label for="nquiz" class="col-form-label">Nilai Quiz:</label>
@@ -198,7 +202,7 @@
                         </div>
                         <div class="mb-3 text-start">
                             <label for="ntugas" class="col-form-label">Nilai Tugas:</label>
-                            <input type="number" class="form-control" name="ntugas" readonly>
+                            <input type="number" class="form-control" name="ntugas" readonly title="Nilai didapatkan secara otomatis dari hasil penilaian tugas mahasiswa">
                         </div>
                         <div class="mb-3 text-start">
                             <label for="nquiz" class="col-form-label">Nilai Quiz:</label>
@@ -287,7 +291,7 @@
                               </div>
                               <div class="mb-3 text-start">
                                   <label for="ntugas" class="col-form-label">Nilai Tugas:</label>
-                                  <input type="number" class="form-control" name="ntugas" value="<?= $row[2] ?>" readonly>
+                                  <input type="number" class="form-control" name="ntugas" value="<?= $row[2] ?>" readonly title="Nilai didapatkan secara otomatis dari hasil penilaian tugas mahasiswa">
                               </div>
                               <div class="mb-3 text-start">
                                   <label for="nquiz" class="col-form-label">Nilai Quiz:</label>
@@ -354,7 +358,7 @@
                         </div>
                         <div class="mb-3 text-start">
                             <label for="ntugas" class="col-form-label">Nilai Tugas:</label>
-                            <input type="number" class="form-control" name="ntugas" readonly>
+                            <input type="number" class="form-control" name="ntugas" readonly title="Nilai didapatkan secara otomatis dari hasil penilaian tugas mahasiswa">
                         </div>
                         <div class="mb-3 text-start">
                             <label for="nquiz" class="col-form-label">Nilai Quiz:</label>
@@ -385,6 +389,22 @@
 
   <script>
     getdata();
+    $( function() {
+        $( document ).tooltip({
+          position: {
+            my: "center bottom-20",
+            at: "center top",
+            using: function( position, feedback ) {
+              $( this ).css( position );
+              $( "<div>" )
+                .addClass( "arrow" )
+                .addClass( feedback.vertical )
+                .addClass( feedback.horizontal )
+                .appendTo( this );
+            }
+          }
+        });
+      } );
   </script>
 </body>
 </html>
