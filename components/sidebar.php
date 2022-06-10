@@ -3,8 +3,9 @@ $request = $_SERVER['REQUEST_URI'];
 $requestParsed = explode("/", strtolower(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)));
 $active_menu = 'class="active"';
 ?>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 <nav class="shadow-sm">
   <!-- <div class="notification">
     <div class="notification-badge"></div>
@@ -25,7 +26,7 @@ $active_menu = 'class="active"';
     </div>
     <hr style="margin: 0;">
     <div class="login-info">
-      <div class="avatar-circle" id="profilePicture">
+      <div class="avatar-circle" id="profilePicture" title="Kami merekomendasikan menggunakan gambar dengan rasio 1:1">
         <?php
           $fileName = $DB->columns(['avatar'])->table('mahasiswa')->where('npm', $_SESSION['npm'])->limit('1')->get()->fetch();
           $DB->reset();
@@ -107,4 +108,15 @@ $active_menu = 'class="active"';
         // $('#formImage').submit();
       }
     });
+  </script>
+
+  <script>
+    $(function() {
+      $(document).tooltip({
+        items: ".avatar-circle",
+        content: function() {
+          return $(this).attr('title');
+        }
+      });
+    })
   </script>

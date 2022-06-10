@@ -158,7 +158,7 @@ nav .notification > svg {
     height: 100%;
     object-fit: cover;
     border-radius: 100px;
-    object-position: center 10%;
+    object-position: center;
     display: block;
 }
 
