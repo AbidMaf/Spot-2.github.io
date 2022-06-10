@@ -80,19 +80,29 @@ switch (strtolower($request)) {
         break;
 
     case '/insertweb':
-        require "views/dosen/insertweb.php";
+        require "App/Controller/insertweb.php";
         break;
 
     case '/editweb':
-        require "views/dosen/editweb.php";
+        require "App/Controller/editweb.php";
         break;
 
     case '/editbti':
-        require "views/dosen/editbti.php";
+        require "App/Controller/editbti.php";
         break;
 
     case '/insertbti':
-        require "views/dosen/insertbti.php";
+        require "App/Controller/insertbti.php";
+        break;
+
+    case '/deleteweb/' . (!empty($parseURL[2]) ? $parseURL[2] : ''):
+        $nim = $parseURL[2];
+        require $_SERVER['DOCUMENT_ROOT'] . "/App/Controller/deleteweb.php";
+        break;
+        
+    case '/deletebti/' . (!empty($parseURL[2]) ? $parseURL[2] : ''):
+        $nim = $parseURL[2];
+        require $_SERVER['DOCUMENT_ROOT'] . "/App/Controller/deletebti.php";
         break;
 
     case '/noconnection':

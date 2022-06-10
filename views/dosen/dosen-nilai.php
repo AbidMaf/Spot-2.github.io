@@ -31,7 +31,7 @@
       <span class="name">Nama Dosen</span>
       <span class="nim">NIP</span>
     </div>
-    <a class="menu-nilai" href="dosen.php">
+    <a class="menu-nilai" href="/dosen">
       <i class="icon" data-feather="list"></i>
       <span class="menu-name">&nbsp;Daftar Mata Kuliah</span>
     </a>
@@ -110,9 +110,11 @@
                           <a href="#" data-bs-toggle="modal" data-bs-target="#editweb'.$row["0"].'"><i class="text-dark" data-feather="edit"></i></a>
                         </td>
                         <td>
-                          <a href="#" data-bs-toggle="modal" data-bs-target="#modbti"><i class="text-dark" data-feather="trash"></i></a>
+                          <a href="#" data-bs-toggle="modal" data-bs-target="#delweb'.$row["0"].'"><i class="text-dark" data-feather="trash"></i></a>
                         </td>
                       </tr>'; ?>
+                  
+                  <!-- Modal Edit Web -->
                   <div class="modal fade" id="editweb<?= $row[0] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                       <div class="modal-content">
@@ -124,7 +126,7 @@
                             <form id="editweb" action="/editweb" method="POST">
                               <div class="mb-3 text-start">
                                 <label for="nim" class="col-form-label">NIM:</label>
-                                <input type="text" class="form-control" name="nim" value="<?= $row[0] ?>" readonly hidden>
+                                <input type="text" class="form-control" name="nim" value="<?= $row[0] ?>" readonly>
                               </div>
                               <div class="mb-3 text-start">
                                   <label for="ntugas" class="col-form-label">Nilai Tugas:</label>
@@ -146,6 +148,28 @@
                             </form>
                         </div>
                         <div class="modal-footer">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Modal Delete Web -->
+                  <div class="modal" tabindex="-1" id="delweb<?= $row[0] ?>">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title">Konfirmasi Hapus Data</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <p>Apakah anda yakin akan menghapus data dengan NIM: <?= $row["0"] ?></p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                          <a href="/deleteweb/<?= $row["0"] ?>" class="btn btn-primary"> 
+                            <i class="icon ico-dark" data-feather="trash"></i>
+                            Hapus
+                          </a>
                         </div>
                       </div>
                     </div>
@@ -174,7 +198,7 @@
                         </div>
                         <div class="mb-3 text-start">
                             <label for="ntugas" class="col-form-label">Nilai Tugas:</label>
-                            <input type="number" class="form-control" name="ntugas" disabled>
+                            <input type="number" class="form-control" name="ntugas" readonly>
                         </div>
                         <div class="mb-3 text-start">
                             <label for="nquiz" class="col-form-label">Nilai Quiz:</label>
@@ -243,9 +267,11 @@
                           <a href="#" data-bs-toggle="modal" data-bs-target="#editbti'.$row["0"].'"><i class="text-dark" data-feather="edit"></i></a>
                         </td>
                         <td>
-                          <a href="#" data-bs-toggle="modal" data-bs-target="#modbti"><i class="text-dark" data-feather="trash"></i></a>
+                          <a href="#" data-bs-toggle="modal" data-bs-target="#delbti'.$row["0"].'"><i class="text-dark" data-feather="trash"></i></a>
                         </td>
                       </tr>'; ?>
+                  
+                  <!-- Modal Edit BTI -->
                   <div class="modal fade" id="editbti<?= $row[0] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                       <div class="modal-content">
@@ -254,14 +280,14 @@
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form id="editbti" action="/editbti" method="GET">
+                            <form id="editbti" action="/editbti" method="POST">
                               <div class="mb-3 text-start">
                                 <label for="nim" class="col-form-label">NIM:</label>
-                                <input type="text" class="form-control" name="nim" value="<?= $row[0] ?>" disabled>
+                                <input type="text" class="form-control" name="nim" value="<?= $row[0] ?>" readonly>
                               </div>
                               <div class="mb-3 text-start">
                                   <label for="ntugas" class="col-form-label">Nilai Tugas:</label>
-                                  <input type="number" class="form-control" name="ntugas" value="<?= $row[2] ?>" disabled>
+                                  <input type="number" class="form-control" name="ntugas" value="<?= $row[2] ?>" readonly>
                               </div>
                               <div class="mb-3 text-start">
                                   <label for="nquiz" class="col-form-label">Nilai Quiz:</label>
@@ -279,6 +305,28 @@
                             </form>
                         </div>
                         <div class="modal-footer">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Modal Delete BTI -->
+                  <div class="modal" tabindex="-1" id="delbti<?= $row[0] ?>">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title">Konfirmasi Hapus Data</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <p>Apakah anda yakin akan menghapus data dengan NIM: <?= $row["0"] ?></p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                          <a href="/deletebti/<?= $row["0"] ?>" class="btn btn-primary"> 
+                            <i class="icon ico-dark" data-feather="trash"></i>
+                            Hapus
+                          </a>
                         </div>
                       </div>
                     </div>
@@ -306,7 +354,7 @@
                         </div>
                         <div class="mb-3 text-start">
                             <label for="ntugas" class="col-form-label">Nilai Tugas:</label>
-                            <input type="number" class="form-control" name="ntugas" disabled>
+                            <input type="number" class="form-control" name="ntugas" readonly>
                         </div>
                         <div class="mb-3 text-start">
                             <label for="nquiz" class="col-form-label">Nilai Quiz:</label>

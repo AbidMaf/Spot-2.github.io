@@ -4,11 +4,11 @@
      $nquiz = $_POST['nquiz'];
      $nuts = $_POST['nuts'];
      $nuas = $_POST['nuas'];
-     $kd_matkul = "RL209";
-     $sql = "INSERT INTO nilai (npm, kd_matkul, ntugas, nquiz, nuts, nuas) VALUES ('$nim', '$kd_matkul', '$ntugas', '$nquiz', '$nuts', '$nuas')";
+     $kd_matkul = "PT502";
+     $sql = "UPDATE nilai SET ntugas='$ntugas', nquiz='$nquiz', nuts='$nuts', nuas='$nuas' WHERE npm='$nim' && kd_matkul='$kd_matkul'";
      if (mysqli_query($conn, $sql)) {
       echo ("<script LANGUAGE='JavaScript'>
-         window.alert('Data Berhasil Disimpan');
+         window.alert('Data Berhasil Diupdate');
          window.location.href='/dosen-nilai';
          </script>");
      } else {
