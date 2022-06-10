@@ -31,7 +31,7 @@
       <span class="name">Nama Dosen</span>
       <span class="nim">NIP</span>
     </div>
-    <a class="menu-nilai" href="dosen.php">
+    <a class="menu-nilai" href="/dosen">
       <i class="icon" data-feather="list"></i>
       <span class="menu-name">&nbsp;Daftar Mata Kuliah</span>
     </a>
