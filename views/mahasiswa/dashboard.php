@@ -21,9 +21,7 @@
 </head>
 
 <body>
-  <nav class="shadow-sm">
-
-  </nav>
+  
   <?php include('components/sidebar.php'); ?>
 
   <div class="main-content">
@@ -95,7 +93,7 @@
                     $jadwal = $getJadwal->fetch();
                     foreach ($jadwal as $p) {
                     ?>
-                    <div class="task-box shadow-sm rounded">
+                    <div class="task-box shadow-sm rounded" onclick="window.location.href='/MataKuliah/<?= $p['kd_matkul'] ?>'">
                       <div class="description-task">
                         <div class="task-name"><?= $p['nama_matkul'] ?></div>
                         <div class="time"><?= $p['sks'] ?> SKS | <?= date('H:i', strtotime($p['waktu'])) ?> -  <?= $helper->countSKSEndTime($p['sks'], $p['waktu']) ?></div>

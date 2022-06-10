@@ -22,9 +22,6 @@
 </head>
 
 <body>
-  <nav class="shadow-sm">
-
-  </nav>
   <?php include('components/sidebar.php'); ?>
   
   <div class="main-content">

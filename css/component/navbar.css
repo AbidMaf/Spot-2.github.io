@@ -11,6 +11,52 @@ nav {
     height: 7vh;
     overflow: auto;
     right: 0;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 3vw;
+    overflow: unset;
+}
+
+nav .notification {
+    aspect-ratio: 1;
+    display: grid;
+    cursor: pointer;
+}
+
+.notification > svg {
+    align-self: center;
+    justify-self: center;
+}
+
+.notification-badge {
+    position: absolute;
+    transform: translate(2vw, 2vh);
+    z-index: 3;
+    width: 13px;
+    aspect-ratio: 1;
+    border-radius: 10vh;
+    background-color: #e42c51;
+    border: 2px solid white;
+}
+
+nav .notification > svg {
+    color: rgb(37, 36, 37);
+}
+
+.notification-container {
+    width: 10px;
+    z-index: 9;
+    background-color: red;
+    bottom: 0;
+    left: 50%;
+    right: 50%;
+    height: 100px;
+    position: relative;
+    display: inline-block;
+}
+
+.notification-arrow {
+    
 }
 
 .sidebar {

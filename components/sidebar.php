@@ -5,6 +5,18 @@ $active_menu = 'class="active"';
 ?>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
+<nav class="shadow-sm">
+  <!-- <div class="notification">
+    <div class="notification-badge"></div>
+    <i class="icon" data-feather="bell"></i>
+    <div class="notification-container">
+      <span class="notification-arrow"></span>
+      <div class="notification-list">
+        
+      </div>
+    </div>
+  </div> -->
+</nav>
 <div class="sidebar shadow-sm">
     <div class="brand">
       <img class="logo" src="/assets/image/Logo_Almamater_UPI.svg" width="45">
@@ -25,7 +37,7 @@ $active_menu = 'class="active"';
         </div>
       </div>
       <form action="/changeAvatar" method="post" id="formImage">
-      <input type="file" name="upload-image" id="uploadImage" accept="image/*" style="display: none;"/>
+      <input type="file" name="upload-image" id="uploadImage" accept=".png, .jpg, .jpeg" style="display: none;"/>
       </form>
       <span class="name"><?= $_SESSION['npm'] ?></span>
       <span class="nim"><?= ucwords(strtolower($_SESSION['name'])) ?></span>
@@ -68,29 +80,31 @@ $active_menu = 'class="active"';
 
   <script>
     $('#uploadImage').change(function(e) {
-      e.preventDefault();
+      if(document.getElementById('uploadImage').files.length != 0) {
+        e.preventDefault();
 
-      var formData = new FormData();
-      formData.append('upload-image', $('#uploadImage')[0].files[0]);
+        var formData = new FormData();
+        formData.append('upload-image', $('#uploadImage')[0].files[0]);
 
-      $.ajax({
-        url: '/changeAvatar',
-        type: 'post',
-        data: formData,
-        async: false,
-        cache: false,
-        contentType: false,
-        processData: false,
-        success: function(data) {
-          d = new Date();
-          $('#avatarPicture').attr("src", "/assets/image/profile/" + data + "?" + d.getTime());
-        },
-        error: function(){
-          alert('error in ajax');
-        }
-      });
+        $.ajax({
+          url: '/changeAvatar',
+          type: 'post',
+          data: formData,
+          async: false,
+          cache: false,
+          contentType: false,
+          processData: false,
+          success: function(data) {
+            d = new Date();
+            $('#avatarPicture').attr("src", "/assets/image/profile/" + data + "?" + d.getTime());
+          },
+          error: function(){
+            alert('error in ajax');
+          }
+        });
 
-      return false;
-      // $('#formImage').submit();
+        return false;
+        // $('#formImage').submit();
+      }
     });
   </script>
