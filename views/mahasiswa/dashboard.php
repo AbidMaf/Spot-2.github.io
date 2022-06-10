@@ -37,8 +37,16 @@
               <div class="box d-flex rounded-2 align-items-center mb-4 mb-lg-0 p-3">
                 <i class="uil-book-open fs-2 text-center text-white bg-primary rounded-circle"></i>
                 <div class="ms-3">
+                  <!-- SKS, Jumalh tugas yg udah dikerjakan,  -->
+                  <?php
+                  $countSKS = $DB->query("SELECT SUM(sks) as sum_sks FROM matakuliah")->fetch();
+                  $nilaiTotal = $DB->query("SELECT getNilaiSummary('$_SESSION[npm]') AS nilai")->fetch();
+                  $countUpTugas = $DB->query("SELECT COUNT(*) as count_up FROM upload_tugas WHERE npm = '$_SESSION[npm]'")->fetch();
+                  $countTugas = $DB->query("SELECT COUNT(*) as count_tugas FROM tugas")->fetch();
+                  // $DB->reset();
+                  ?>
                   <div class="d-flex align-items-center">
-                    <h3 class="mb-0">420</h3> <span class="d-block ms-2">SKS</span>
+                    <h3 class="mb-0"><?= $countSKS[0]["sum_sks"] ?></h3> <span class="d-block ms-2">SKS</span>
                   </div>
                   <p class="fs-normal mb-0">Jumlah perolehan SKS</p>
                 </div>
@@ -49,20 +57,20 @@
                 <i class="uil-medal fs-2 text-center text-white bg-danger rounded-circle"></i>
                 <div class="ms-3">
                   <div class="d-flex align-items-center">
-                    <h3 class="mb-0">3,69</h3> <span class="d-block ms-2">IPK</span>
+                    <h3 class="mb-0"><?= $nilaiTotal[0]['nilai'] ?></h3> <!-- <span class="d-block ms-2">Nilai</span> -->
                   </div>
-                  <p class="fs-normal mb-0">Perolehan IPK saat ini</p>
+                  <p class="fs-normal mb-0">Perolehan Rata-Rata Nilai saat ini</p>
                 </div>
               </div>
             </div>
             <div class="col-lg-4">
               <div class="box d-flex rounded-2 align-items-center p-3">
-                <i class="uil-hourglass fs-2 text-center text-white bg-success rounded-circle"></i>
+                <i class="uil-check-circle fs-2 text-center text-white bg-success rounded-circle"></i>
                 <div class="ms-3">
                   <div class="d-flex align-items-center">
-                    <h3 class="mb-0">4 Semester</h3> <span class="d-block ms-2">LAMA STUDI</span>
+                    <h3 class="mb-0"><?= $countUpTugas[0]['count_up'] . "/" . $countTugas[0]['count_tugas'] ?></h3> <span class="d-block ms-2">Tugas</span>
                   </div>
-                  <p class="fs-normal mb-0">Total semester</p>
+                  <p class="fs-normal mb-0">Sudah Dikumpulkan</p>
                 </div>
               </div>
             </div>
