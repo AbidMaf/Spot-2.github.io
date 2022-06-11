@@ -14,35 +14,7 @@
 </head>
 
 <body>
-  <nav class="shadow-sm">
-    
-  </nav>
-  <!-- Sidebar -->
-  <div class="sidebar shadow-sm">
-    <div class="brand">
-      <img class="logo" src="../../assets/image/Logo_Almamater_UPI.svg" width="45">
-      <span class="brand-name">SPOT</span>
-      <span class="brand-version">2.0</span>
-    </div>
-    <hr style="margin: 0;">
-    <div class="login-info">
-      <img class="avatar" src="../../assets/image/profile.jpg" alt="profile" width="72">
-      <span class="name">Nama Dosen</span>
-      <span class="nim">NIP</span>
-    </div>
-    <a class="active" href="#">
-      <i class="icon" data-feather="list"></i>
-      <span class="menu-name">&nbsp;Daftar Mata Kuliah</span>
-    </a>
-    <a class="menu-nilai" href="/dosen-nilai">
-      <i class="icon" data-feather="star">2</i>
-      <span class="menu-name">&nbsp;Nilai Mahasiswa</span>
-    </a>
-    <a class="menu-settings logout" href="index.html">
-      <i class="icon" data-feather="log-out">2</i>
-      <span class="menu-name">&nbsp;Logout</span>
-    </a>
-  </div>
+  <?php include('components/sidebar.php'); ?>
   
   <div class="main-content">
     <div class="p-3">

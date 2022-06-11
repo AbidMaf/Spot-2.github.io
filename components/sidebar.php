@@ -18,6 +18,10 @@ $active_menu = 'class="active"';
     </div>
   </div> -->
 </nav>
+
+<?php
+  if($_SESSION["level"] == "mahasiswa"){
+?>
 <div class="sidebar shadow-sm">
     <div class="brand">
       <img class="logo" src="/assets/image/Logo_Almamater_UPI.svg" width="45">
@@ -38,7 +42,8 @@ $active_menu = 'class="active"';
         </div>
       </div>
       <form action="/changeAvatar" method="post" id="formImage">
-      <input type="file" name="upload-image" id="uploadImage" accept=".png, .jpg, .jpeg" style="display: none;"/>
+        <input type="file" name="upload-image" id="uploadImage" accept=".png, .jpg, .jpeg" style="display: none;"/>
+        <input type="text" name="level" value="<?= $_SESSION["level"] ?>" hidden>
       </form>
       <span class="name"><?= $_SESSION['npm'] ?></span>
       <span class="nim"><?= ucwords(strtolower($_SESSION['name'])) ?></span>
@@ -72,6 +77,51 @@ $active_menu = 'class="active"';
       <span class="menu-name">&nbsp;Logout</span>
     </a>
   </div>
+
+  <?php
+    } 
+    elseif($_SESSION["level"] == "dosen"){
+  ?>
+  <div class="sidebar shadow-sm">
+    <div class="brand">
+      <img class="logo" src="/assets/image/Logo_Almamater_UPI.svg" width="45">
+      <span class="brand-name">SPOT</span>
+      <span class="brand-version">2.0</span>
+    </div>
+    <hr style="margin: 0;">
+    <div class="login-info">
+      <div class="avatar-circle" id="profilePicture" title="Kami merekomendasikan menggunakan gambar dengan rasio 1:1">
+        <?php
+          $fileName = $DB->columns(['avatar'])->table('dosen')->where('nid', $_SESSION['nid'])->limit('1')->get()->fetch();
+          $DB->reset();
+        ?>
+        <img class="avatar" id="avatarPicture" src="/assets/image/profile/<?= $fileName[0]['avatar'] ?>" alt="profile" width="72">
+        <div class="overlay-change">
+          <i class="icon" data-feather="camera"></i>
+          <span>Click here to change photo</span>
+        </div>
+      </div>
+      <form action="/changeAvatar" method="post" id="formImage">
+        <input type="file" name="upload-image" id="uploadImage" accept=".png, .jpg, .jpeg" style="display: none;"/>
+        <input type="text" name="level" value="<?= $_SESSION["level"] ?>" hidden>
+      </form>
+      <span class="name"><?= $_SESSION['nid'] ?></span>
+      <span class="nim"><?= ucwords(strtolower($_SESSION['name'])) ?></span>
+    </div>
+    <a class="menu-nilai <?= ($requestParsed[1] == 'dosen') ? "active" : '' ?>" href="/dosen">
+      <i class="icon" data-feather="list"></i>
+      <span class="menu-name">&nbsp;Daftar Mata Kuliah</span>
+    </a>
+    <a class="<?= ($requestParsed[1] == 'dosen-nilai') ? "active" : '' ?>" href="/dosen-nilai">
+      <i class="icon" data-feather="star">2</i>
+      <span class="menu-name">&nbsp;Nilai Mahasiswa</span>
+    </a>
+    <a class="menu-settings logout" href="/Logout">
+      <i class="icon" data-feather="log-out"></i>
+      <span class="menu-name">&nbsp;Logout</span>
+    </a>
+  </div>
+  <?php } else {echo "no level?" . $_SESSION["level"];} ?>
 
   <script>
       $('#profilePicture').on('click', function(e) {

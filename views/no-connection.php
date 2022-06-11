@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="text">
-        <h1>Beep Boop. Is anyone there?</h1>
+        <h1>*Beep Boop* Is anyone there?</h1>
         <p>Uh oh! We cannnot reach you. Please check your internet or try again later</p>
         <button onclick="window.location.reload()">Refresh Page</button>
     </div>

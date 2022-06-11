@@ -3,6 +3,8 @@
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     $allowed = array('jpg', 'jpeg', 'png', 'gif');
     $npm = $_SESSION['npm'];
+    $nid = $_SESSION['nid'];
+    $level = $_POST['level'];
     
     $dir = $_SERVER['DOCUMENT_ROOT'] . "/assets/image/profile";
     $fileType = strtolower(pathinfo($_FILES['upload-image']['name'], PATHINFO_EXTENSION));
@@ -25,12 +27,24 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if($uploadOk == 1) {
-        if(move_uploaded_file($_FILES["upload-image"]["tmp_name"], $dir . "/" . $newfilename)) {
-            $DB->update('mahasiswa', ['avatar' => $newfilename], ['npm' => $npm]);
-            echo "$newfilename";
-            exit;
-        } else {
-            echo "Sorry, there was an error uploading your file.";
+        if($level = "mahasiswa") {
+            if(move_uploaded_file($_FILES["upload-image"]["tmp_name"], $dir . "/" . $newfilename)) {
+                $DB->update('mahasiswa', ['avatar' => $newfilename], ['npm' => $npm]);
+                echo "$newfilename";
+                exit;
+            } else {
+                echo "Sorry, there was an error uploading your file.";
+            }
         }
+        elseif($level = "dosen") {
+            if(move_uploaded_file($_FILES["upload-image"]["tmp_name"], $dir . "/" . $newfilename)) {
+                $DB->update('dosen', ['avatar' => $newfilename], ['nid' => $nid]);
+                echo "$newfilename";
+                exit;
+            } else {
+                echo "Sorry, there was an error uploading your file.";
+            }
+        }
+        
     }
 }

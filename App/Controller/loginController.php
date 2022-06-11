@@ -18,6 +18,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
             $_SESSION["npm"] = $row["npm"];
             $_SESSION["name"] = $row["name"];
+            $_SESSION["level"] = "mahasiswa";
             header("Location: /dashboard");
         }elseif($row["level"] == "dosen") {
             $sql = "SELECT * FROM dosen WHERE nid = '$username'";
@@ -26,6 +27,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
             $_SESSION["nid"] = $row["nid"];
             $_SESSION["name"] = $row["name"];
+            $_SESSION["level"] = "dosen";
             header("Location: /dosen");
         } else {
             print_r($row["level"]);
