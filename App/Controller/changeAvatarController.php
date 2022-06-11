@@ -2,14 +2,13 @@
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     $allowed = array('jpg', 'jpeg', 'png', 'gif');
-    $npm = $_SESSION['npm'];
-    $nid = $_SESSION['nid'];
-    $level = $_POST['level'];
+    $level = $_SESSION['level'];
+    $reference = ($level == "mahasiswa") ? $_SESSION['npm'] : $_SESSION['nid'];
     
     $dir = $_SERVER['DOCUMENT_ROOT'] . "/assets/image/profile";
     $fileType = strtolower(pathinfo($_FILES['upload-image']['name'], PATHINFO_EXTENSION));
     $temp = explode(".", $_FILES["upload-image"]["name"]);
-    $newfilename = "profile_" . $npm . ".png";
+    $newfilename = "profile_" . $reference . ".png";
     $uploadOk = 0;
 
     $check = getimagesize($_FILES["upload-image"]["tmp_name"]);
@@ -27,19 +26,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if($uploadOk == 1) {
-        if($level = "mahasiswa") {
+        if($level == "mahasiswa") {
             if(move_uploaded_file($_FILES["upload-image"]["tmp_name"], $dir . "/" . $newfilename)) {
-                $DB->update('mahasiswa', ['avatar' => $newfilename], ['npm' => $npm]);
-                echo "$newfilename";
+                $DB->update('mahasiswa', ['avatar' => $newfilename], ['npm' => $reference]);
+                echo $newfilename;
                 exit;
             } else {
                 echo "Sorry, there was an error uploading your file.";
             }
         }
-        elseif($level = "dosen") {
+        elseif($level == "dosen") {
             if(move_uploaded_file($_FILES["upload-image"]["tmp_name"], $dir . "/" . $newfilename)) {
-                $DB->update('dosen', ['avatar' => $newfilename], ['nid' => $nid]);
-                echo "$newfilename";
+                $DB->update('dosen', ['avatar' => $newfilename], ['nid' => $reference]);
+                echo $newfilename;
                 exit;
             } else {
                 echo "Sorry, there was an error uploading your file.";
