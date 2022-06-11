@@ -71,6 +71,10 @@ switch (strtolower($request)) {
         require "views/mahasiswa/summaryNilai.php";
         break;
     
+    case '/profil':
+        require "views/dosen/profil.php";
+        break;
+
     case '/dosen':
         require "views/dosen/dosen.php";
         break;

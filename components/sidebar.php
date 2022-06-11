@@ -108,6 +108,10 @@ $active_menu = 'class="active"';
       <span class="name"><?= $_SESSION['nid'] ?></span>
       <span class="nim"><?= ucwords(strtolower($_SESSION['name'])) ?></span>
     </div>
+    <a class="<?= ($requestParsed[1] == 'profil') ? "active" : '' ?>" href="/profil">
+      <i class="icon" data-feather="user"></i>
+      <span class="menu-name">&nbsp;Profil</span>
+    </a>
     <a class="menu-nilai <?= ($requestParsed[1] == 'dosen') ? "active" : '' ?>" href="/dosen">
       <i class="icon" data-feather="list"></i>
       <span class="menu-name">&nbsp;Daftar Mata Kuliah</span>
