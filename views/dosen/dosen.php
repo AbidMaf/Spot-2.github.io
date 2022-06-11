@@ -32,7 +32,7 @@
         </div>
         <div class="col-md-6 date">
           <i class="ico ico-dark" data-feather="calendar"></i>
-          <span class="date-text">Rabu, 28 Maret 2022</span>
+          <span class="date-text">&nbsp;<?= $helper->getTodayDate() ?></span>
         </div>
       </div>
       <div class="row g-3">
