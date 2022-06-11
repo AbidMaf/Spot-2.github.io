@@ -105,8 +105,19 @@
                         <input type="text" name="npm" value="<?= $_SESSION['npm'] ?>" hidden>
                         <input type="text" name="id_tugas" value="<?= $tugas[0]['id_tugas'] ?>" hidden>
                         <input type="text" name="kd_matkul" value="<?= $kodeMatkul ?>" hidden>
-                        <input type="file" class="form-control input-tugas" id="formfile" name="formfile">
-                        <input type="submit" class="form-control btn btn-primary btn-submit" value="Kumpulkan">
+                        <?php
+                          $DB->reset();
+                          $checkUpload = $DB->table('upload_tugas')->where('npm', $_SESSION['npm'])->where('id_tugas', $idTugas)->get();
+                          $checkNilai = $checkUpload->fetch();
+                          if((int)$checkNilai > 0) { ?>
+                            <input type="file" class="form-control input-tugas" id="formfile" name="formfile" hidden>
+                            <input type="submit" class="form-control btn btn-primary btn-submit" value="Kumpulkan" hidden>
+                            <b>Sudah dinilai</b>
+                        <?php
+                          } else { ?>
+                            <input type="file" class="form-control input-tugas" id="formfile" name="formfile">
+                            <input type="submit" class="form-control btn btn-primary btn-submit" value="Kumpulkan">
+                        <?php } ?>
                       </div>
                     </form>
                     <?php
@@ -118,17 +129,34 @@
                 <?php
                   $DB->reset();
                   $checkUpload = $DB->table('upload_tugas')->where('npm', $_SESSION['npm'])->where('id_tugas', $idTugas)->get();
+                  $checkNilai = $checkUpload->fetch();
                   if($checkUpload->count() > 0) {
                     $upload = $checkUpload->fetch();
                 ?>
                 <div class="submission-info" style="width: 100%;">
-                  <span class="file float-left"><?= $upload[0]["file"] ?></span>
+                  <span class="file float-left">
+                    <i class="icon" data-feather="file"></i>
+                    <a href="<?= $_SERVER['DOCUMENT_ROOT'] . "/assets/tugas/" . str_replace("+", " ", $upload[0]["file"]) ?>" target="_blank" rel="noopener noreferrer"><?= str_replace("+", " ", $upload[0]["file"]) ?></a>
+                  </span>
                   <span class="nilai float-right" style="float: right">Nilai: <b><?= $upload[0]['nilai'] ?></b></span>
                 </div>
-                <a href="/deleteUploadTugas/<?= $upload[0]['id_up_tugas'] ?>" class="btn btn-primary hapus-tugas">
+                <?php
+                  // if(date("Y-m-d", strtotime($tugas[0]["deadline"])) >= date("Y-m-d")){
+                  if((int)$checkNilai > 0){
+                    
+                    ?>
+                    <a href="/deleteUploadTugas/<?= $upload[0]['id_up_tugas'] ?>" class="btn btn-primary hapus-tugas">
                       <i class="icon ico-dark" data-feather="trash"></i>
                       Hapus Tugas
-                </a>
+                    </a>
+                    <?php
+                  } else { ?>
+                    <a class="btn btn-primary hapus-tugas disabled" aria-disabled="true">
+                      <i class="icon ico-dark" data-feather="trash"></i>
+                      Hapus Tugas 
+                    </a>
+                  <?php } ?>
+                
                 <?php } ?>
               </div>
               <div id="evaluasi" role="tabpanel" aria-labelledby="evaluasi-tab" class="tab-pane fade px-3 py-4">
