@@ -129,7 +129,7 @@
                 <?php
                   $DB->reset();
                   $checkUpload = $DB->table('upload_tugas')->where('npm', $_SESSION['npm'])->where('id_tugas', $idTugas)->get();
-                  $checkNilai = $checkUpload->fetch();
+                  // $checkNilai = $checkUpload->fetch();
                   if($checkUpload->count() > 0) {
                     $upload = $checkUpload->fetch();
                 ?>
@@ -142,7 +142,7 @@
                 </div>
                 <?php
                   // if(date("Y-m-d", strtotime($tugas[0]["deadline"])) >= date("Y-m-d")){
-                  if((int)$checkNilai > 0){
+                  if((int)$upload[0]['nilai'] <= 0){
                     
                     ?>
                     <a href="/deleteUploadTugas/<?= $upload[0]['id_up_tugas'] ?>" class="btn btn-primary hapus-tugas">
