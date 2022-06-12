@@ -112,6 +112,10 @@ $active_menu = 'class="active"';
       <i class="icon" data-feather="list"></i>
       <span class="menu-name">&nbsp;Daftar Mata Kuliah</span>
     </a>
+    <a class="<?= ($requestParsed[1] == 'koreksi') ? "active" : '' ?>" href="/koreksi">
+      <i class="icon" data-feather="edit-3"></i>
+      <span class="menu-name">&nbsp;Koreksi Tugas</span>
+    </a>
     <a class="<?= ($requestParsed[1] == 'dosen-nilai') ? "active" : '' ?>" href="/dosen-nilai">
       <i class="icon" data-feather="star">2</i>
       <span class="menu-name">&nbsp;Nilai Mahasiswa</span>

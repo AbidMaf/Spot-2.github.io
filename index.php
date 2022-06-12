@@ -70,7 +70,19 @@ switch (strtolower($request)) {
     case '/nilai':
         require "views/mahasiswa/summaryNilai.php";
         break;
-    
+
+    case '/koreksi':
+        require "views/dosen/koreksi.php";
+        break;
+
+    case '/koreksi/bti':
+        require "views/dosen/koreksi-bti.php";
+        break;
+
+    case '/koreksi/web':
+        require "views/dosen/koreksi-web.php";
+        break;
+
     case '/dosen':
         require "views/dosen/dosen.php";
         break;
@@ -90,6 +102,14 @@ switch (strtolower($request)) {
     case '/editbti':
         require "App/Controller/editbti.php";
         break;
+
+    case '/koreksiweb':
+        require "App/Controller/koreksiweb.php";
+        break;   
+    
+    case '/koreksibti':
+        require "App/Controller/koreksibti.php";
+        break;  
 
     case '/insertbti':
         require "App/Controller/insertbti.php";
