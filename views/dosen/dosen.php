@@ -43,7 +43,7 @@
               foreach ($getMatkul as $p) {
             ?>
             <!-- List Matkul -->
-            <div class="matkul-card shadow-sm rounded">
+          <div class="matkul-card shadow-sm rounded">
             <a class="btn btn-light nilai-collapse shadow-sm" data-bs-toggle="collapse" href="#detailmatkul<?= $p['kd_matkul'] ?>" role="button" aria-expanded="false" aria-controls="collapseExample" id="nilaiMataKuliah" >
               <div class="matkul-info">
                 <div class="matkul-header">
@@ -199,18 +199,18 @@
                               </div>
                               <form action="/editTugas/<?= $materi['id_materi'] ?>" method="POST">
                                 <div class="modal-body">
-                                    <div class="mb-3 text-start">
-                                      <label for="pert" class="col-form-label">Judul: </label>
-                                      <input type="text" name="judul" class="form-control" id="pert" value="<?= $fetchTugas[0]['judul'] ?>">
-                                    </div>
-                                    <div class="mb-3 text-start">
-                                      <label for="materi" class="col-form-label">Deskripsi:</label>
-                                      <input type="text" class="form-control mb-2" id="materi" name="deskripsi" value="<?= $fetchTugas[0]['deskripsi'] ?>">
-                                    </div>
-                                    <div class="mb-3 text-start">
-                                        <label for="tugas" class="col-form-label">Deadline</label>
-                                        <input type="datetime-local" name="deadline" class="form-control mb-2" id="tugas-text" value="<?= date('Y-m-d\TH:i', strtotime($fetchTugas[0]['deadline'])) ?>">
-                                    </div>
+                                  <div class="mb-3 text-start">
+                                    <label for="pert" class="col-form-label">Judul: </label>
+                                    <input type="text" name="judul" class="form-control" id="pert" value="<?= $fetchTugas[0]['judul'] ?>">
+                                  </div>
+                                  <div class="mb-3 text-start">
+                                    <label for="materi" class="col-form-label">Deskripsi:</label>
+                                    <input type="text" class="form-control mb-2" id="materi" name="deskripsi" value="<?= $fetchTugas[0]['deskripsi'] ?>">
+                                  </div>
+                                  <div class="mb-3 text-start">
+                                      <label for="tugas" class="col-form-label">Deadline</label>
+                                      <input type="datetime-local" name="deadline" class="form-control mb-2" id="tugas-text" value="<?= date('Y-m-d\TH:i', strtotime($fetchTugas[0]['deadline'])) ?>">
+                                  </div>
                                   
                                 </div>
                                 <div class="modal-footer">
