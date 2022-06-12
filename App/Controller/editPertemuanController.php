@@ -14,8 +14,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             'last_update' => date('Y-m-d H:i:s')
         ], 
         [
-            'pertemuan' => $pertemuan, 
-            'kd_matkul' => $kodeMatkul
+            'id_materi' => $idMateri
         ]);
         echo ("<script LANGUAGE='JavaScript'>
          window.alert('Ubah data berhasil');

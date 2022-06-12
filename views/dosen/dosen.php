@@ -156,25 +156,28 @@
                                 <h5 class="modal-title" id="exampleModalLabel">Tambah Tugas Pertemuan<?= $materi['pertemuan'] ?></h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                               </div>
-                              <div class="modal-body">
-                                <form action="/addTugas" method="POST">
-                                  <div class="mb-3 text-start">
-                                    <label for="pert" class="col-form-label">Judul: </label>
-                                    <input type="number" name="judul" class="form-control" id="pert">
-                                  </div>
-                                  <div class="mb-3 text-start">
-                                    <label for="materi" class="col-form-label">Deskripsi:</label>
-                                    <input type="text" class="form-control mb-2" id="materi" name="deskripsi">
-                                  </div>
-                                  <div class="mb-3 text-start">
-                                      <label for="tugas" class="col-form-label">Deadline</label>
-                                      <input type="datetime-local" name="deadline" class="form-control mb-2" id="tugas-text">
-                                  </div>
-                                  <input type="submit" value="Simpan" id="change" onclick="calculate()" class="btn btn-primary btn-lg mt-3"></input>
-                                </form>
-                              </div>
-                              <div class="modal-footer">
-                              </div>
+                              <form action="/addTugas/<?= $materi['id_materi'] ?>" method="POST">
+                                <div class="modal-body">
+                                  
+                                    <div class="mb-3 text-start">
+                                      <label for="pert" class="col-form-label">Judul: </label>
+                                      <input type="text" name="judul" class="form-control" id="pert">
+                                    </div>
+                                    <div class="mb-3 text-start">
+                                      <label for="materi" class="col-form-label">Deskripsi:</label>
+                                      <input type="text" class="form-control mb-2" id="materi" name="deskripsi">
+                                    </div>
+                                    <div class="mb-3 text-start">
+                                        <label for="tugas" class="col-form-label">Deadline</label>
+                                        <input type="datetime-local" name="deadline" class="form-control mb-2" id="tugas-text">
+                                    </div>
+                                    
+                                  
+                                </div>
+                                <div class="modal-footer">
+                                <input type="submit" value="Simpan" id="change" class="btn btn-primary btn-lg mt-3"></input>
+                                </div>
+                              </form>
                             </div>
                           </div>
                         </div>
@@ -186,6 +189,38 @@
                           <?= $fetchTugas[0]['judul'] ?><br>
                           <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edittugas<?= $fetchTugas[0]['id_tugas'] ?>">Edit Tugas</button>
                         </td>
+                        <!-- Modal Edit Tugas -->
+                        <div class="modal fade" id="edittugas<?= $fetchTugas[0]['id_tugas'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Ubah Tugas Pertemuan<?= $materi['pertemuan'] ?></h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <form action="/editTugas/<?= $materi['id_materi'] ?>" method="POST">
+                                <div class="modal-body">
+                                    <div class="mb-3 text-start">
+                                      <label for="pert" class="col-form-label">Judul: </label>
+                                      <input type="text" name="judul" class="form-control" id="pert" value="<?= $fetchTugas[0]['judul'] ?>">
+                                    </div>
+                                    <div class="mb-3 text-start">
+                                      <label for="materi" class="col-form-label">Deskripsi:</label>
+                                      <input type="text" class="form-control mb-2" id="materi" name="deskripsi" value="<?= $fetchTugas[0]['deskripsi'] ?>">
+                                    </div>
+                                    <div class="mb-3 text-start">
+                                        <label for="tugas" class="col-form-label">Deadline</label>
+                                        <input type="datetime-local" name="deadline" class="form-control mb-2" id="tugas-text" value="<?= date('Y-m-d\TH:i', strtotime($fetchTugas[0]['deadline'])) ?>">
+                                    </div>
+                                  
+                                </div>
+                                <div class="modal-footer">
+                                  <a href="#" data-bs-toggle="modal" data-bs-target="#deletetugas<?= $materi['id_materi'] ?>" class="btn btn-secondary">Hapus Tugas</a>
+                                  <input type="submit" value="Simpan" id="change" class="btn btn-primary btn-lg mt-3"></input>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
                       <?php
                         }
                       ?>
@@ -202,8 +237,8 @@
                               <h5 class="modal-title" id="exampleModalLabel">Tambah Pertemuan <?= $p['nama_matkul'] ?></h5>
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <div class="modal-body">
-                              <form action="/editPertemuan/<?= $p['kd_matkul'] ?>" method="POST">
+                            <form action="/editPertemuan/<?= $materi['id_materi'] ?>" method="POST">
+                              <div class="modal-body">
                                 <div class="mb-3 text-start">
                                   <label for="pert" class="col-form-label">
                                     Pertemuan: 
@@ -230,15 +265,60 @@
                                 <div class="modal-footer">
                                   <input type="submit" value="Ubah" id="change" class="btn btn-primary btn-lg mt-3"></input>
                                 </div>
-                              </form>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <!-- Modal Delete Tugas -->
+                      <div class="modal" tabindex="-1" id="deletetugas<?= $materi['id_materi'] ?>">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title">Konfirmasi Hapus Data</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <p>Apakah anda yakin akan <b>menghapus tugas Pertemuan <?= $materi['pertemuan'] ?></b></p>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                <a href="/deletetugas/<?= $materi['id_materi'] ?>" class="btn btn-primary"> 
+                                <i class="icon ico-dark" data-feather="trash"></i>
+                                Hapus
+                              </a>
                             </div>
                           </div>
                         </div>
                       </div>
 
                       <td class="aksi">
-                        <a href="#"><i class="text-dark" data-feather="trash-2"></i></a>
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#deletepertemuan<?= $materi['id_materi'] ?>"><i class="text-dark" data-feather="trash-2"></i></a>
                       </td>
+
+                      <!-- Modal Delete materi -->
+                      <div class="modal" tabindex="-1" id="deletepertemuan<?= $materi['id_materi'] ?>">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title">Konfirmasi Hapus Data</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <p>Apakah anda yakin akan menghapus data Pertemuan <?= $materi['pertemuan'] ?></p>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                              <a href="/deletepertemuan/<?= $materi['id_materi'] ?>" class="btn btn-primary"> 
+                                <i class="icon ico-dark" data-feather="trash"></i>
+                                Hapus
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
                     </tr>
                     <?php
                       }

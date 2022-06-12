@@ -155,8 +155,10 @@ class Query {
         return mysqli_query(mysqli_connect("localhost", "root", "", "penilaian-app"), $query);
     }
 
-    public function delete($table, $where) {
-        $query = "DELETE FROM $table WHERE $where";
+    public function delete($table, array $where) {
+        $condition = urldecode(str_replace('=', " = '", http_build_query($where, '', "' AND ")));
+        $query = "DELETE FROM $table WHERE $condition'";
+        // var_dump($query);
         return mysqli_query(mysqli_connect("localhost", "root", "", "penilaian-app"), $query);
     }
 }

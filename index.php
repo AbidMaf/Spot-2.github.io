@@ -93,10 +93,30 @@ switch (strtolower($request)) {
         break;
     
     case '/editpertemuan/' . (!empty($parseURL[2]) ? $parseURL[2] : ''):
-        $kodeMatkul = $parseURL[2];
+        $idMateri = $parseURL[2];
         require "App/Controller/editPertemuanController.php";
         break;
     
+    case '/deletepertemuan/' . (!empty($parseURL[2]) ? $parseURL[2] : ''):
+        $idMateri = $parseURL[2];
+        require "App/Controller/deletePertemuanController.php";
+        break;
+    
+    case '/addtugas/' . (!empty($parseURL[2]) ? $parseURL[2] : ''):
+        $idMateri = $parseURL[2];
+        require "App/Controller/addTugasController.php";
+        break;
+    
+    case '/edittugas/' . (!empty($parseURL[2]) ? $parseURL[2] : ''):
+        $idMateri = $parseURL[2];
+        require "App/Controller/editTugasController.php";
+        break;
+    
+    case '/deletetugas/' . (!empty($parseURL[2]) ? $parseURL[2] : ''):
+        $idMateri = $parseURL[2];
+        require "App/Controller/deleteTugasController.php";
+        break;
+
     case '/dosen-nilai':
         require "views/dosen/dosen-nilai.php";
         break;

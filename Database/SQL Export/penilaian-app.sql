@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 09, 2022 at 08:47 AM
+-- Generation Time: Jun 12, 2022 at 10:40 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -61,21 +61,21 @@ END$$
 CREATE DEFINER=`root`@`localhost` FUNCTION `setPredikat` (`nilaiTotal` DECIMAL(5,2)) RETURNS VARCHAR(4) CHARSET utf8mb4 BEGIN
 DECLARE predikat varchar(4);
 
-IF nilaiTotal BETWEEN 90 AND 100 THEN SET 
+IF nilaiTotal BETWEEN 90.0 AND 100.0 THEN SET 
 predikat = "A";
-ELSEIF nilaiTotal BETWEEN 85 AND 89 THEN SET 
+ELSEIF nilaiTotal BETWEEN 85.0 AND 89.0 THEN SET 
 predikat = "A-";
-ELSEIF nilaiTotal BETWEEN 80 AND 84 THEN SET 
+ELSEIF nilaiTotal BETWEEN 80.0 AND 84.0 THEN SET 
 predikat = "B+";
-ELSEIF nilaiTotal BETWEEN 75 AND 79 THEN SET 
+ELSEIF nilaiTotal BETWEEN 75.0 AND 79.0 THEN SET 
 predikat = "B";
-ELSEIF nilaiTotal BETWEEN 70 AND 74 THEN SET 
+ELSEIF nilaiTotal BETWEEN 70.0 AND 74.0 THEN SET 
 predikat = "B-";
-ELSEIF nilaiTotal BETWEEN 65 AND 69 THEN SET 
+ELSEIF nilaiTotal BETWEEN 65.0 AND 69.0 THEN SET 
 predikat = "C+";
-ELSEIF nilaiTotal BETWEEN 60 AND 64 THEN SET 
+ELSEIF nilaiTotal BETWEEN 60.0 AND 64.0 THEN SET 
 predikat = "C";
-ELSEIF nilaiTotal BETWEEN 55 AND 59 THEN SET 
+ELSEIF nilaiTotal BETWEEN 55.0 AND 59.0 THEN SET 
 predikat = "D";
 ELSE SET predikat = "E";
 END IF;
@@ -94,16 +94,17 @@ DELIMITER ;
 
 CREATE TABLE `dosen` (
   `nid` int(10) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'default.jpg'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `dosen`
 --
 
-INSERT INTO `dosen` (`nid`, `name`) VALUES
-(1234567, 'Dr. John Doe, S.Kom.m M.T.'),
-(7654321, 'Jafar');
+INSERT INTO `dosen` (`nid`, `name`, `avatar`) VALUES
+(1234567, 'Dr. John Doe, S.Kom.m M.T.', 'profile_1234567.png'),
+(7654321, 'Jafar', 'default.jpg');
 
 --
 -- Triggers `dosen`
@@ -210,7 +211,7 @@ CREATE TABLE `matakuliah` (
 
 INSERT INTO `matakuliah` (`kd_matkul`, `nid`, `nid2`, `nama_matkul`, `description`, `sks`, `waktu`, `hari`) VALUES
 ('PT502', 1234567, 7654321, 'Sistem Operasi', 'Mata kuliah ini mengajarkan prinsip-prinsip dasar Internet dan teknologi yang dapat digunakan untuk membangun sebuah Aplikasi Internet. HTML dan CSS yang merupakan komponen dasar dari halaman web, merupakan dua topik pertama yang dibahas dalam mata kuliah ini. Mata kuliah ini kemudian membahas penampilan web secara dinamis menggunakan Javascript. Javascript juga merupakan dasar pemrograman Ajax yang juga akan diperkenalkan pada mata kuliah ini. Pemrograman dari sisi server juga akan dibahas dengan menggunakan bahasa PHP dan ASP. Mahasiswa juga diajarkan untuk menganalisis berbagai aspek kualitas pada aplikasi internet, seperti: usability, security, dan performance.', 3, '13:00:00', 'Senin'),
-('RL209', 1234567, 7654321, 'Pemrograman Berorientasi Objek', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis hendrerit nibh, a porttitor nisl. Fusce nec mollis eros, vel egestas purus. Vivamus elit est, convallis non blandit eleifend, imperdiet a velit. Aliquam vulputate feugiat tellus vitae pellentesque. Curabitur vel diam tincidunt, gravida nibh sed, semper dui. Proin nec efficitur felis. Etiam ultrices ante a tempus ultricies.\r\n\r\nIn ultricies ornare condimentum. Duis sed velit ut diam imperdiet eleifend eu eu est. Mauris convallis, sem eget gravida pretium, nisi neque dignissim metus, a volutpat risus orci nec nulla. Nullam imperdiet, nisl a aliquam egestas, magna nisi interdum nibh, sed feugiat diam ex at nulla. Etiam quis scelerisque nisi, vel porttitor leo. Vivamus in ex tincidunt, blandit augue in, fermentum quam. Sed sem quam, lobortis eu mollis eu, porta at arcu. In vitae placerat ex. Mauris pharetra mi in arcu mattis vestibulum.', 3, '07:00:00', 'Senin');
+('RL209', 1234567, 7654321, 'Pemrograman Berorientasi Objek', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis hendrerit nibh, a porttitor nisl. Fusce nec mollis eros, vel egestas purus. Vivamus elit est, convallis non blandit eleifend, imperdiet a velit. Aliquam vulputate feugiat tellus vitae pellentesque. Curabitur vel diam tincidunt, gravida nibh sed, semper dui. Proin nec efficitur felis. Etiam ultrices ante a tempus ultricies.\r\n\r\nIn ultricies ornare condimentum. Duis sed velit ut diam imperdiet eleifend eu eu est. Mauris convallis, sem eget gravida pretium, nisi neque dignissim metus, a volutpat risus orci nec nulla. Nullam imperdiet, nisl a aliquam egestas, magna nisi interdum nibh, sed feugiat diam ex at nulla. Etiam quis scelerisque nisi, vel porttitor leo. Vivamus in ex tincidunt, blandit augue in, fermentum quam. Sed sem quam, lobortis eu mollis eu, porta at arcu. In vitae placerat ex. Mauris pharetra mi in arcu mattis vestibulum.', 3, '07:00:00', 'Jumat');
 
 -- --------------------------------------------------------
 
@@ -225,7 +226,7 @@ CREATE TABLE `materi` (
   `judul` varchar(128) NOT NULL,
   `highlight` text NOT NULL,
   `deskripsi` text NOT NULL,
-  `last_update` datetime NOT NULL
+  `last_update` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -237,7 +238,18 @@ INSERT INTO `materi` (`id_materi`, `kd_matkul`, `pertemuan`, `judul`, `highlight
 (2, 'RL209', 1, 'CRUD MySQL', 'Select. Insert, Update, dan Delete|Contoh Query', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis hendrerit nibh, a porttitor nisl. Fusce nec mollis eros, vel egestas purus. Vivamus elit est, convallis non blandit eleifend, imperdiet a velit. Aliquam vulputate feugiat tellus vitae pellentesque. Curabitur vel diam tincidunt, gravida nibh sed, semper dui. Proin nec efficitur felis. Etiam ultrices ante a tempus ultricies.\r\n\r\nIn ultricies ornare condimentum. Duis sed velit ut diam imperdiet eleifend eu eu est. Mauris convallis, sem eget gravida pretium, nisi neque dignissim metus, a volutpat risus orci nec nulla. Nullam imperdiet, nisl a aliquam egestas, magna nisi interdum nibh, sed feugiat diam ex at nulla. Etiam quis scelerisque nisi, vel porttitor leo. Vivamus in ex tincidunt, blandit augue in, fermentum quam. Sed sem quam, lobortis eu mollis eu, porta at arcu. In vitae placerat ex. Mauris pharetra mi in arcu mattis vestibulum.', '2022-05-24 08:59:42'),
 (3, 'RL209', 2, 'Connection', 'MySQL Connection|Contoh Syntax', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis hendrerit nibh, a porttitor nisl. Fusce nec mollis eros, vel egestas purus. Vivamus elit est, convallis non blandit eleifend, imperdiet a velit. Aliquam vulputate feugiat tellus vitae pellentesque. Curabitur vel diam tincidunt, gravida nibh sed, semper dui. Proin nec efficitur felis. Etiam ultrices ante a tempus ultricies.\r\n\r\nIn ultricies ornare condimentum. Duis sed velit ut diam imperdiet eleifend eu eu est. Mauris convallis, sem eget gravida pretium, nisi neque dignissim metus, a volutpat risus orci nec nulla. Nullam imperdiet, nisl a aliquam egestas, magna nisi interdum nibh, sed feugiat diam ex at nulla. Etiam quis scelerisque nisi, vel porttitor leo. Vivamus in ex tincidunt, blandit augue in, fermentum quam. Sed sem quam, lobortis eu mollis eu, porta at arcu. In vitae placerat ex. Mauris pharetra mi in arcu mattis vestibulum.', '2022-05-22 08:59:42'),
 (4, 'PT502', 2, 'Yes', 'Yeet', 'lor', '2022-05-24 03:07:13'),
-(5, 'PT502', 3, 'Bash Scripting', 'Bash|Scripting', 'Need to test it more, but seems it`s works! Thank you so much! :) Now i will use your patter for finding all liks and checking them for files, whole idea to find all file links, but, now some sites like to do pretty links like test.com/superfile without extension, so this code can help me a lot :) – \r\nswamprunner7\r\n Apr 29, 2014 at', '2022-05-25 02:27:24');
+(5, 'PT502', 3, 'Bash Scripting', 'Bash|Scripting', 'Need to test it more, but seems it`s works! Thank you so much! :) Now i will use your patter for finding all liks and checking them for files, whole idea to find all file links, but, now some sites like to do pretty links like test.com/superfile without extension, so this code can help me a lot :) - \r\nswamprunner7\r\n Apr 29, 2014 at', '2022-05-25 02:27:24');
+
+--
+-- Triggers `materi`
+--
+DELIMITER $$
+CREATE TRIGGER `deleteTugas` BEFORE DELETE ON `materi` FOR EACH ROW BEGIN 
+DELETE FROM tugas WHERE id_materi = old.id_materi;
+
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -283,9 +295,9 @@ CREATE TABLE `nilai` (
 --
 
 INSERT INTO `nilai` (`id_nilai`, `npm`, `kd_matkul`, `ntugas`, `nquiz`, `nuts`, `nuas`) VALUES
-(1, 2000649, 'PT502', 24, 90, 89, 94),
-(2, 2000053, 'PT502', 14, 42, 42, 42),
-(3, 2000649, 'RL209', 0, 90, 90, 90);
+(1, 2000649, 'PT502', 43, 90, 89, 94),
+(2, 2000053, 'PT502', 2, 52, 64, 42),
+(3, 2000649, 'RL209', 0, 98, 95, 90);
 
 -- --------------------------------------------------------
 
@@ -330,6 +342,18 @@ INSERT INTO `tugas` (`id_tugas`, `judul`, `deskripsi`, `deadline`, `id_materi`) 
 (4, 'Inheritance, Polymorphism, dan Fish', 'https://www.youtube.com/c/adhesi', '2022-05-27 02:13:18', 3),
 (5, 's', 'sasasasas', '2022-05-29 07:30:20', 5);
 
+--
+-- Triggers `tugas`
+--
+DELIMITER $$
+CREATE TRIGGER `deleteUpoad` BEFORE DELETE ON `tugas` FOR EACH ROW BEGIN
+
+DELETE FROM upload_tugas WHERE id_tugas = old.id_tugas;
+
+END
+$$
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -342,17 +366,18 @@ CREATE TABLE `upload_tugas` (
   `id_tugas` int(11) NOT NULL,
   `kd_matkul` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `file` varchar(255) NOT NULL,
-  `nilai` int(11) NOT NULL DEFAULT 0
+  `nilai` int(11) NOT NULL DEFAULT 0,
+  `last_updated` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `upload_tugas`
 --
 
-INSERT INTO `upload_tugas` (`id_up_tugas`, `npm`, `id_tugas`, `kd_matkul`, `file`, `nilai`) VALUES
-(14, 2000649, 1, 'pt502', '1_2000649.png', 0),
-(15, 2000649, 3, 'pt502', '3_2000649.png', 0),
-(16, 2000053, 1, 'pt502', '1_2000053.jpeg', 0);
+INSERT INTO `upload_tugas` (`id_up_tugas`, `npm`, `id_tugas`, `kd_matkul`, `file`, `nilai`, `last_updated`) VALUES
+(14, 2000649, 1, 'PT502', '1_2000649_Screenshot+2.jpg', 80, '2022-06-11 15:03:00'),
+(15, 2000649, 3, 'PT502', '3_2000649.png', 90, '2022-06-11 15:34:35'),
+(16, 2000053, 1, 'PT502', '1_2000053.jpeg', 0, '2022-06-11 15:34:35');
 
 --
 -- Triggers `upload_tugas`
@@ -414,7 +439,7 @@ INSERT INTO `user` (`id_user`, `username`, `password`, `level`) VALUES
 (4, '2000388', '53bb5d4', 'mahasiswa'),
 (5, '2000427', '7810209', 'mahasiswa'),
 (6, '2000637', 'fb09b4c', 'mahasiswa'),
-(7, '2000649', '1234', 'mahasiswa'),
+(7, '2000649', '12345678', 'mahasiswa'),
 (8, '2000696', '07d20c2', 'mahasiswa'),
 (9, '2000746', '0c12900', 'mahasiswa'),
 (10, '2000782', 'da3c3ba', 'mahasiswa'),
@@ -546,7 +571,7 @@ ALTER TABLE `mahasiswa`
 -- AUTO_INCREMENT for table `materi`
 --
 ALTER TABLE `materi`
-  MODIFY `id_materi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_materi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -570,13 +595,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `tugas`
 --
 ALTER TABLE `tugas`
-  MODIFY `id_tugas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_tugas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `upload_tugas`
 --
 ALTER TABLE `upload_tugas`
-  MODIFY `id_up_tugas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_up_tugas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `user`
