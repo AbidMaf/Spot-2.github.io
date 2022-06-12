@@ -15,6 +15,7 @@ nav {
     justify-content: flex-end;
     padding-right: 3vw;
     overflow: unset;
+    z-index: 99;
 }
 
 nav .notification {

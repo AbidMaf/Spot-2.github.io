@@ -4,7 +4,7 @@
      $nquiz = $_POST['nquiz'];
      $nuts = $_POST['nuts'];
      $nuas = $_POST['nuas'];
-     $kd_matkul = "RL209";
+     $kd_matkul = $_POST['kode_matkul'];
      $sql = "UPDATE nilai SET nquiz='$nquiz', nuts='$nuts', nuas='$nuas' WHERE npm='$nim' && kd_matkul='$kd_matkul'";
      if (mysqli_query($conn, $sql)) {
       echo ("<script LANGUAGE='JavaScript'>

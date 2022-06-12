@@ -14,6 +14,7 @@ class Query {
     private $joinVal = array("");
     private $mainTable;
     private $groupBy;
+    private $first;
 
     public function reset() {
         $this->resource = null;
@@ -25,6 +26,7 @@ class Query {
         $this->joinVal = array("");
         $this->mainTable = null;
         $this->groupBy = null;
+        $this->first = null;
     }
 
     // Use this for custom query
@@ -106,8 +108,8 @@ class Query {
         . implode("", $this->joinVal)
         . implode(" AND ", $this->where)
         . $this->groupBy 
-        . $this->limit 
-        . $this->orderBy;
+        . $this->orderBy 
+        . $this->limit;
         // echo "<br><br>";
         // var_dump($sql);
 
@@ -134,6 +136,7 @@ class Query {
 
     public function count()
     {
+        // var_dump($this->resource);
         return $this->resource->num_rows;
     }
 
@@ -145,8 +148,8 @@ class Query {
     }
 
     public function update($table, array $targets, array $where) {
-        $change = str_replace('=', " = '", http_build_query($targets, '', "' ,"));
-        $condition = str_replace('=', " = '", http_build_query($where, '', "' AND "));
+        $change = urldecode(str_replace('=', " = '", http_build_query($targets, '', "' ,")));
+        $condition = urldecode(str_replace('=', " = '", http_build_query($where, '', "' AND ")));
         $query = "UPDATE $table SET " . $change . "' WHERE $condition'";
         // $query = "UPDATE $table SET avatar = 'default.jpg' WHERE $where";
         return mysqli_query(mysqli_connect("localhost", "root", "", "penilaian-app"), $query);

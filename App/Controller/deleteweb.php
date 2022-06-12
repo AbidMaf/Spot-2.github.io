@@ -1,5 +1,5 @@
 <?php
-$sql = "DELETE FROM nilai WHERE npm = '$nim' && kd_matkul = 'RL209'";
+$sql = "UPDATE  nilai SET nquiz = 0, nuts = 0, nuas = 0 WHERE npm = '$nim' && kd_matkul = '$kd_matkul'";
 $delete = mysqli_query($conn, $sql);
 if ($delete) {
     echo ("<script LANGUAGE='JavaScript'>

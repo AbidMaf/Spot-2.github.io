@@ -87,6 +87,16 @@ switch (strtolower($request)) {
         require "views/dosen/dosen.php";
         break;
     
+    case '/addpertemuan/' . (!empty($parseURL[2]) ? $parseURL[2] : ''):
+        $kodeMatkul = $parseURL[2];
+        require "App/Controller/insertPertemuanController.php";
+        break;
+    
+    case '/editpertemuan/' . (!empty($parseURL[2]) ? $parseURL[2] : ''):
+        $kodeMatkul = $parseURL[2];
+        require "App/Controller/editPertemuanController.php";
+        break;
+    
     case '/dosen-nilai':
         require "views/dosen/dosen-nilai.php";
         break;
@@ -95,7 +105,7 @@ switch (strtolower($request)) {
         require "App/Controller/insertweb.php";
         break;
 
-    case '/editweb':
+    case '/editnilai':
         require "App/Controller/editweb.php";
         break;
 
@@ -115,8 +125,9 @@ switch (strtolower($request)) {
         require "App/Controller/insertbti.php";
         break;
 
-    case '/deleteweb/' . (!empty($parseURL[2]) ? $parseURL[2] : ''):
+    case '/deletenilai/' . (!empty($parseURL[2]) ? $parseURL[2] : '') . '/' . (!empty($parseURL[3]) ? $parseURL[3] : ''):
         $nim = $parseURL[2];
+        $kd_matkul = $parseURL[3];
         require $_SERVER['DOCUMENT_ROOT'] . "/App/Controller/deleteweb.php";
         break;
         
