@@ -75,12 +75,15 @@ switch (strtolower($request)) {
         require "views/dosen/koreksi.php";
         break;
 
-    case '/koreksi/so':
-        require "views/dosen/koreksi-so.php";
+    case '/koreksi/' . (!empty($parseURL[2]) ? $parseURL[2] : '') . '/' . (!empty($parseURL[3]) ? $parseURL[3] : ''):
+        $kd_matkul = $parseURL[2];
+        $pertemuan = $parseURL[3];
+        require "views/dosen/koreksi-nilai.php";
         break;
 
-    case '/koreksi/pbo':
-        require "views/dosen/koreksi-pbo.php";
+    case '/koreksitugas/' . (!empty($parseURL[2]) ? $parseURL[2] : ''):
+        $idUpTugas = $parseURL[2];
+        require "App/Controller/koreksiController.php";
         break;
 
     case '/dosen':

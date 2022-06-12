@@ -6,7 +6,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     $dir = $_SERVER['DOCUMENT_ROOT'] . "/assets/tugas/";
     $temp = explode(".", $_FILES["formfile"]["name"]);
-    $newfilename = $id_tugas . "_" . $npm . "_" . $_FILES["formfile"]["name"];
+    $newfilename = $id_tugas . "_" . $npm . "_" . urldecode($_FILES["formfile"]["name"]);
 
     $target_file = $dir . $newfilename;
     $uploadOk = 1;

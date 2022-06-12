@@ -31,6 +31,7 @@ class Query {
 
     // Use this for custom query
     public function query($sql) {
+        // var_dump($sql);
         $this->resource = mysqli_query(mysqli_connect("localhost", "root", "", "penilaian-app"), $sql);
         return $this;
     }

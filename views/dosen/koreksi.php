@@ -35,22 +35,26 @@
           <span class="date-text">&nbsp;<?= $helper->getTodayDate() ?></span>
         </div>
       </div>
+      <?php
+          $getMatkul = $DB->query("SELECT * FROM matakuliah WHERE nid = '". $_SESSION['nid'] . "' OR nid2 = '" . $_SESSION['nid'] . "'")->fetch();
+          foreach($getMatkul as $matkul) {
+      ?>
       <div class="row g-3">
         <div class="col-lg-12">
           <div class="matkul-card shadow-sm rounded">
             <!-- Sistem Operasi -->
-            <a class="btn btn-light nilai-collapse shadow-sm" data-bs-toggle="collapse" href="#detailbti" role="button" aria-expanded="false" aria-controls="collapseExample" id="nilaiMataKuliah">
+            <a class="btn btn-light nilai-collapse shadow-sm" data-bs-toggle="collapse" href="#detailbti<?= $matkul['kd_matkul'] ?>" role="button" aria-expanded="false" aria-controls="collapseExample" id="nilaiMataKuliah">
               <div class="matkul-info">
                 <div class="matkul-header">
                   <div class="matkul-kode">
-                    PT502
+                    <?= $matkul['kd_matkul'] ?>
                   </div>
                   <div class="matkul-title">
-                    Sistem Operasi
+                  <?= $matkul['nama_matkul'] ?>
                   </div>
                 </div>
                 <div class="matkul-sks-dosen mb-2">
-                  3 SKS
+                  <?= $matkul['sks'] ?> SKS
                 </div>
                 <div class="matkul-dosen">
                   <i class="ico ico-dark" data-feather="book"></i>
@@ -59,109 +63,39 @@
               </div>
             </a>
             <!-- Detail Sistem Operasi -->
-            <div class="collapse" id="detailbti">
+            <div class="collapse" id="detailbti<?= $matkul['kd_matkul'] ?>">
               <div class="card card-body gy-5 card">
+                <?php
+                  $getPertemuan = $DB->table('materi')->where('kd_matkul', $matkul['kd_matkul'])->get()->fetch();
+                  foreach ($getPertemuan as $pertemuan) {
+                ?>
+            
                 <!-- Pertemuan 1 -->
-                <a class="btn btn-light nilai-collapse shadow-sm" data-bs-toggle="collapse" href="#bticollapse" role="button" aria-expanded="false" aria-controls="collapseExample">
-                  <span class="matkul-name">Pertemuan 1</span>
+                <a class="btn btn-light nilai-collapse shadow-sm" data-bs-toggle="collapse" href="#bticollapse<?= $pertemuan['pertemuan'] . $pertemuan['kd_matkul'] ?>" role="button" aria-expanded="false" aria-controls="collapseExample">
+                  <span class="matkul-name">Pertemuan <?= $pertemuan['pertemuan'] ?></span>
                 </a>
-                <div class="collapse" id="bticollapse">
+                <div class="collapse" id="bticollapse<?= $pertemuan['pertemuan'] . $pertemuan['kd_matkul'] ?>">
                   <div class="card card-body gy-5">
                     <div class="row nilai nilai-total">
                       <div class="col-10">
-                        <span>Lorem ipsum</span>
+                        <span>Lihat Pengumpulan Tugas</span>
                       </div>
                       <div class="col-2 text-end text-nowrap">
-                        <a class="btn btn-primary" href=/koreksi/so role="button">Koreksi</a>
+                        <a class="btn btn-primary" href="/koreksi/<?= $pertemuan['kd_matkul'] ?>/<?= $pertemuan['pertemuan'] ?>" role="button">Koreksi</a>
                       </div>
                     </div>
                   </div>
                 </div>
-                <!-- Pertemuan 2 -->
-                <a class="btn btn-light nilai-collapse shadow-sm" data-bs-toggle="collapse" href="#bticollapse2" role="button" aria-expanded="false" aria-controls="collapseExample">
-                  <span class="matkul-name">Pertemuan 2</span>
-                </a>
-                <div class="collapse" id="bticollapse2">
-                  <div class="card card-body gy-5">
-                    <div class="row nilai nilai-total">
-                      <div class="col-10">
-                        <span>Lorem ipsum</span>
-                      </div>
-                      <div class="col-2 text-end text-nowrap">
-                        <a class="btn btn-primary" href=/koreksi/so role="button">Koreksi</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <?php
+                  }
+                ?>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="row g-3">
-        <div class="col-lg-12">
-          <div class="matkul-card shadow-sm rounded">
-            <!-- PBO -->
-            <a class="btn btn-light nilai-collapse shadow-sm" data-bs-toggle="collapse" href="#detailpbo" role="button" aria-expanded="false" aria-controls="collapseExample" id="nilaiMataKuliah">
-              <div class="matkul-info">
-                <div class="matkul-header">
-                  <div class="matkul-kode">
-                    RL209
-                  </div>
-                  <div class="matkul-title">
-                    Pemrograman Berorientasi Objek
-                  </div>
-                </div>
-                <div class="matkul-sks-dosen mb-2">
-                  3 SKS
-                </div>
-                <div class="matkul-dosen">
-                  <i class="ico ico-dark" data-feather="book"></i>
-                  &nbsp;Rekayasa Perangkat Lunak
-                </div>
-              </div>
-            </a>
-            <!-- Detail PBO -->
-            <div class="collapse" id="detailpbo">
-              <div class="card card-body gy-5 card">
-                <!-- Pertemuan 1 -->
-                <a class="btn btn-light nilai-collapse shadow-sm" data-bs-toggle="collapse" href="#pbocollapse" role="button" aria-expanded="false" aria-controls="collapseExample">
-                  <span class="matkul-name">Pertemuan 1</span>
-                </a>
-                <div class="collapse" id="pbocollapse">
-                  <div class="card card-body gy-5">
-                    <div class="row nilai nilai-total">
-                      <div class="col-10">
-                        <span>Lorem ipsum</span>
-                      </div>
-                      <div class="col-2 text-end text-nowrap">
-                        <a class="btn btn-primary" href=/koreksi/pbo role="button">Koreksi</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- Pertemuan 2 -->
-                <a class="btn btn-light nilai-collapse shadow-sm" data-bs-toggle="collapse" href="#pbocollapse2" role="button" aria-expanded="false" aria-controls="collapseExample">
-                  <span class="matkul-name">Pertemuan 2</span>
-                </a>
-                <div class="collapse" id="pbocollapse2">
-                  <div class="card card-body gy-5">
-                    <div class="row nilai nilai-total">
-                      <div class="col-10">
-                        <span>Lorem ipsum</span>
-                      </div>
-                      <div class="col-2 text-end text-nowrap">
-                        <a class="btn btn-primary" href=/koreksi/pbo role="button">Koreksi</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
+      <?php } ?>
+      
     </div>
   </div>
 
