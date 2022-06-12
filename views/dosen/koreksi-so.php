@@ -7,7 +7,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" integrity="sha512-7x3zila4t2qNycrtZ31HO0NnJr8kg2VI67YLoRSyi9hGhRN66FHYWr7Axa9Y1J9tGYHVBPqIjSE1ogHrJTz51g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-  <title>SPOT</title>
+  <title>SPOT - Koreksi SO</title>
   <link href="../../css/koreksi.css" rel="stylesheet" type="text/css" />
   <link href="../../css/component/navbar.css" rel="stylesheet" type="text/css" />
   <script src="../../script.js"></script>
@@ -45,7 +45,7 @@
         <div class="col order-lg-1">
           <div class="sum-nilai-matkul-card shadow-sm rounded">
             <?php
-            $sql = 'SELECT a.npm, a.`name`, b.judul, b.id_tugas, c.last_updated, c.file, c.nilai
+            $sql = 'SELECT a.npm, a.`name`, b.judul, c.id_up_tugas, c.last_updated, c.file, c.nilai
             FROM tugas AS b
             INNER JOIN upload_tugas AS c ON b.id_tugas = c.id_tugas
             INNER JOIN mahasiswa AS a ON a.npm = c.npm
@@ -63,7 +63,7 @@
                 <th scope="col">NIM</th>
                   <th scope="col">Nama</th>
                   <th scope="col">Judul</th>
-                  <th scope="col">ID Tugas</th>
+                  <th scope="col">Upload ID</th>
                   <th scope="col">Waktu Pengumpulan</th>
                   <th scope="col">File Tugas</th>
                   <th scope="col">Nilai Tugas</th>
@@ -80,12 +80,12 @@
                       <td>' . $row['5'] . '</td>
                       <td>' . $row['6'] . '</td>
                       <td align="center">
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#editso' . $row["0"] . '"><i class="text-dark" data-feather="edit"></i></a>
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#editso' . $row["3"] . '"><i class="text-dark" data-feather="edit"></i></a>
                       </td>
                     </tr>'; ?>
 
               <!-- Modal Edit SO -->
-              <div class="modal fade" id="editso<?= $row[0] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal fade" id="editso<?= $row[3] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -99,8 +99,8 @@
                           <input type="text" class="form-control" name="nim" value="<?= $row[0] ?>" readonly>
                         </div>
                         <div class="mb-3 text-start">
-                          <label for="id_tugas" class="col-form-label">ID Tugas:</label>
-                          <input type="text" class="form-control" name="id_tugas" value="<?= $row[3] ?>">
+                          <label for="id_up_tugas" class="col-form-label">Upload ID:</label>
+                          <input type="text" class="form-control" name="id_up_tugas" value="<?= $row[3] ?>" readonly>
                         </div>
                         <div class="mb-3 text-start">
                           <label for="nilai" class="col-form-label">Nilai Tugas:</label>
