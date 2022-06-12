@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <title>SPOT</title>
-    <link href="../../css/dosen-nilai.css" rel="stylesheet" type="text/css" />
+    <link href="../../css/koreksi.css" rel="stylesheet" type="text/css" />
     <link href="../../css/component/navbar.css" rel="stylesheet" type="text/css" />
     <script src="../../script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -34,7 +34,7 @@
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
                                 <i class="icon ico-dark" data-feather="check-circle"></i>
-                                <span class="breadcrumb-item-text">&nbsp;Tugas Pemrograman Web</span>
+                                <span class="breadcrumb-item-text">&nbsp;Tugas Pemrograman Berbasis Objek</span>
                             </li>
                         </ol>
                     </div>
@@ -45,12 +45,11 @@
                 <div class="col order-lg-1">
                     <div class="sum-nilai-matkul-card shadow-sm rounded">
                         <?php
-                        $sql = 'SELECT a.npm, a.`name`, GROUP_CONCAT(CONCAT(" "), b.id_tugas), GROUP_CONCAT(CONCAT(" "), b.file), c.ntugas
-                        FROM mahasiswa AS a
-                        INNER JOIN upload_tugas AS b ON a.npm = b.npm
-                        INNER JOIN nilai AS c ON a.npm = c.npm
-                        WHERE c.kd_matkul = "rl209"
-                        GROUP BY a.npm';
+                        $sql = 'SELECT a.npm, a.`name`, b.judul, b.id_tugas, c.last_updated, c.file, c.nilai
+                        FROM tugas AS b
+                        INNER JOIN upload_tugas AS c ON b.id_tugas = c.id_tugas
+                        INNER JOIN mahasiswa AS a ON a.npm = c.npm
+                        WHERE c.kd_matkul = "RL209"';
 
                         $query = mysqli_query($conn, $sql);
 
@@ -60,29 +59,33 @@
 
                         echo '
               <table class="table table-striped table-bordered">
-                <thead align="center">
+                <thead>
                   <th scope="col">NIM</th>
                   <th scope="col">Nama</th>
+                  <th scope="col">Judul</th>
                   <th scope="col">ID Tugas</th>
+                  <th scope="col">Waktu Pengumpulan</th>
                   <th scope="col">File Tugas</th>
-                  <th scope="col">Nilai</th>
+                  <th scope="col">Nilai Tugas</th>
                   <th scope="col">Aksi</th>
                 </thead>
                 <tbody>';
                         while ($row = mysqli_fetch_array($query)) {
                             echo '<tr>
-                        <td align="center">' . $row['0'] . '</td>
-                        <td>' . $row['1'] . '</td>
-                        <td align="center">' . $row['2'] . '</td>
-                        <td>' . $row['3'] . '</td>
-                        <td align="center">' . $row['4'] . '</td>
+                            <td>' . $row['0'] . '</td>
+                            <td>' . $row['1'] . '</td>
+                            <td>' . $row['2'] . '</td>
+                            <td>' . $row['3'] . '</td>
+                            <td>' . $row['4'] . '</td>
+                            <td>' . $row['5'] . '</td>
+                            <td>' . $row['6'] . '</td>
                         <td align="center">
-                          <a href="#" data-bs-toggle="modal" data-bs-target="#editweb' . $row["0"] . '"><i class="text-dark" data-feather="edit"></i></a>
+                          <a href="#" data-bs-toggle="modal" data-bs-target="#editpbo' . $row["0"] . '"><i class="text-dark" data-feather="edit"></i></a>
                         </td>
                       </tr>'; ?>
 
-                            <!-- Modal Edit Web -->
-                            <div class="modal fade" id="editweb<?= $row[0] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <!-- Modal Edit PBO -->
+                            <div class="modal fade" id="editpbo<?= $row[0] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -90,18 +93,18 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form id="editweb" action="/koreksiweb" method="POST">
+                                            <form id="editpbo" action="/koreksipbo" method="POST">
                                                 <div class="mb-3 text-start">
                                                     <label for="nim" class="col-form-label">NIM:</label>
                                                     <input type="text" class="form-control" name="nim" value="<?= $row[0] ?>" readonly>
                                                 </div>
                                                 <div class="mb-3 text-start">
                                                     <label for="id_tugas" class="col-form-label">ID Tugas:</label>
-                                                    <input type="text" class="form-control" name="id_tugas" value="<?= $row[2] ?>" readonly>
+                                                    <input type="text" class="form-control" name="id_tugas" value="<?= $row[3] ?>">
                                                 </div>
                                                 <div class="mb-3 text-start">
-                                                    <label for="ntugas" class="col-form-label">Nilai Tugas:</label>
-                                                    <input type="number" class="form-control" name="ntugas" value="<?= $row[4] ?>">
+                                                    <label for="nilai" class="col-form-label">Nilai Tugas:</label>
+                                                    <input type="number" class="form-control" name="nilai" value="<?= $row[6] ?>">
                                                 </div>
                                                 <input type="submit" value="Update" id="change" class="btn btn-primary btn-lg mt-3"></input>
                                             </form>

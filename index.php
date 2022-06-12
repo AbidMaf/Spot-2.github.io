@@ -75,12 +75,12 @@ switch (strtolower($request)) {
         require "views/dosen/koreksi.php";
         break;
 
-    case '/koreksi/bti':
-        require "views/dosen/koreksi-bti.php";
+    case '/koreksi/so':
+        require "views/dosen/koreksi-so.php";
         break;
 
-    case '/koreksi/web':
-        require "views/dosen/koreksi-web.php";
+    case '/koreksi/pbo':
+        require "views/dosen/koreksi-pbo.php";
         break;
 
     case '/dosen':
@@ -133,12 +133,12 @@ switch (strtolower($request)) {
         require "App/Controller/editbti.php";
         break;
 
-    case '/koreksiweb':
-        require "App/Controller/koreksiweb.php";
+    case '/koreksiso':
+        require "App/Controller/koreksiso.php";
         break;   
     
-    case '/koreksibti':
-        require "App/Controller/koreksibti.php";
+    case '/koreksipbo':
+        require "App/Controller/koreksipbo.php";
         break;  
 
     case '/insertbti':
