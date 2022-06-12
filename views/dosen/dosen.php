@@ -38,12 +38,12 @@
       </div>
       <div class="row g-3">
         <div class="col-lg-12">
-          <div class="matkul-card shadow-sm rounded">
           <?php
               $getMatkul = $DB->query("SELECT * FROM matakuliah WHERE nid = '". $_SESSION['nid'] . "' OR nid2 = '" . $_SESSION['nid'] . "'")->fetch();
               foreach ($getMatkul as $p) {
             ?>
             <!-- List Matkul -->
+            <div class="matkul-card shadow-sm rounded">
             <a class="btn btn-light nilai-collapse shadow-sm" data-bs-toggle="collapse" href="#detailmatkul<?= $p['kd_matkul'] ?>" role="button" aria-expanded="false" aria-controls="collapseExample" id="nilaiMataKuliah" >
               <div class="matkul-info">
                 <div class="matkul-header">
@@ -335,155 +335,7 @@
           </div> 
         </div>
       </div>
-
-      <!-- Modal Tambah Pertemuan -->
-      <div class="modal fade" id="addweb" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Tambah Pertemuan Pemrograman Web</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <form id="addmatweb" onsubmit="return false">
-                <div class="mb-3 text-start">
-                  <label for="pert" class="col-form-label">Pertemuan: </label>
-                  <input type="number" class="form-control" id="pert">
-                </div>
-                <div class="mb-3 text-start">
-                  <label for="materi" class="col-form-label">Materi:</label>
-                  <input type="text" class="form-control mb-2" id="materi">
-                  <input type="file" class="form-control" id="materi-file">
-                </div>
-                <div class="mb-3 text-start">
-                    <label for="tugas" class="col-form-label">Tugas:</label>
-                    <input type="text" class="form-control mb-2" id="tugas-text">
-                    <input type="file" class="form-control" id="tugas-file">
-                </div>
-                <input type="submit" value="Simpan" id="change" onclick="calculate()" class="btn btn-primary btn-lg mt-3"></input>
-            </form>
-            </div>
-            <div class="modal-footer">
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row g-3">
-        <div class="col-lg-12">
-          <div class="matkul-card shadow-sm rounded">
-
-            <!-- BTI -->
-            <a class="btn btn-light nilai-collapse shadow-sm" data-bs-toggle="collapse" href="#detailbti" role="button" aria-expanded="false" aria-controls="collapseExample" id="nilaiMataKuliah" >
-              <div class="matkul-info">
-                <div class="matkul-header">
-                  <div class="matkul-kode">
-                    RL211
-                  </div>
-                  <div class="matkul-title">
-                    Bisnis Teknologi Informasi
-                  </div>
-                </div>
-                <div class="matkul-sks-dosen mb-2">
-                  2 SKS
-                </div>
-                <div class="matkul-dosen">
-                  <i class="ico ico-dark" data-feather="book"></i>
-                  &nbsp;Teknik Komputer Lunak
-                </div>
-                <div class="matkul-description">
-                  Mata kuliah ini mengajarkan prinsip-prinsip dasar Internet dan teknologi yang dapat digunakan untuk membangun sebuah Aplikasi Internet. HTML dan CSS yang merupakan komponen dasar dari halaman web, merupakan dua topik pertama yang dibahas dalam mata kuliah ini. Mata kuliah ini kemudian membahas penampilan web secara dinamis menggunakan Javascript. Javascript juga merupakan dasar pemrograman Ajax yang juga akan diperkenalkan pada mata kuliah ini. Pemrograman dari sisi server juga akan dibahas dengan menggunakan bahasa PHP dan ASP. Mahasiswa juga diajarkan untuk menganalisis berbagai aspek kualitas pada aplikasi internet, seperti: usability, security, dan performance.
-                </div>
-              </div>
-            </a>
-
-            <!-- Detail BTI -->
-            <div class="collapse" id="detailbti">
-              <div class="card card-body gy-5 card">
-                <button class="btn btn-primary col-lg-1 col-md-3 col-sm-4" data-bs-toggle="modal" data-bs-target="#addbti">Tambah</button> <br>
-                <table class="table table-responsive table-striped table-bordered">
-                  <thead>
-                    <th scope="col">Pert</th>
-                    <th scope="col">Materi</th>
-                    <th scope="col">Tugas</th>
-                    <th scope="col" colspan="3" class="aksi">Aksi</th>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th>1</th>
-                      <td>
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim repellat aperiam repellendus molestiae minima aspernatur doloribus sed, quam odio maxime numquam sequi at labore fugiat dolorem reiciendis vitae perspiciatis atque!
-                      </td>
-                      <td>
-                        Lorem, ipsum dolor. <br>
-                        <button class="btn btn-primary">Link</button>
-                      </td>
-                      <td class="aksi">
-                        <a href="#"><i class="text-dark" data-feather="edit"></i></a>
-                      </td>
-                      <td class="aksi">
-                        <a href="#"><i class="text-dark" data-feather="trash-2"></i></a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <th>2</th>
-                      <td>
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim repellat aperiam repellendus molestiae minima aspernatur doloribus sed, quam odio maxime numquam sequi at labore fugiat dolorem reiciendis vitae perspiciatis atque!
-                      </td>
-                      <td>
-                        Lorem ipsum dolor sit amet.<br>
-                        <button class="btn btn-primary">Link</button>
-                      </td>
-                      <td class="aksi">
-                        <a href="#"><i class="text-dark" data-feather="edit"></i></a>
-                      </td>
-                      <td class="aksi">
-                        <a href="#"><i class="text-dark" data-feather="trash-2"></i></a>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div> 
-        </div>
-      </div>
-
-      <!-- Modal BTI -->
-      <div class="modal fade" id="addbti" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Tambah Pertemuan Bisnis Teknologi Informasi</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <form id="addmatbti" onsubmit="return false">
-                <div class="mb-3 text-start">
-                  <label for="pert" class="col-form-label">Pertemuan: </label>
-                  <input type="number" class="form-control" id="pert">
-                </div>
-                <div class="mb-3 text-start">
-                  <label for="materi" class="col-form-label">Materi:</label>
-                  <input type="text" class="form-control mb-2" id="materi">
-                  <input type="file" class="form-control" id="materi-file">
-                </div>
-                <div class="mb-3 text-start">
-                    <label for="tugas" class="col-form-label">Tugas:</label>
-                    <input type="text" class="form-control mb-2" id="tugas-text">
-                    <input type="file" class="form-control" id="tugas-file">
-                </div>
-                <input type="submit" value="Simpan" id="change" onclick="calculate()" class="btn btn-primary btn-lg mt-3"></input>
-            </form>
-            </div>
-            <div class="modal-footer">
-            </div>
-          </div>
-        </div>
-      </div>
-
     </div>
-  </div>
 
   <script>
     getdata();
