@@ -32,7 +32,14 @@ switch (strtolower($request)) {
 
     case '/dashboard':
     case '/':
-        require "views/mahasiswa/dashboard.php";
+        if ($_SESSION['level'] == 'dosen') {
+            require "views/dosen/dosen.php";
+        } elseif ($_SESSION['level'] == 'mahasiswa') {
+            require "views/mahasiswa/dashboard.php";
+        } else {
+            require "views/login.php";
+        }
+        
         break;
 
     case '/changeavatar':
